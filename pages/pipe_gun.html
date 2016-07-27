@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+  /*#063805 dark #13FF17 light */
+  <meta charset="utf-8">
+  <title>Pipe Gun</title>
+  <meta name="generator" content="Google Web Designer 1.6.1.0620">
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+    }
+    body {
+      transform: perspective(1400px) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+      transform-style: preserve-3d;
+      background-color: transparent;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:700" rel="stylesheet" type="text/css">
+  <link href="css_flyoutverticalmenu.css" type="text/css" rel="Stylesheet">
+  <input type="text" id="thename" value="Pipe Gun" maxlength = "26"onchange="javascript:updatelink();">
+  <table style="width:1150px;margin:0 auto">
+    <tbody>
+      <tr>
+        <td style="width:300px">
+          <div id="stats">
+            <ul>
+              <li><a>Damage:</a>
+                <a id="dam" style="float:right"></a>
+              </li>
+              <li><a>Damage/Sec:</a>
+                <a id="dams" style="float:right"></a>
+              </li>
+              <li><a>Ammo:</a>
+                <a id="am" style="float:right"></a>
+                <a id="amp"></a>
+              </li>
+              <li><a>Fire Rate: </a>
+                <a id="fr" style="float:right"></a>
+              </li>
+              <li><a>Range:</a>
+                <a id="rng" style="float:right"></a>
+              </li>
+              <li><a>Accuracy:</a>
+                <a id="acc" style="float:right"></a>
+              </li>
+              <li><a>Clip:</a>
+                <a id="clp" style="float:right"></a>
+              </li>
+              <li><a>Weight:</a>
+                <a id="wt" style="float:right"></a>
+              </li>
+              <li><a>Value:</a>
+                <a id="val" style="float:right"></a>
+              </li>
+              <li><a>Cost/Shot: </a>
+                <a id="cs" style="float:right"></a>
+              </li>
+              <li><a>Cost/Damage: </a>
+                <a id="cd" style="float:right"></a>
+              </li>
+            </ul>
+          </div>
+        </td>
+        <td style="width:50px">
+          <div id="stats2" style="width:50px">
+            <ul style="float:left">
+              <li style="right:40px">
+                <a id="161"></a>
+              </li>
+              <li style="right:40px">
+                <a id="168"></a>
+              </li>
+              <li style="right:40px">
+                <a id="amp"></a>
+              </li>
+              <li style="right:40px">
+                <a id="162"></a>
+              </li>
+              <li style="right:40px">
+                <a id="163"></a>
+              </li>
+              <li style="right:40px">
+                <a id="164"></a>
+              </li>
+              <li style="right:40px">
+                <a id="165"></a>
+              </li>
+              <li style="right:40px">
+                <a id="166"></a>
+              </li>
+              <li style="right:40px">
+                <a id="167"></a>
+              </li>
+              <li style="right:40px">
+                <a id="169"></a>
+              </li>
+              <li style="right:40px">
+                <a id="170"></a>
+              </li>
+            </ul>
+          </div>
+        </td>
+        <td>
+          <div class="dropdown">
+            <button class="dropbtn" id="l0" style="font-family: Roboto, sans-serif;top:-165px" onclick="toggle('d0')"></button>
+            <div id="d0" class="dropdown-content" style="top:-165px">
+              <a href="javascript:trans('l0',0,0)" id="0"></a>
+              <a href="javascript:trans('l0',0,1)" id="1"></a>
+              <a href="javascript:trans('l0',0,2)" id="2"></a>
+              <a href="javascript:trans('l0',0,3)" id="3"></a>
+              <a href="javascript:trans('l0',0,4)" id="4"></a>
+              <a href="javascript:trans('l0',0,5)" id="5"></a>
+              <a href="javascript:trans('l0',0,6)" id="6"></a>
+              <a href="javascript:trans('l0',0,7)" id="7"></a>
+              <a href="javascript:trans('l0',0,8)" id="8"></a>
+              <a href="javascript:trans('l0',0,9)" id="9"></a>
+              <a href="javascript:trans('l0',0,10)" id="10"></a>
+              <a href="javascript:trans('l0',0,11)" id="11"></a>
+              <a href="javascript:trans('l0',0,12)" id="12"></a>
+              <a href="javascript:trans('l0',0,13)" id="13"></a>
+              <a href="javascript:trans('l0',0,14)" id="14"></a>
+            </div>
+            <button class="dropbtn" id="l1" style="font-family: Roboto, sans-serif;top:-135px" onclick="toggle('d1')"></button>
+            <div id="d1" class="dropdown-content" style="top:-135px">
+              <a href="javascript:trans('l1',1,20)" id="20"></a>
+              <a href="javascript:trans('l1',1,21)" id="21"></a>
+              <a href="javascript:trans('l1',1,22)" id="22"></a>
+              <a href="javascript:trans('l1',1,23)" id="23"></a>
+              <a href="javascript:trans('l1',1,24)" id="24"></a>
+              <a href="javascript:trans('l1',1,25)" id="25"></a>
+              <a href="javascript:trans('l1',1,26)" id="26"></a>
+              <a href="javascript:trans('l1',1,27)" id="27"></a>
+            </div>
+            <button class="dropbtn" id="l2" style="font-family: Roboto, sans-serif;top:-105px" onclick="toggle('d2')"></button>
+            <div id="d2" class="dropdown-content" style="top:-105px">
+              <a href="javascript:trans('l2',2,30)" id="30"></a>
+              <a href="javascript:trans('l2',2,31)" id="31"></a>
+              <a href="javascript:trans('l2',2,32)" id="32"></a>
+              <a href="javascript:trans('l2',2,33)" id="33"></a>
+              <a href="javascript:trans('l2',2,34)" id="34"></a>
+              <a href="javascript:trans('l2',2,35)" id="35"></a>
+            </div>
+            <button class="dropbtn" id="l3" style="font-family: Roboto, sans-serif;top:-75px" onclick="toggle('d3')"></button>
+            <div id="d3" class="dropdown-content" style="top:-75px">
+              <a href="javascript:trans('l3',3,40)" id="40"></a>
+              <a href="javascript:trans('l3',3,41)" id="41"></a>
+              <a href="javascript:trans('l3',3,42)" id="42"></a>
+              <a href="javascript:trans('l3',3,43)" id="43"></a>
+              <a href="javascript:trans('l3',3,44)" id="44"></a>
+              <a href="javascript:trans('l3',3,45)" id="45"></a>
+            </div>
+            <button class="dropbtn" id="l4" style="font-family: Roboto, sans-serif;top:-45px" onclick="toggle('d4')"></button>
+            <div id="d4" class="dropdown-content" style="top:-45px">
+              <a href="javascript:trans('l4',4,50)" id="50"></a>
+              <a href="javascript:trans('l4',4,51)" id="51"></a>
+              <a href="javascript:trans('l4',4,52)" id="52"></a>
+              <a href="javascript:trans('l4',4,53)" id="53"></a>
+              <a href="javascript:trans('l4',4,54)" id="54"></a>
+              <a href="javascript:trans('l4',4,55)" id="55"></a>
+              <a href="javascript:trans('l4',4,56)" id="56"></a>
+              <a href="javascript:trans('l4',4,57)" id="57"></a>
+              <a href="javascript:trans('l4',4,58)" id="58"></a>
+              <a href="javascript:trans('l4',4,59)" id="59"></a>
+              <a href="javascript:trans('l4',4,60)" id="60"></a>
+              <a href="javascript:trans('l4',4,61)" id="61"></a>
+            </div>
+            <button class="dropbtn" id="l5" style="font-family: Roboto, sans-serif;top:-15px" onclick="toggle('d5')"></button>
+            <div id="d5" class="dropdown-content" style="top:-15px">
+              <a href="javascript:trans('l5',5,70)" id="70"></a>
+              <a href="javascript:trans('l5',5,71)" id="71"></a>
+              <a href="javascript:trans('l5',5,72)" id="72"></a>
+              <a href="javascript:trans('l5',5,73)" id="73"></a>
+              <a href="javascript:trans('l5',5,74)" id="74"></a>
+              <a href="javascript:trans('l5',5,75)" id="75"></a>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <div id="cost">
+            Cost:<br>
+            
+            <a id="rcost"></a><br>
+            
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3"><br>
+          
+          <div id="share">
+            <a style="padding-right:25em;border:none">Link to Share:</a>
+            <button class="ayy">Copy to Clipboard</button><br>
+            
+            <a id="link"></a><br>
+            
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <script>
+    function clearStats() {
+      for (var i = 0; i < 10; i++) {
+        document.getElementById(i + 161).innerHTML = "";
+      }
+    }
+    var ids = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 20, 21, 22, 23, 24, 25, 26, 27, 30, 31, 32, 33, 34, 35, 40, 41, 42, 43, 44, 45, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 70, 71, 72, 73, 74, 75];
+
+    function updatelink() {
+      var slink;
+      var ind1 = window.location.href.indexOf("#");
+      if (ind1 == -1) slink = window.location.href + "#[" + curselected + ",]$" + document.getElementById("thename").value;
+      else {
+        slink = window.location.href.substring(0, ind1) + "#[" + curselected + ",]$" + document.getElementById("thename").value;
+      }
+      document.getElementById("link").innerHTML = slink;
+      document.getElementById("link").setAttribute("href", slink);
+    }
+
+    function toggle(y) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      clearStats();
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+        if (openDropdown.id == y) {
+          openDropdown.classList.toggle('show');
+        }
+      }
+    }
+
+     // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        var uu;
+        var yrp = false;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+            yrp = true;
+            uu = i
+          }
+        }
+        clearStats();
+        if (yrp) {
+          refresh(true, -1);
+        }
+      }
+    }
+
+    function costs() {
+      var rmats = [
+        ["Acid", 0],
+        ["Adhesive", 0],
+        ["Aluminum", 0],
+        ["Antiseptic", 0],
+        ["Asbestos", 0],
+        ["Ballistic Fiber", 0],
+        ["Bone", 0],
+        ["Ceramic", 0],
+        ["Circuitry", 0],
+        ["Cloth", 0],
+        ["Concrete", 0],
+        ["Copper", 0],
+        ["Cork", 0],
+        ["Crystal", 0],
+        ["Fertilizer", 0],
+        ["Fiber Optics", 0],
+        ["Fiberglass", 0],
+        ["Gears", 0],
+        ["Glass", 0],
+        ["Gold", 0],
+        ["Lead", 0],
+        ["Leather", 0],
+        ["Nuclear Material", 0],
+        ["Oil", 0],
+        ["Plastic", 0],
+        ["Rubber", 0],
+        ["Screw", 0],
+        ["Silver", 0],
+        ["Spring", 0],
+        ["Steel", 0],
+        ["Wood", 0]
+      ];
+      for (var i = 0; i < mat.length; i++) {
+        for (var j = 0; j < mat[i][curselected[i]].length; j++) {
+          var it = mat[i][curselected[i]][j];
+          if (it[0] == "ac") {
+            rmats[0][1] += it[1];
+          } else if (it[0] == "ad") {
+            rmats[1][1] += it[1];
+          } else if (it[0] == "al") {
+            rmats[2][1] += it[1];
+          } else if (it[0] == "an") {
+            rmats[3][1] += it[1];
+          } else if (it[0] == "as") {
+            rmats[4][1] += it[1];
+          } else if (it[0] == "ba") {
+            rmats[5][1] += it[1];
+          } else if (it[0] == "bo") {
+            rmats[6][1] += it[1];
+          } else if (it[0] == "ce") {
+            rmats[7][1] += it[1];
+          } else if (it[0] == "ci") {
+            rmats[8][1] += it[1];
+          } else if (it[0] == "cl") {
+            rmats[9][1] += it[1];
+          } else if (it[0] == "con") {
+            rmats[10][1] += it[1];
+          } else if (it[0] == "cop") {
+            rmats[11][1] += it[1];
+          } else if (it[0] == "cor") {
+            rmats[12][1] += it[1];
+          } else if (it[0] == "cr") {
+            rmats[13][1] += it[1];
+          } else if (it[0] == "fe") {
+            rmats[14][1] += it[1];
+          } else if (it[0] == "fo") {
+            rmats[15][1] += it[1];
+          } else if (it[0] == "fg") {
+            rmats[16][1] += it[1];
+          } else if (it[0] == "ge") {
+            rmats[17][1] += it[1];
+          } else if (it[0] == "gl") {
+            rmats[18][1] += it[1];
+          } else if (it[0] == "go") {
+            rmats[19][1] += it[1];
+          } else if (it[0] == "le") {
+            rmats[20][1] += it[1];
+          } else if (it[0] == "lth") {
+            rmats[21][1] += it[1];
+          } else if (it[0] == "nm") {
+            rmats[22][1] += it[1];
+          } else if (it[0] == "oi") {
+            rmats[23][1] += it[1];
+          } else if (it[0] == "pl") {
+            rmats[24][1] += it[1];
+          } else if (it[0] == "ru") {
+            rmats[25][1] += it[1];
+          } else if (it[0] == "sc") {
+            rmats[26][1] += it[1];
+          } else if (it[0] == "si") {
+            rmats[27][1] += it[1];
+          } else if (it[0] == "sp") {
+            rmats[28][1] += it[1];
+          } else if (it[0] == "st") {
+            rmats[29][1] += it[1];
+          } else if (it[0] == "wo") {
+            rmats[30][1] += it[1];
+          } else alert(it[0]);
+        }
+      }
+      document.getElementById("rcost").innerHTML = "";
+      for (var i = 0; i < rmats.length; i++) {
+        if (rmats[i][1] != 0) {
+          document.getElementById("rcost").innerHTML += (rmats[i][0] + ": " + rmats[i][1] + " | ");
+        }
+      }
+      document.getElementById("rcost").innerHTML = document.getElementById("rcost").innerHTML.substr(0, document.getElementById("rcost").innerHTML.length - 2);
+    }
+    var names = [
+      ["Standard Receiver", "Light Frame Receiver", "Heavy Frame Receiver", "Calibrated Receiver", "Hardened Receiver", "Automatic Receiver", "Armor Piercing Automatic Receiver (GN 1)", "Hair Trigger Receiver (GN 1)", "Powerful Receiver (GN 1)", "Hardened Automatic Receiver (GN 1)", "Rapid Automatic Receiver (GN 2)", "Calibrated Powerful Receiver (GN 2)", "Hardened Piercing Auto Receiver (GN 2)", "Powerful Automatic Receiver (GN 2)", ".45 Receiver (GN 2)"],
+      ["Stub Barrel", "Short Barrel", "Short Light Barrel", "Long Barrel", "Long Light Barrel (GN 1)", "Short Ported Barrel (GN 1)", "Long Ported Barrel (GN 1)", "Long Finned Barrel (GN 2)"],
+      ["Standard Grip", "Comfort Grip", "Standard Stock", "Sharpshooter's Grip (GN 1)", "Marksman's Stock (GN 1)", "Recoil Compensating Stock (GN 2)"],
+      ["Standard Magazine", "Large Magazine", "Quick Eject Magazine", "Drum Magazine (GN 1)", "Large Quick Eject Magazine (GN 1)", "Quick Eject Drum Magazine (GN 2)"],
+      ["Standard Sights", "Glow Sights", "Short Scope", "Reflex Sight", "Glow Reflex Sight", "Medium Scope (GN 1)", "Long Scope (GN 1)", "Short Night Vision Scope (GN 1, Sci 1)", "Medium Night Vision Scope (GN 1, Sci 1)", "Long Night Vision Scope (GN 2, Sci 1)", "Short Recon Scope (GN 2, Sci 1)", "Long Recon Scope (GN 2, Sci 1)"],
+      ["No Muzzle", "Small Bayonet", "Large Bayonet (GN 1)", "Compensator (GN 1)", "Muzzle Brake (GN 1)", "Suppressor (GN 2)"]
+    ];
+    var mat = [
+      [
+        [
+          ["ge", 1],
+          ["oi", 2],
+          ["sc", 1],
+          ["st", 2]
+        ],
+        [
+          ["ad", 1],
+          ["ge", 1],
+          ["oi", 2],
+          ["sc", 1],
+          ["st", 2]
+        ],
+        [
+          ["ad", 1],
+          ["ge", 2],
+          ["oi", 2],
+          ["sc", 2],
+          ["st", 3]
+        ],
+        [
+          ["ad", 2],
+          ["ge", 2],
+          ["oi", 2],
+          ["sc", 2],
+          ["st", 4]
+        ],
+        [
+          ["ad", 2],
+          ["ge", 2],
+          ["oi", 2],
+          ["sc", 3],
+          ["st", 4]
+        ],
+        [
+          ["ad", 3],
+          ["ge", 2],
+          ["oi", 3],
+          ["sc", 3],
+          ["st", 4]
+        ],
+        [
+          ["ad", 3],
+          ["ge", 2],
+          ["oi", 3],
+          ["sc", 3],
+          ["st", 4]
+        ],
+        [
+          ["ad", 4],
+          ["oi", 3],
+          ["sc", 2],
+          ["sp", 3],
+          ["st", 5]
+        ],
+        [
+          ["ad", 4],
+          ["al", 5],
+          ["ge", 3],
+          ["oi", 3],
+          ["sc", 3]
+        ],
+        [
+          ["ad", 3],
+          ["ge", 3],
+          ["oi", 3],
+          ["sc", 4],
+          ["st", 5]
+        ],
+        [
+          ["ad", 4],
+          ["al", 5],
+          ["ge", 4],
+          ["oi", 3],
+          ["sc", 4]
+        ],
+        [
+          ["ad", 5],
+          ["al", 6],
+          ["ge", 4],
+          ["oi", 4],
+          ["sc", 4]
+        ],
+        [
+          ["ad", 4],
+          ["al", 6],
+          ["ge", 5],
+          ["oi", 4],
+          ["sc", 5]
+        ],
+        [
+          ["ad", 6],
+          ["al", 7],
+          ["ge", 5],
+          ["oi", 6],
+          ["sc", 5]
+        ],
+        [
+          ["ad", 6],
+          ["al", 7],
+          ["ge", 5],
+          ["oi", 5],
+          ["sc", 6]
+        ]
+      ],
+      [
+        [
+          ["sc", 1],
+          ["st", 1]
+        ],
+        [
+          ["ad", 1],
+          ["sc", 1],
+          ["st", 2]
+        ],
+        [
+          ["ad", 2],
+          ["cop", 2],
+          ["sc", 1]
+        ],
+        [
+          ["ad", 2],
+          ["sc", 2],
+          ["st", 4]
+        ],
+        [
+          ["ad", 3],
+          ["cop", 4],
+          ["sc", 3]
+        ],
+        [
+          ["ad", 3],
+          ["cop", 5],
+          ["sc", 3]
+        ],
+        [
+          ["ad", 4],
+          ["cop", 5],
+          ["sc", 3]
+        ],
+        [
+          ["ad", 5],
+          ["al", 3],
+          ["cop", 6],
+          ["sc", 4]
+        ]
+      ],
+      [
+        [
+          ["sc", 1],
+          ["st", 1]
+        ],
+        [
+          ["ad", 1],
+          ["sc", 1],
+          ["st", 2]
+        ],
+        [
+          ["ad", 3],
+          ["cop", 4],
+          ["sc", 3]
+        ],
+        [
+          ["ad", 2],
+          ["cor", 1],
+          ["ru", 1],
+          ["sc", 2],
+          ["wo", 3]
+        ],
+        [
+          ["ad", 4],
+          ["cop", 5],
+          ["cor", 2],
+          ["ru", 3],
+          ["sc", 3]
+        ],
+        [
+          ["ad", 5],
+          ["cop", 6],
+          ["cor", 2],
+          ["ru", 4],
+          ["sc", 4]
+        ]
+      ],
+      [
+        [
+          ["sp", 1],
+          ["st", 1]
+        ],
+        [
+          ["ad", 1],
+          ["sc", 1],
+          ["sp", 2],
+          ["st", 2]
+        ],
+        [
+          ["ad", 3],
+          ["oi", 2],
+          ["sc", 3],
+          ["sp", 2],
+          ["st", 4]
+        ],
+        [
+          ["ad", 2],
+          ["sc", 2],
+          ["sp", 3],
+          ["st", 4]
+        ],
+        [
+          ["ad", 3],
+          ["oi", 3],
+          ["sc", 2],
+          ["sp", 4],
+          ["st", 5]
+        ],
+        [
+          ["ad", 4],
+          ["al", 6],
+          ["oi", 3],
+          ["sc", 3],
+          ["sp", 4]
+        ]
+      ],
+      [
+        [
+          ["ad", 1],
+          ["st", 1]
+        ],
+        [
+          ["ad", 1],
+          ["nm", 1],
+          ["st", 1]
+        ],
+        [
+          ["ad", 1],
+          ["gl", 1],
+          ["sc", 1],
+          ["st", 1]
+        ],
+        [
+          ["ad", 2],
+          ["al", 3],
+          ["sc", 2]
+        ],
+        [
+          ["ad", 2],
+          ["al", 3],
+          ["nm", 1],
+          ["sc", 2]
+        ],
+        [
+          ["ad", 2],
+          ["al", 3],
+          ["gl", 2],
+          ["sc", 1]
+        ],
+        [
+          ["ad", 3],
+          ["al", 4],
+          ["gl", 4],
+          ["sc", 2]
+        ],
+        [
+          ["ad", 3],
+          ["gl", 2],
+          ["nm", 1],
+          ["sc", 2],
+          ["si", 2]
+        ],
+        [
+          ["ad", 5],
+          ["ci", 1],
+          ["fo", 1],
+          ["gl", 4],
+          ["nm", 2],
+          ["sc", 3],
+          ["si", 3]
+        ],
+        [
+          ["ad", 6],
+          ["ci", 2],
+          ["fo", 2],
+          ["gl", 5],
+          ["nm", 3],
+          ["sc", 3],
+          ["si", 4]
+        ],
+        [
+          ["ad", 6],
+          ["ci", 3],
+          ["cr", 5],
+          ["fo", 3],
+          ["nm", 4],
+          ["sc", 4],
+          ["si", 5]
+        ],
+        [
+          ["ad", 6],
+          ["ci", 3],
+          ["cr", 5],
+          ["fo", 3],
+          ["nm", 4],
+          ["sc", 4],
+          ["si", 5]
+        ]
+      ],
+      [
+        [
+          ["st", 0]
+        ],
+        [
+          ["ad", 1],
+          ["sc", 1],
+          ["st", 3]
+        ],
+        [
+          ["ad", 2],
+          ["sc", 2],
+          ["st", 4]
+        ],
+        [
+          ["ad", 3],
+          ["sc", 2],
+          ["st", 3]
+        ],
+        [
+          ["ad", 3],
+          ["sc", 3],
+          ["st", 4]
+        ],
+        [
+          ["ad", 4],
+          ["al", 5],
+          ["pl", 4],
+          ["sc", 4]
+        ]
+      ]
+    ];
+    var stats = [
+      [
+        [0, 0, 0, 0, 0, 0, 0],
+        [-1, 0, 0, 0, 0, -1.1, 2],
+        [1, 0, 0, 0, 0, 0.9, 3],
+        [0, 0, 0, 1, 0, 0.2, 5],
+        [3, 0, 0, 0, 0, 0.2, 7],
+        [-3, 72, -12, -11, 0, 0.4, 8],
+        [-3, 72, -10, -11, 0, 0.4, 9],
+        [0, 28, 0, -5, 0, 0, 11],
+        [6, 0, 0, 0, 0, 0.4, 11],
+        [0, 72, -12, -11, 0, 0.6, 12],
+        [-3, 95, -12, -11, 0, 0.6, 13],
+        [6, 0, 0, 1, 0, 0.7, 14],
+        [0, 72, -10, -11, 0, 0.7, 16],
+        [3, 72, -12, -11, 0, 0.9, 18],
+        [9, 28, 0, -5, 0, 0.8, 19]
+      ],
+      [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 36, 1, 0, 0.5, 2],
+        [0, 0, 36, 2, 0, 0, 3],
+        [0, 0, 120, 0, 0, 1, 4],
+        [0, 0, 120, 3, 0, 0.5, 5],
+        [0, 0, 36, 3, 0, 0.5, 6],
+        [0, 0, 120, 1, 0, 1, 8],
+        [0, 0, 120, 0, 0, 1, 9]
+      ],
+      [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 6, 0, 0, 2],
+        [0, 0, 0, 11, 0, 0.6, 4],
+        [0, 0, 0, 8, 0, 0.2, 5],
+        [0, 0, 0, 11, 0, 0.7, 8],
+        [0, 0, 0, 13, 0, 0.8, 10]
+      ],
+      [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 12, 0.2, 4],
+        [0, 0, 0, 0, 0, 0.1, 6],
+        [0, 0, 0, 0, 36, 0.6, 7],
+        [0, 0, 0, 0, 12, 0.3, 11],
+        [0, 0, 0, 0, 36, 0.7, 13]
+      ],
+      [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 1, 0, 0, 2],
+        [0, 0, 0, 16, 0, 0.4, 4],
+        [0, 0, 0, 7, 0, 0.2, 5],
+        [0, 0, 0, 7, 0, 0.2, 6],
+        [0, 0, 0, 23, 0, 0.4, 8],
+        [0, 0, 0, 36, 0, 0.6, 10],
+        [0, 0, 0, 16, 0, 0.4, 13],
+        [0, 0, 0, 23, 0, 0.4, 15],
+        [0, 0, 0, 36, 0, 0.6, 17],
+        [0, 0, 0, 16, 0, 0.7, 40],
+        [0, 0, 0, 36, 0, 0.7, 20]
+      ],
+      [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, -12, 0, 0, 0.2, 2],
+        [0, 0, -18, 0, 0, 0.5, 4],
+        [0, 0, -12, 7, 0, 0.4, 10],
+        [0, 0, -18, 8, 0, 0.4, 15],
+        [0, 0, -30, 6, 0, 0.5, 20]
+      ]
+    ];
+    var st = [13, 55, 83, 57, 12, 2.3, 20];
+    var stb = [13, 55, 83, 57, 12, 2.3, 20];
+    var prev = [];
+    var ind1 = window.location.href.indexOf("[") + 1;
+    var ind2 = window.location.href.indexOf("]") - 1;
+    var ind3 = window.location.href.indexOf("$") + 1;
+    var curselected;
+    if (ind1 == 0) curselected = [0, 0, 0, 0, 0, 0];
+    else {
+      curselected = window.location.href.substring(ind1, ind2).split(",");
+      document.getElementById("thename").value = window.location.href.substring(ind3);
+    }
+    for (var i = 0; i < curselected.length; i++) {
+      prev[i] = stats[i][curselected[i]];
+      document.getElementById("l" + i).innerHTML = names[i][curselected[i]];
+    }
+
+    var am = ".38";
+
+    function add(a) {
+      var sum = 0;;
+      for (var i = 0; i < curselected.length; i++) {
+        sum += prev[i][a];
+      }
+      return sum;
+    }
+
+    function addallbut(b, a) {
+      var sum = 0;
+      for (var i = 0; i < curselected.length; i++) {
+        if (i != b) {
+          sum += prev[i][a];
+        };
+      }
+      return sum;
+    }
+
+    function refresh(cl, b) {
+      updatelink();
+      document.getElementById(0).innerHTML = names[0][0];
+      document.getElementById(1).innerHTML = names[0][1];
+      document.getElementById(2).innerHTML = names[0][2];
+      document.getElementById(3).innerHTML = names[0][3];
+      document.getElementById(4).innerHTML = names[0][4];
+      document.getElementById(5).innerHTML = names[0][5];
+      document.getElementById(6).innerHTML = names[0][6];
+      document.getElementById(7).innerHTML = names[0][7];
+      document.getElementById(8).innerHTML = names[0][8];
+      document.getElementById(9).innerHTML = names[0][9];
+      document.getElementById(10).innerHTML = names[0][10];
+      document.getElementById(11).innerHTML = names[0][11];
+      document.getElementById(12).innerHTML = names[0][12];
+      document.getElementById(13).innerHTML = names[0][13];
+      document.getElementById(14).innerHTML = names[0][14];
+      document.getElementById(20).innerHTML = names[1][0];
+      document.getElementById(21).innerHTML = names[1][1];
+      document.getElementById(22).innerHTML = names[1][2];
+      document.getElementById(23).innerHTML = names[1][3];
+      document.getElementById(24).innerHTML = names[1][4];
+      document.getElementById(25).innerHTML = names[1][5];
+      document.getElementById(26).innerHTML = names[1][6];
+      document.getElementById(27).innerHTML = names[1][7];
+      document.getElementById(30).innerHTML = names[2][0];
+      document.getElementById(31).innerHTML = names[2][1];
+      document.getElementById(32).innerHTML = names[2][2];
+      document.getElementById(33).innerHTML = names[2][3];
+      document.getElementById(34).innerHTML = names[2][4];
+      document.getElementById(35).innerHTML = names[2][5];
+      document.getElementById(40).innerHTML = names[3][0];
+      document.getElementById(41).innerHTML = names[3][1];
+      document.getElementById(42).innerHTML = names[3][2];
+      document.getElementById(43).innerHTML = names[3][3];
+      document.getElementById(44).innerHTML = names[3][4];
+      document.getElementById(45).innerHTML = names[3][5];
+      document.getElementById(50).innerHTML = names[4][0];
+      document.getElementById(51).innerHTML = names[4][1];
+      document.getElementById(52).innerHTML = names[4][2];
+      document.getElementById(53).innerHTML = names[4][3];
+      document.getElementById(54).innerHTML = names[4][4];
+      document.getElementById(55).innerHTML = names[4][5];
+      document.getElementById(56).innerHTML = names[4][6];
+      document.getElementById(57).innerHTML = names[4][7];
+      document.getElementById(58).innerHTML = names[4][8];
+      document.getElementById(59).innerHTML = names[4][9];
+      document.getElementById(60).innerHTML = names[4][10];
+      document.getElementById(61).innerHTML = names[4][11];
+      document.getElementById(70).innerHTML = names[5][0];
+      document.getElementById(71).innerHTML = names[5][1];
+      document.getElementById(72).innerHTML = names[5][2];
+      document.getElementById(73).innerHTML = names[5][3];
+      document.getElementById(74).innerHTML = names[5][4];
+      document.getElementById(75).innerHTML = names[5][5];
+      if (cl) {
+        if (document.getElementById("l0").innerHTML == names[0][14]) am = ".45";
+        else am = ".38";
+        document.getElementById("dam").innerHTML = stb[0] + add(0);
+        document.getElementById("am").innerHTML = am;
+        document.getElementById("fr").innerHTML = stb[1] + add(1);
+        document.getElementById("rng").innerHTML = stb[2] + add(2);
+        document.getElementById("acc").innerHTML = stb[3] + add(3);
+        document.getElementById("clp").innerHTML = stb[4] + add(4);
+        document.getElementById("wt").innerHTML = (stb[5] + add(5)).toFixed(1);
+        document.getElementById("val").innerHTML = stb[6] + add(6);
+        costs();
+      } else {
+        document.getElementById("dam").innerHTML = st[0] + addallbut(b, 0);
+        document.getElementById("am").innerHTML = am;
+        document.getElementById("fr").innerHTML = st[1] + addallbut(b, 1);
+        document.getElementById("rng").innerHTML = st[2] + addallbut(b, 2);
+        document.getElementById("acc").innerHTML = st[3] + addallbut(b, 3);
+        document.getElementById("clp").innerHTML = st[4] + addallbut(b, 4);
+        document.getElementById("wt").innerHTML = (st[5] + addallbut(b, 5)).toFixed(1);
+        document.getElementById("val").innerHTML = st[6] + addallbut(b, 6);
+      }
+      var lel;
+      if (am == ".38") lel = 1;
+      else lel = 3;
+      document.getElementById("dams").innerHTML = (document.getElementById("dam").innerHTML * (document.getElementById("fr").innerHTML / 10)).toFixed(1);
+      document.getElementById("cs").innerHTML = lel;
+      document.getElementById("cd").innerHTML = (lel / document.getElementById("dam").innerHTML).toFixed(3);
+    }
+
+    function trans(y, t, gg) {
+      var k = 0;
+      if (t == 1) k = 20;
+      else if (t == 2) k = 30;
+      else if (t == 3) k = 40;
+      else if (t == 4) k = 50;
+      else if (t == 5) k = 70;
+      document.getElementById(y).innerHTML = names[t][gg - k];
+      transfer(t, gg, true);
+      clearStats();
+    }
+
+    refresh(false, -1);
+    costs();
+
+    function getEventTarget(e) {
+      e = e || window.event;
+      return e.target || e.srcElement;
+    }
+
+    function transfer(t, e, cl) {
+      var sr = "";
+      var kek;
+      var kk;
+      if (e < 20) {
+        kek = 0;
+      } else if (e < 30) {
+        kek = 20;
+      } else if (e < 40) {
+        kek = 30;
+      } else if (e < 50) {
+        kek = 40;
+      } else if (e < 70) {
+        kek = 50;
+      } else if (e < 80) {
+        kek = 70;
+      }
+      var c;
+      var cp;
+      if (document.getElementById("l0").innerHTML == ".45 Receiver (GN 2)") cp = 3;
+      else cp = 1;
+      if (names[t][e - kek] == names[0][14]) {
+        am = ".45";
+        c = 3;
+      } else if (t == 0) {
+        am = ".38";
+        c = 1;
+      }
+      var c1;
+      var c2;
+      for (i = 0; i < 10; i++) {
+        st[i] = stb[i] + stats[t][e - kek][i];
+        if (i < 7) {
+          c1 = stats[t][e - kek][i] + stb[i];
+          c2 = prev[t][i] + stb[i];
+        } else if (i == 7) {
+          c1 = (stats[t][e - kek][0] + stb[0]) * (stats[t][e - kek][1] + stb[1]) / 10;
+          c2 = (prev[t][0] + stb[0]) * (prev[t][1] + stb[1]) / 10;
+        } else if (i == 8) {
+          c1 = c;
+          c2 = cp;
+        } else if (i == 9) {
+          c1 = c / (stats[t][e - kek][0] + stb[0]);
+          c2 = cp / (prev[t][0] + stb[0]);
+        }
+        if (c1 == c2) {
+          sr = "";
+        } else if (c1 * .4 > c2) {
+          sr = "+++";
+          if (i == 5 || i == 9 || i == 8) sr = "---";
+        } else if (c1 * .7 > c2) {
+          sr = "++";
+          if (i == 5 || i == 9 || i == 8) sr = "--";
+        } else if (c1 > c2) {
+          sr = "+";
+          if (i == 5 || i == 9 || i == 8) sr = "-";
+        } else if (c1 * 1.6 < c2) {
+          sr = "---";
+          if (i == 5 || i == 9 || i == 8) sr = "+++";
+        } else if (c1 * 1.3 < c2) {
+          sr = "--";
+          if (i == 5 || i == 9 || i == 8) sr = "++";
+        } else if (c1 < c2) {
+          sr = "-";
+          if (i == 5 || i == 9 || i == 8) sr = "+";
+        }
+        document.getElementById(i + 161).innerHTML = sr;
+      }
+      if (cl) {
+        prev[t] = stats[t][e - kek];
+        curselected[t] = e - kek;
+      }
+      refresh(cl, t);
+    }
+    for (var i = 0; i < ids.length; i++) {
+      if (ids[i] < 20) {
+        document.getElementById(ids[i]).onmouseover = function(event) {
+          transfer(0, getEventTarget(event).id, false)
+        };
+      } else if (ids[i] < 30) document.getElementById(ids[i]).onmouseover = function(event) {
+        transfer(1, getEventTarget(event).id, false)
+      };
+      else if (ids[i] < 40) document.getElementById(ids[i]).onmouseover = function(event) {
+        transfer(2, getEventTarget(event).id, false)
+      };
+      else if (ids[i] < 50) document.getElementById(ids[i]).onmouseover = function(event) {
+        transfer(3, getEventTarget(event).id, false)
+      };
+      else if (ids[i] < 70) document.getElementById(ids[i]).onmouseover = function(event) {
+        transfer(4, getEventTarget(event).id, false)
+      };
+      else if (ids[i] < 80) document.getElementById(ids[i]).onmouseover = function(event) {
+        transfer(5, getEventTarget(event).id, false)
+      };
+    }
+
+    function copyTextToClipboard(text) {
+      var textArea = document.createElement("textarea");
+      textArea.style.position = 'fixed';
+      textArea.style.top = 0;
+      textArea.style.left = 0;
+      textArea.style.width = '2em';
+      textArea.style.height = '2em';
+      textArea.style.padding = 0;
+      textArea.style.border = 'none';
+      textArea.style.outline = 'none';
+      textArea.style.boxShadow = 'none';
+      textArea.style.background = 'transparent';
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        var successful = document.execCommand('copy');
+        var msg = successful ? 'successful' : 'unsuccessful';
+        console.log('Copying text command was ' + msg);
+      } catch (err) {
+        console.log('Oops, unable to copy');
+      }
+      document.body.removeChild(textArea);
+    }
+    var copy = document.querySelector('.ayy');
+
+    copy.addEventListener('click', function(event) {
+      copyTextToClipboard(document.getElementById("link").innerHTML);
+    });
+  </script>
+</body>
+
+</html>
