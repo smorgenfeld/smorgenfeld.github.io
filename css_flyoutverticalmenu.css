@@ -1,0 +1,196 @@
+/* Define the body style */
+html, body {
+  
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+    }
+    .gwd-div-wbz9 {
+      left: -1748px;
+      top: 108px;
+    }
+    .gwd-a-1kcp {
+      width: auto;
+    }
+    .gwd-a-ddj7 {
+      width: auto;
+    }
+    .gwd-a-u5a5 {
+      width: auto;
+    }
+    .gwd-div-16y6 {
+      left: -1616px;
+      top: 163px;
+    }
+body {
+    transform: perspective(1400px) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    transform-style: preserve-3d;
+    font-family: Roboto, sans-serif;
+    font-size:17px;
+    background-color: black;
+}
+.dropbtn {
+    position:absolute;
+    min-height:30px;
+    top:-60px;
+    background-color: #063805;
+    color: #13FF17;
+    padding:5px 10px;
+    font-size: 17px;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    width:400px;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #13FF17;
+    color: #063805;
+}
+
+.dropdown {
+    position: absolute;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left:425px;
+    text-align:left;
+    background-color: #063805;
+    min-width: 400px;
+    overflow: auto;
+}
+
+.dropdown-content a {
+    color: #13FF17;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {
+background-color: #13FF17;
+color:#063805;
+}
+
+.show {display:block;}
+.close {display:none;}
+.ayy {
+      background-color: #13FF17;
+    color: #063805;
+  border:none;
+  font-family: Roboto, sans-serif;
+  font-size:17px;
+    outline: #13FF17;
+
+}
+.ayy:hover {
+      background-color: #063805;
+    color: #13FF17;
+  border: 1px #13FF17;
+}
+.ayy:focus {
+   border: 1px #13FF17;
+}
+/* We remove the margin, padding, and list style of UL and LI components */
+#stats ul, #stats ul li{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+/* We apply background color and border bottom white and width to 150px */
+#stats ul li{
+    background-color:#063805;
+    width:300px;
+    cursor:pointer;
+  color:#13FF17;
+}
+#stats ul li a{
+    padding:5px 15px;
+    color:#13FF17;
+    display:inline-block;
+    text-decoration:none;
+}
+#stats2 ul li{
+    width:50px;
+    position:relative;
+    cursor:pointer;
+  color:#13FF17;
+  list-style:none;
+  min-height:30px;
+  background-color:black;
+}
+#stats2 ul li a{
+    padding:0px;
+    color:#13FF17;
+    text-align:left;
+    display:inline-block;
+    text-decoration:none;
+}
+#cost, #share {
+  background-color:#063805;
+  width:730px;
+    position:relative;
+    right:40px
+    cursor:pointer;
+  color:#13FF17;
+  list-style:none;
+  padding:5px 15px;
+    color:#13FF17;
+    text-align:left;
+    display:inline-block;
+    text-decoration:none;
+}
+#cost a, #share a {
+    padding:5px 15px;
+    color:#13FF17;
+    text-align:left;
+    display:inline-block;
+    text-decoration:none;
+}
+#share a{
+  border: 1px solid #13FF17;
+}
+#thename {
+  font-family: Roboto, sans-serif;
+  border: 0px;
+  background-color: black;
+  color: #13FF17;
+  font-size: 40px;
+  text-transform:uppercase;
+  width: 100%;
+  text-align: center;
+}
+#thename:focus {
+  outline: none;
+  text-transform:uppercase;
+}
+::selection {
+  background: #13FF17; /* WebKit/Blink Browsers */
+  color: #063805;
+}
+::-moz-selection {
+  background: #13FF17; /* Gecko Browsers */
+  color: #063805;
+}
+.selbut {
+    min-height:100px;
+    top:-60px;
+    background-color: #063805;
+    color: #13FF17;
+    padding:5px 10px;
+    font-family: Roboto, sans-serif;
+    font-size:17px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    width:200px;
+}
+
+.selbut:hover, .selbut:focus {
+    background-color: #13FF17;
+    color: #063805;
+}
