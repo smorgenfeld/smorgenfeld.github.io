@@ -110,8 +110,8 @@
         </td>
         <td>
           <div class="dropdown">
-            <button class="dropbtn" id="l0" style="font-family: Roboto, sans-serif;top:-165px" onclick="toggle('d0')"></button>
-            <div id="d0" class="dropdown-content" style="top:-165px">
+            <button class="dropbtn" id="l0" style="font-family: Roboto, sans-serif;top:-180px" onclick="toggle('d0')"></button>
+            <div id="d0" class="dropdown-content" style="top:-180px">
               <a href="javascript:trans('l0',0,0)" id="0"></a>
               <a href="javascript:trans('l0',0,1)" id="1"></a>
             </div>
@@ -138,6 +138,14 @@
             <a id="link"></a><br>
             
           </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan = "3" align="left">
+          <br>
+          <button class='selbut' align="center" style="width:300px;height:30px;top:0px;" onclick='location.href="https://smorgenfeld.github.com"'>
+               Back to Home
+          </button>
         </td>
       </tr>
     </tbody>
@@ -315,22 +323,22 @@
     var mat = [
       [
         [
-          ["ad",4], 
-          ["al",6],
-          ["ge",6],
-          ["nm",4],
-          ["sc",5],
-          ["sp",6],
-          ["st",9]
+          ["ad", 4],
+          ["al", 6],
+          ["ge", 6],
+          ["nm", 4],
+          ["sc", 5],
+          ["sp", 6],
+          ["st", 9]
         ],
         [
-          ["ad",9],
-          ["al",11],
-          ["ci",5],
-          ["ge",8],
-          ["nm",6],
-          ["sc",8],
-          ["sp",7]
+          ["ad", 9],
+          ["al", 11],
+          ["ci", 5],
+          ["ge", 8],
+          ["nm", 6],
+          ["sc", 8],
+          ["sp", 7]
         ],
       ]
     ];
@@ -347,7 +355,7 @@
     var ind2 = window.location.href.indexOf("]") - 1;
     var ind3 = window.location.href.indexOf("$") + 1;
     var curselected;
-    if (ind1 == 0) curselected = [0,];
+    if (ind1 == 0) curselected = [0, ];
     else {
       curselected = window.location.href.substring(ind1, ind2).split(",");
       document.getElementById("thename").value = window.location.href.substring(ind3);
