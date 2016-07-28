@@ -16,7 +16,8 @@
       margin: 0px;
     }
     body {
-      transform: perspective(1400px) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+      transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+      perspective: 1400px;
       transform-style: preserve-3d;
       background-color: transparent;
     }
@@ -149,6 +150,14 @@
           </div>
         </td>
       </tr>
+      <tr>
+        <td colspan="3" align="left"><br>
+          
+          <button class="selbut" align="center" style="width:300px;height:30px;top:0px;" onclick="location.href=&quot;https://smorgenfeld.github.com&quot;">
+            Back to Home
+          </button>
+        </td>
+      </tr>
     </tbody>
   </table>
   <script>
@@ -157,7 +166,7 @@
         document.getElementById(i + 161).innerHTML = "";
       }
     }
-    var ids = [0,1,2,10,11,20,21];
+    var ids = [0, 1, 2, 10, 11, 20, 21];
 
     function updatelink() {
       var slink;
