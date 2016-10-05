@@ -19,7 +19,6 @@ $.getJSON("https://www.reddit.com/r/me_irl/top.json", function(kek) {
 var yep = kek.data.children[0].data.url;
 yep = yep.replace("imgur.com","i.imgur.com");
 yep += ".png";
-alert(yep);
 document.body.style.backgroundImage = "url('" + yep + "')";
 });
 </script>
