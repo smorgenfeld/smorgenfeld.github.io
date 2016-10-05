@@ -19,9 +19,11 @@ body {
 <script>
 $.getJSON("https://www.reddit.com/r/me_irl/top.json", function(kek) {
 var yep = kek.data.children[0].data.url;
-yep = yep.replace("http://imgur.com","http://i.imgur.com");
-yep += ".png";
-document.body.style.backgroundImage = "url('" + yep + "')";
+var kk = yep.replace("http://imgur.com","http://i.imgur.com");
+if (kk != yep) {
+    kk += ".png";
+}
+document.body.style.backgroundImage = "url('" + kk + "')";
 });
 </script>
       <script>
