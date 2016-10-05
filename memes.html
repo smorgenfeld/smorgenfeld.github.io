@@ -19,7 +19,7 @@ body {
 <script>
 $.getJSON("https://www.reddit.com/r/me_irl/top.json", function(kek) {
 var yep = kek.data.children[0].data.url;
-yep = yep.replace("imgur.com","i.imgur.com");
+yep = yep.replace("http://imgur.com","http://i.imgur.com");
 yep += ".png";
 document.body.style.backgroundImage = "url('" + yep + "')";
 });
