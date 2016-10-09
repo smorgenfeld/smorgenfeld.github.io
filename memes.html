@@ -23,7 +23,7 @@ var kk = yep.replace("http://imgur.com","http://i.imgur.com");
 if (kk != yep) {
     kk += ".png";
 }
-kk = kk.replace(/amp;/g,""); //html json bug fix - silly reddit
+kk = kk.replace(/&amp;/g,"&"); //html json bug fix - silly reddit
 document.body.style.backgroundImage = "url('" + kk + "')";
 });
 </script>
