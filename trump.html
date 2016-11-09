@@ -3,7 +3,7 @@
 		<title>Trump Simulator 2016</title>
 		<style>
 	body {
-    	background-image: url('resources/flag.jpg');
+    	background-image: url('resourcess/flag.jpg');
     	background-repeat: no-repeat;
     	background-attachment: fixed;
     	background-position: center;
@@ -32,7 +32,7 @@
 			var pgnoun = ["we're", "I'm"];
 			var gnoun = ["something"].concat(pgnoun);
 			var pbnoun = ["Hillary", "China", "ISIS", "Mexico", "muslims"]
-			var bnoun = ["emails", "the trade deficit", "immigrants", "terrorists", "the establishment"].concat(pbnoun);
+			var bnoun = ["emails", "the trade deficit", "immigrants", "terrorists", "the establishment", "mexicans", "the Chinese"].concat(pbnoun);
 			var bodesc = ["overrated", "obnoxious", "dangerous", "bad", "weak", "stupid", "disgusting", "crooked",  "low-energy", "politically correct", "criminal", "nasty"];
 			var bdesc = ["a loser", "a moron", "out of control", "an idiot", "a buffoon", "a liar", "a hater", "a lightweight"].concat(bodesc);
 			var gdesc = ["tough", "smart", "tremendous", "amazing", "huge", "terrific", "fantastic"];
@@ -90,7 +90,7 @@
 				var noun = ran(bnoun);
 				var bo = ran(bodesc)
 				line += ran(beg) + " I know more about " + noun + " than " + ran(pbnoun) + ".<br />";
-				line += bo + " " + noun + ".<br /> " + ran(gaadv) + " " + bo + ".<br /> But " + ran(pgnoun) + " " + ran(gdesc) + ". " + ran(pgnoun) + " " + ran(gdesc) + ".<br />"
+				line += bo + " " + noun.replace("the ", "") + ".<br /> " + ran(gaadv) + " " + bo + ".<br /> But " + ran(pgnoun) + " " + ran(gdesc) + ". " + ran(pgnoun) + " " + ran(gdesc) + ".<br />"
 				line += "So " + ran(pgnoun) + " going to " + ran(gverb) + ", and make " + ran(pbnoun) + " pay for it, " + ran(gaadv) + "!<br />";
 				linecount += 3;
 				speech += line;
