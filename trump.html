@@ -41,14 +41,12 @@
 			var trans = ["And you know what?", "And guess what.", "And you know what else?", "Guess what else.", "But", "And", "So"];
 			var beg = ["A lot of smart people are saying", "Did you know", "I know more about", "A lot of experts say", "So that's why", "And that's why"];
 			var gpos = ["infrastructure", "national defense", "the economy"];
-			var bpos = ["trade", "Obamacare", "gun control", "ISIS", "immigration", "taxes", "abortion", "the war in Iraq"];
-
+			var bpos = ["trade", "Obamacare", "gun control", "ISIS", "immigration", "taxes", "abortion", "the war in Iraq", "climate change", "global warming"];
 			var speech = "";
 			var linecount = 0;
 			function ran(list) {
 				return list[Math.floor((Math.random() * list.length))];
 			}
-
 			function randint(lower, upper) {
 				return Math.floor((Math.random() * (upper - lower + 1)) + lower);
 			}
@@ -91,7 +89,6 @@
 				}
 				box.innerHTML += speech;
 			}
-
 			function c1(start) {
 				var line = "";
 				if (!start) {line += ran(trans) + " "};
@@ -103,7 +100,6 @@
 				linecount += 3;
 				speech += line;
 			}
-
 			function c2(start) {
 				var line = "";
 				if (!start) {line += ran(trans) + " "};
@@ -112,7 +108,6 @@
 				linecount += 1;
 				speech += line;
 			}
-
 			function c3(start) {
 				var line = "";
 				if (!start) {line += ran(trans) + " "};
@@ -148,7 +143,7 @@
 				var pos = ran(gpos);
 				line += ran(gggnoun) + " support " + pos + ".  " + ran(gggnoun) + " need to improve " + pos + " " + ran(gaadv) + ".<br />";
 				line += ran(trans) + " " + ran(bodesc) + " " + ran(pbnoun) + " doesn't care about " + pos + ". They support " + ran(bpos) + ".<br />";
-				line += ran(gggnoun) + " need a " + ran(gdesc) + " " + pos + " to " + ran(gverb) + ". That's why " + ran(gggnoun) + " needs a " + ran(gdesc) + " " + pos + "!<br />";
+				line += ran(gggnoun) + " need a " + ran(gdesc) + " " + pos.replace("the ", "") + " to " + ran(gverb) + ". That's why " + ran(gggnoun) + " needs a " + ran(gdesc) + " " + pos.replace("the ", "") + "!<br />";
 				speech += line;
 				linecount += 3
 			}
@@ -158,6 +153,16 @@
 				linecount += 2
 			}
 			create();
+		</script>
+		<script>
+  			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ 			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  			ga('create', 'UA-81423107-1', 'auto');
+			ga('send', 'pageview');
+
 		</script>
 	</body>
 </html>
