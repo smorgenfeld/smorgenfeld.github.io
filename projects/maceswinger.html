@@ -1,0 +1,1115 @@
+<html>
+<title>Game1 Remastered</title>
+	<head>		
+		<link href="https://fonts.googleapis.com/css?family=Roboto:700" rel="stylesheet" type="text/css">
+		<style>
+			input[type=text] {
+				width:100%;
+				padding:12px 20px;
+				border: 3px solid #ccc;
+				border-radius:4px;
+				-webkit-transition: 0.5s;
+				transition: 0.5s;
+				outline:none;
+			}
+			input[type=text]:focus {
+				border: 3px solid #555
+			}
+			#output{
+				resize:none;
+				width:100%;
+				height:300px;
+				padding:12px 20px;
+				border-radius:4px
+				outline:none;
+			}
+			#output:focus {
+				outline:none;
+			}
+			#input{
+				width:100%;
+				padding:12px 20px;
+				border: 3px solid #ccc;
+				border-radius:4px;
+				-webkit-transition: 0.5s;
+				transition: 0.5s;
+				outline:none;
+				resize:none;
+			}
+			#input:focus {
+				border: 3px solid #555
+			}
+		</style>
+	</head>
+	<body style="font-family:roboto">
+	<table style="margin:auto;border:1px solid black;align:center;width:75%;min-width:500px;border-radius:4px">
+		<tr>
+			<th>
+				Mace Swinger [Beta]
+			</th>
+		</tr>
+		<tr>
+			<td>
+				<table style="border:5px solid black;text-align:center;width:100%;border-radius:4px">
+					<tr>
+						<td style="text-align:center">
+							<textarea readonly id="output" style="font-family:roboto"></textarea>
+							<hr>
+							<textarea autofocus id="input" rows="1" onkeydown="getEntry(event)" style="font-family:roboto"></textarea>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<font style="font-size:10px">Version Beta 1.1</font>
+			</td>
+		</tr>
+	</table>
+	<script>
+		var p = {
+			dam: 0,
+			stats: [0,0,0,0],
+			atk: 0,
+			lm: 0,
+			weap: new weap("handz", 0),
+			stor: ["Knapsack", 2],
+			inv: [],
+			xp: 0,
+			lv: 1,
+			health: 0,
+			mhealth: 0,
+			ahealth: 0,
+			adam: 0,
+			amod: 0,
+			agmod: 0,
+			gold: 0,
+			nextxp: 300,
+			perks: [0,0,0],
+			curterr: [["Meadows"], 0],
+			tcount: 0,
+			theend: false,
+			refreshDam: function() {
+				this.dam = Math.floor(this.atk * this.weap.dam + this.adam);
+			},
+			refreshxplv: function() {
+				this.nextxp += Math.floor((89.6 * Math.pow(this.lv, 2)) + 400 * this.lv + 200);
+			},
+			levelup: function() {
+				this.lv++;
+				this.mhealth = Math.floor(this.mhealth + 5 + this.stats[1] / 2);
+				this.health = this.mhealth + this.ahealth;
+				this.refreshxplv();
+				this.refreshDam();
+			},
+			fullhealth: function() {
+				return this.health + "/" + this.mhealth;
+			},
+			updatetrink: function() {
+				this.ahealth = 0;
+				this.adam = 0;
+				this.agmod = this.amod;
+				for (var i = 0; i < this.inv.length; i++) {
+					switch(this.inv[i].type) {
+						case "Health":
+							this.ahealth += this.inv[i].gift;
+							break;
+						case "Damage":
+							this.adam += this.inv[i].gift;
+							break;
+						case "Speed":
+							this.agmod += this.inv[i].gift;
+							break;
+						default:
+							print("The updatetrink function failed. Please contact an administrator.");
+					}
+				}
+				this.refreshDam();
+				this.health += this.ahealth;
+				print("Your trinkets now grant you " + this.ahealth + " health, " + (this.agmod - this.amod) + " speed, and " + this.adam + " damage.  Your health is now " + this.health + ", your speed is " + this.agmod + ", and you now deal " + this.dam + " damage.");
+			}
+		}
+		var begin = true;
+		var worked = true;
+		var correct = null;
+		var nextfunc = [null];
+		var fightlo = false;
+		var arealo = false;
+		var entval = '';
+		var lastval = "";
+		var areanum = 0;
+		var tempweap = null;
+
+		var curen = null;
+		var curarea = null;
+		var op1 = null;
+		var op2 = null;
+
+		var emtype = [
+			[["Bandit", 1], ["Jihadist", 1.1], ["Boar", 1.3], ["Monk", 0.7], ["Nomad", 0.8], ["Sheep", 0.3],  ["Llama", 1.8], ["Cow", 0.5], ["Knight", 1.5], ["Peasent", 0.4]], //above normal
+			[["Cultist", 1.1], ["Tombraider", 1.2], ["Miner", 0.8], ["Convict", 1.2], ["Spelunker", 0.7]], //below normal
+			[["Orc", 1.2], ["Giant", 1.5], ["Ogre", 1.4], ["Scorpien", 1.3], ["Alien", 1.5], ["Ent", 1.3], ["Shrubbery", 0.6], ["Centaur", 1.2], ["Griffon", 1.3]], //above magical
+			[["Skellington", 0.8], ["Zombie", 0.9], ["Spider", 1.2], ["Mummy", 1.1], ["Demons", 1.4], ["Goblin", 0.7], ["Ghost", 1.2], ["Ant Swarm", 1.3]], //below magical
+			[["Defense Turret", 1.4], ["Automaton", 1.2], ["Robot", 1.2], ["Danger Noodle", 1.3], ["Doggo", 0.9], ["Pupper", 0.7], ["Harambe", 0.9], ["Frog on a Unicycle", 0.6]] //precursor
+		];
+
+		var emat = [["Angry", 1.2], ["Passive", 0], ["Friendly", 0], ["Furious", 1.3], ["Metallic", 1.4], ["Autonomous", 0.9], ["Electric", 1.2], ["Humanoid", 1.2], ["Ambidextrious", 1.5], ["Ancient", 1.6], ["Explosive", 1.2], ["Aroused", 0.9], ["Moist", 0.7], ["Dank", 1.2], ["Electromagnetic", 1.3], ["Obese", 0.5], ["Stoned", 0.3], ["Perturbed", 0.7], ["Inflatable", 1.1], ["NFG", 0.1], ["Proletariat", 1.2], ["Communist", 1.2], ["Radioactive", 0.8], ["Toasty", 1], ["Charred", 0.7], ["Decrepid", 0.4], ["Drunk", 0.6], ["Stingy", 1.1], ["Feral", 1.2], ["Rabid", 1.2], ["Rectilinear", 1.1], ["Bespectacled", 0.6], ["Energetic", 1.3], ["Hyperactive", 1.3], ["Able-bodied", 1.1], ["Feeble", 0.4], ["Malnorished", 0.5], ["Delicate", 0.4], ["Unsteady", 0.7], ["Microscopic", 0.1], ["Domesticated", 0.2], ["Fluffy", 1.5], ["Furry", 1.1], ["Juvenile", 0.5], ["Man-Eating", 1.4], ["Omnivorous", 1.2], ["Inbred", 0.7], ["Self-Aware", 1.2], ["Temperamental", 1.3], ["Belligerant", 1.2], ["Herbivorous", 0.5], ["Carnivorous", 1.4], ["Cynical", 1.1], ["Glowing", 1.2], ["Hardy", 1.3], ["Etheral", 1.4], ["Transparent", 1.3], ["Bedridden", 0.5]];
+
+		var weaphow = [["Automatic", 0.5], ["Analog", 0.6], ["Solar-Powered", 0.7], ["Greasy", 0.8], ["Clockwork", 0.9], ["Manual", 1], ["Digital", 1], ["Industrial", 1.1], ["Diesel-Powered", 1.1], ["Hydralic", 1.2], ["Electric", 1.2], ["Pneumatic", 1.2], ["Spring-Loaded", 1.2], ["Petroleous", 1.3], ["Motorized", 1.4], ["Rotary", 1.5], ["Cyclical", 1.5], ["Mechanized", 1.6], ["Pump-Action", 1.6], ["Quantum Entangled", 1.6], ["Heat-Seeking", 1.7], ["Homing", 1.7], ["Rocket Propelled", 1.8], ["Cordless", 2]]
+
+		var weapmat = [["Wooden", 0.1], ["Stone", 0.3], ["Lead", 0.4], ["Gold", 0.5], ["Silver", 0.5], ["Nickel", 0.7],  ["Zinc", 0.8], ["Electrum", 0.9], ["Iron", 1], ["Aluminium", 1.1], ["Invar", 1.2], ["Bronze", 1.3], ["Iridium", 1.4], ["Steel", 1.5],  ["Titanium", 1.6], ["Diamond", 1.7], ["Tungsten", 1.8]];
+
+		var weapdesc = [["Inverted", -1], ["Broken", 0], ["Shitty", 0.3], ["Rusty", 0.4], ["Entry-Level", 0.4], ["Bent", 0.5], ["Dull", 0.5],["Dented", 0.6], ["Dodgy", 0.6], ["Light", 0.6], ["Ancient", 0.7], ["Pixelated", 0.7], ["Inflatable", 0.8], ["Shoddy", 0.8], ["Pre-Owned", 0.8], ["Below-Average", 0.9], ["Used", 0.9], ["Common", 1], ["Ok", 1], ["Normal", 1], ["Above-Average", 1.1], ["Rectilinear", 1.1], ["Decent", 1.1], ["Improved", 1.2], ["Sharpened", 1.2], ["Shiny", 1.3], ["Sturdy", 1.3], ["Accelerated", 1.3], ["Superior", 1.3], ["Reliable", 1.4], ["Good", 1.4], ["Rainbow", 1.5], ["Excellent", 1.6], ["Godly", 1.9], ["too op plz nerf", 2]];
+
+		var weapdescmod = ["Very", "Extremely", "Exceptionally", "Awfully", "Eminently", "Excessively", "Exceedingly", "Remarkably", "Incredibly", "Absolutely", "Unusually", "Decidedly", "Pretty", "Actually"];
+
+		var bladed = [["Uranium-235", "Plutonium", "Arsenic", "Lead", "Dihydrogen Monoxide", "Cyanide", "Shroom", "Polonium", "Venom"],["Laced", "Tipped", "Bladed", "Coated", "Plated", "Glazed", "Laminated"]]
+
+		var magicdesc = [["Minor", 0.5], ["Lethargic", 0.8], ["Perturbed", 0.9], ["Average", 1], ["Common", 1], ["Icy", 1.1],  ["Furious", 1.2], ["Boosted", 1.2], ["Incendiary", 1.3], ["Greater", 1.5], ["Divine", 1.6], ["Demonic", 1.6], ["Excellent", 1.6], ["Accelerated", 1.6]];
+
+		var magic = [["Fire", "Flames", "Burning", "Hotness", "Above-Average Temperature", "Incineration"], ["Ice", "Frozen Dihydrogen Monoxide", "Freezing", "Brain Freezes", "Coldness"],["Damage", "Suffering", "Blunt Force Trauma", "Devastation", "Destruction", "Harm", "Abuse", "Annihilation", "Demolition", "Flailing"], ["Bleeding", "Laceration", "Cutting", "Extreme Sharpness", "Pricking"], ["Explosion", "Detonation", "Blasting", "Eruption", "Discharge", "Ka-Boom!"]];
+
+		var weapnames = ["Axe", "Sword", "Mace", "Club", "Baton", "Spear", "Speer", "Pickaxe", "Miscellaneous Blunt Object", "Knife", "Shank", "Stick", "Saw", "Baseball Bat", "Sledgehammer", "Pool Cue", "Hatchet"];
+
+		var areaname = [
+			["Ruins", "Manor", "Farmhouse", "Schoolhouse", "House", "Castle", "Cabin"], //above normal
+			["Cavern", "Shallow Mine", "Tunnel"], //below normal
+			["Tower", "Graveyard", "Swamp"], //above magical
+			["Dungeon", "Crypt", "Deep Mine"], //below magical
+			["Bunker", "Warehouse", "Strip Mall", "Interchange", "Airstrip", "Motel", "Parking Garage", "Server Farm"] //precursor
+		];
+
+		var terrnames = [
+			["Forest", "Mountains"], //set1
+			["Plains", "Mountains"], //set2
+			["Plains", "Desert"], //set3
+			["Savanna", "Desert"], //set4
+			["Savanna", "Jungle"], //set5
+			["Swamp", "Jungle"], //set6
+			["Tundra", "Glacier"], //s=t7
+		];
+
+		var areapre = [["Dank", 1.1], ["Well-lit", 0.8], ["Infested", 1.2], ["Cultists'", 1.1], ["Clean", 0.7], ["Stoney", 1], ["Deep Dark", 1.3], ["Spooky", 1.2], ["Pristine", 0.8], ["Gloomy", 1.1], ["Ancient", 1.3], ["Well-kept", 0.9], ["Precurser", 1.4], ["Conveniently Placed", 1.1], ["Abandoned", 1], ["Haunted", 1.2], ["Airborne", 1.4], ["Empty", 0.4], ["Frozen", 1.1], ["Fiery", 1.3], ["Sandy", 1.1], ["Sunken", 1.2], ["Public", 1.1]];
+
+		var roomname = [["Entrance", "Antechamber", "Enterance Hall", "Gateway"],["Room", "Hallway", "Library", "Storage Chamber", "Common Room", "Living Quarters"],["Deepest Darkest Room"]];
+
+		var perkz = [[["Standard Vitality", 1],["Better Vitality", 1.1], ["Even Better Vitality", 1.15],["Superior Vitality", 1.2],["Extra Superior Vitality", 1.25],["Extreme Vitality", 1.3]],[["Standard Cambat", 1],["Better Combat", 1.1], ["Even Better Combat", 1.15], ["Superior Combat", 1.2]],[["Standard Agility", 1],["Better Agility", 1.1], ["Even Better Agility", 1.15], ["Superior Agility", 1.2]]];
+		
+		var trinkname0 = [["Counterproductive", -0.5], ["Shitty", 0.2], ["Lesser", 0.5], ["Minor", 0.7], ["Mediocre", 0.8], ["Below-Average", 0.9], ["Common", 1], ["Average", 1], ["Above-Average", 1.1], ["Boosted", 1.2], ["Uncommon",1.3], ["Robust",1.4], ["Greater", 1.5],["Superior", 1.6], ["Stupendous", 1.7], ["Badass", 1.8], ["Extreme", 2]];
+
+		var trinkname = ["Ring", "Amulate", "Bracelet", "Necklace", "Wristwatch", "Goblet", "Coin", "Plate", "Fork", "Spoon", "Tiara", "Top Hat", "Sombrero", "Crown", "Keychain", "Mask"];
+
+		var trinkname1 = [["Health", "Vitality", "Well-being"],["Damage","Strength", "Stamina", "Swinging"],["Speed", "Quickness", "Fastness", "Agility", "Quickening"]];
+
+		var tnamepre = ["New ", "Old ", "West ", "East ", "Outer ", "Inner ", "South ", "North ", "Upper ", "Lower ", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
+
+		var tname1 = ["White", "Brad", "Butter", "Village", "Wig", "Apple", "Chester", "Ash", "Aire", "Strat", "Daven", "Tam", "Whel", "Lowe", "South", "Sud", "Shef", "Ax", "Black", "Burn", "Sar", "Alver", "Staw", "Stan", "North", "Winter", "Spring"];
+
+		var tname2 = ["chapel", "pond", "ston", "ton", "burg", "ville", "dale", "wick", "ford", "port", "worth", "stow", "firth", "shaw", "sworthly", "stone", "ine", "forth", "wich", "beck", "bury", "field", "minster", "bourne", "pool", "mere"];
+
+		var ttype1 = ["Tiny", "Small", "Medium", "Large", "Huge", "Sprawling", "Dense", "Gigantic"];
+
+		var ttype2 = ["Village", "Hamlet", "Town", "City", "Metropolis"];
+		
+		var backpack = ["Drawstring Bag", "Backpack", "Wheelbarrow", "Cart with Wheels", "Pickup Truck", "Quantum Entangled Ziplock Bag"];
+
+		function print(val) {
+			var textarea = document.getElementById("output");
+			textarea.value += val  + "\u000A";
+			textarea.scrollTop = textarea.scrollHeight;
+		}
+		
+		function next(func) {
+			nextfunc[0] = func;
+		}
+
+		function clearinput() {
+			document.getElementById("input").value = "";
+		}
+
+		function weap(naame, lvv) {
+			var p0 = ["", 1];
+			var p1 = ["", 1];
+			var p2 = ["", 1];
+			var p3 = "";
+			var p4 = "";
+			var mtype = 0;
+			var mmdam = 0;
+			var mdam = 0;
+			var poi = false;
+			if (naame == "na") {
+				var kind = ran(weapnames).slice(0);
+				if (p.lv + randint(-1,3) > -3) {
+					var p1 = ran(weapdesc).slice(0);
+					if (randint(0,3) == 3) {
+						p1[0] = ran(weapdescmod).slice(0) + " " + p1[0] + " ";
+						p1[1] *= p1[1];
+					}
+					else {
+						p1[0] = p1[0] + " ";
+					}
+				}
+				if (p.lv + randint (-2,4) > 3) {
+					var p0 = ran(weapmat).slice(0);
+					p0[0] = p0[0] + " ";
+				}
+				if (p.lv + randint (-2,4) > 5) {
+					var p2 = ran(weaphow).slice(0);
+					p2[0] = p2[0] + " ";
+				}
+				if (p.lv + randint (-2,2) > 4 && randint(0,5) == 3) {
+					p3 = ran(bladed[0]).slice(0) + "-" + ran(bladed[1]).slice(0) + " ";
+				}
+				if (p.lv + randint (-2,2) > 6 && randint(0,3) == 3) {
+					mtype = ran(magic).slice(0);
+					mmdam = ran(magicdesc).slice(0);
+					p4 = " of " + mmdam[0] + " " + ran(mtype).slice(0);
+					mdam = mmdam[1] * lvv;
+				}
+			}
+			else {
+				kind = "Handz"
+			}
+			var mod = p0[1] * p1[1] * p2[1];
+			var newweap = {
+				name: p3 + p1[0] + p2[0] + p0[0] + kind + p4,
+				dam: Math.round((6 + (lvv * 8) + (10 * mod) + mdam)/2),
+				fname: "",
+				lv: lvv,
+				mod: (p0[1] * p1[1] * p2[1]).toFixed(2),
+				poi: poi,
+				gp: Math.round(20 * Math.pow(5,(lvv/5)) * mod),
+			}
+			newweap.fname = "Lv. " + lvv + " " + newweap.name;
+			return newweap;
+		}
+
+		function trinket(lvv) {
+			var type = randint(0,trinkname1.length - 1);
+			var t = ran(trinkname0);
+			var newtrink  = {
+				name: ran(trinkname) +  " of " + t[0] + " " + ran(trinkname1[type]),
+				fname: "",
+				lv: lvv,
+				gift: Math.round((6 + (lvv * 8) + (10 * t[1]))/5),
+				desc: "",
+				type: trinkname1[type][0],
+				gp: Math.round(10 * Math.pow(5,(lvv/5)) * t[1]),
+			}
+			newtrink.fname = "lv. " + lvv + " " + newtrink.name;
+			if (trinkname1[type][0] == "Damage") {
+				newtrink.gift = Math.round(newtrink.gift / 2);
+			}
+			newtrink.desc = newtrink.name + " (+" + newtrink.gift + " " + trinkname1[type][0] + ")";
+			return newtrink;
+		}
+
+		function enemy(lv, areatype) {
+			var sec = ran(emtype[areatype]);
+			var psec = ran(emat).slice(0);
+			var ppsec = "";
+			var mod = sec[1] * psec[1];
+			if (randint(0,2) == 2) {
+				ppsec = ran(weapdescmod).slice(0) + " ";
+				mod = sec[1] * Math.pow(psec[1],2);
+			}
+			var newenemy = {
+				name: ppsec + psec[0] + " " + sec[0],
+				health: Math.round(8 + (lv * 8) + (16 * mod)),
+				atk: Math.round(7 + lv + (lv * mod) / 10),
+				exp: 0,
+				lv: lv,
+				poi: false,
+				mod: mod,
+				gp: 3 * 5^(lv/5) * mod,
+			}
+			if (mod < .5) {
+				newenemy.exp = Math.round(7.312 * Math.pow(newenemy.lv, 2) - 15.758 * newenemy.lv + 77.39);
+			}
+			else if (mod < 1) {
+				newenemy.exp = Math.round(15.06 * Math.pow(newenemy.lv, 2) - 39.2 * newenemy.lv + 180.439); 
+			}
+			else if (mod < 1.5) {
+				newenemy.exp = Math.round(21.908 * Math.pow(newenemy.lv, 2) - 44.044 * newenemy.lv + 227.346);
+			}
+			else {
+				newenemy.exp = Math.round(32.621 * Math.pow(newenemy.lv, 2) - 62.567 * newenemy.lv + 330.789);
+			}
+			return newenemy;
+		}
+		function area(lv) {
+			var pre = ran(areapre).slice(0);
+			lv = Math.round(pre[1] * lv);
+			areadepth = Math.min(3 + randint(Math.floor(lv * .5), Math.floor(lv * .5) + 3), 7);
+			var room = [];
+			for (var i = 0; i < areadepth; i++) {
+				if (i == 0) {
+					room.push(ran(roomname[0]));
+				}
+				else if (i + 1 == areadepth) {
+					room.push(ran(roomname[2]));
+				}
+				else {
+					room.push(ran(roomname[1]));
+				}
+			}
+			var newarea = {
+				name: pre[0] + " ",
+				fname: "",
+				rooms: room,
+				depth: areadepth,
+				curarea: 0,
+				level: lv,
+				type: 0,
+			}
+			if (p.tcount != 3) {
+				newarea.type = randint(0,3);
+			}
+			else {
+				newarea.type = 4;
+			}
+			newarea.name += ran(areaname[newarea.type]);
+			newarea.fname = "Lv. " + lv + " " + newarea.name;
+			return newarea;
+		}
+
+		function town() {
+			var newtown = {
+				name: ran(tnamepre) + ran(tname1) + ran(tname2),
+				weap: [],
+				trink: [],
+				fname: "",
+			}
+			newtown.fname = ran(ttype1) + " " + ran(ttype2) + " of " + newtown.name;
+			for (var i = 0; i < 5; i++) {
+				newtown.weap.push(weap("na", p.lv + randint(-1,1)));
+			}
+			for (var i = 0; i < 3; i++) {
+				newtown.trink.push(trinket(p.lv + randint(-1,1)));
+			}
+			return newtown;
+		}
+
+		function ran(list) {
+			return list[Math.floor((Math.random() * list.length))];
+		}
+
+		function randint(lower, upper) {
+			return Math.floor((Math.random() * (upper - lower + 1)) + lower);
+		}
+
+		function randfloat(lower, upper) {
+			return (Math.random() * (upper - lower)) + lower;
+		}
+
+		function getEntry(e) {
+			lastval = e.code;
+			if(e.code == "Enter") {
+				entval = document.getElementById("input").value;
+				print(entval);
+				clearinput();
+				e.preventDefault();
+				if (nextfunc[0] != null) {
+					nextfunc[0]();
+				}
+				return false;
+			}
+		}
+
+		function getinv() {
+			var sel = "";
+			for (var i = 0; i < p.inv.length; i++) {
+				sel += "a " + p.inv[i].desc + " (" + (i+1) + "), ";
+			}
+			return sel;
+		}
+
+		function nr(val) {
+			print("Entry not valid. Resetting. Press <enter> to acknoweledge you didn't read the instructions correctly and continue.");
+			next(val);	
+		}
+
+		function s0() {
+			print("Press, and <enter>, the any key to begin.")
+			next(s1);
+		}
+		
+		function s1() {
+			print("---");
+			print("Welcome to the magical land of Magicland, a magical land of magic and land!  As a budding adventurer, you have just left your hometown of " + town().name + " to seek riches, fame and glory (in that order) armed only with your fists, a knapsack, and your wits (again, in that order).");
+			print("---")
+			print("But first, describe yourself in a bit more detail. In other words, assign your attribute scores!  Each catagory can range from 1-10, with a score of 1 indicating a terrible personality flaw, a score of 5 average, and a score of 10 suggesting incredible talent.");
+			print("There are four catagories in which to assign points: Charisma, Strength, Agility and Luck.  Charisma impacts speech, Strength, melee damage and health, Agility, speed, and Luck general luckyness.");
+			print("You only get 20 points, so choose carefully!");
+			print("");
+			print("Enter a score for Charisma:");
+			next(s2);
+		}
+
+		function s2() {
+			if (entval > 10 || entval < 1) {nr(s1)}
+			else {
+				p.stats[0] = eval(entval);
+				print("Enter a score for Strength:");
+				next(s3);
+			}
+		}
+
+		function s3() {
+			if (entval > 10 || entval < 1) {nr(s2)}
+			else {
+				p.stats[1] = eval(entval);
+				print("Enter a score for Agility:");
+				next(s4);
+			}
+		}
+
+		function s4() {
+			if (entval > 10 || entval < 1) {nr(s3)}
+			else {
+				p.stats[2] = eval(entval);
+				print("Enter a score for Luck:");
+				next(s5);
+			}
+		}
+
+		function s5() {
+			p.stats[3] = eval(entval);
+			if (entval > 10 || entval < 1) {nr(s4)}
+			else if (p.stats[0] + p.stats[1] + p.stats[2] + p.stats[3] != 20) {
+				print("Those don't add up to 20!  Press <enter> to reset.");
+				next(s1);
+			}
+			else {
+				print("You selected a Charisma of " + p.stats[0] + ", a Strength of " + p.stats[1] + ", an Agility of " + p.stats[2] + ", and a Luck of " + p.stats[3] + ".");
+				p.health = Math.floor(10 + p.stats[0] / 2 +  3 * p.stats[1] / 2);
+				p.mhealth = p.health;
+				p.atk = 1 + 0.1 * p.stats[1];
+				p.lm = 0.1 * Math.pow(p.stats[3], 2);
+				p.amod = p.stats[2] * 10;
+				p.agmod = p.amod;
+				p.refreshDam();
+				var tplace = randint(0,terrnames.length - 1);
+				p.curterr[0].push(terrnames[tplace][0]);
+				p.curterr[0].push(terrnames[tplace][1]);
+				p.curterr[0].push("Precursor Ruins");
+				p.curterr[0].push("The End");
+				a1();
+			}
+		}
+
+		function a1() {
+			p.curterr[1]++;
+			var arealength = 5;
+			if (begin) {
+				print("Your journey begins!  You begin walking down the road.");
+				begin = false;
+			}
+			else {
+				if (p.curterr[1] >= arealength) {
+					var lastterr = p.curterr[0][p.tcount];
+					p.tcount++;
+					p.curterr[1] = 0;
+					print("You finally exit the " + lastterr + "!  Your path now takes you through the " + p.curterr[0][p.tcount] + ".");
+					if (p.tcount == 3) {
+						print("");
+						print("---");
+						print("As you begin to walk into the precursor ruins, you are beset by an old man.");
+						print("'Heed my advice!  These ruins ahead are crawling with the what the ancients called 'memes'! And some other nasty things too, but mostly memes. They may look friendly, but trust me, they aren't!' the man says. 'Please, take this guidebook!  It'll help you identify what's chasing you, and where, too!'");
+						print("'And by the way,' he continues, 'the treasure that you seek is hidden within these ruins.  But watch out for the llama!'");
+						print("The fact that you don't quite understand WHY you're even on this adventure, or where you're headed, or what 'treasure' you're looking for, let alone why you should watch out for a llama, is beside the point.  Onward!");
+						print("---");
+						print("");
+					}
+					if (p.tcount == 4) {
+						theend();
+					}
+				}
+				if (!p.theend) {
+					print("You continue walking down the road through the " + p.curterr[0][p.tcount] + ".  You estimate that you have about " + (arealength - p.curterr[1]) + " more days of walking before you exit the " + p.curterr[0][p.tcount] + ".");
+				}
+			}
+			if (!p.theend) {
+				if (p.health < p.mhealth) {
+					p.health = Math.min(Math.round(p.mhealth / 10) + p.health, p.health);
+					print("As you travel you heal " + (Math.round(p.mhealth * 0.1)) + " health, bringing your total to " + p.fullhealth() + "!");
+				}
+				if (randint(0,1) == 2) {
+					curen = new enemy(p.lv,0);
+					print("As you are walking you are ambused by a group of " + curen.name + "!");
+					fight(true);
+				}
+				else if (randint(0,10) == 10 && p.tcount < 4) {
+					curarea = town();
+					print("You stumble upon the " + curarea.fname + "!");
+					areanum++;
+					t0();
+				}
+				else {
+					var tlv = Math.max(p.lv,1);
+					op1 = new area(tlv);
+					op2 = new area(tlv);
+					print("You come to a fork in the road.  Do you want to explore the " + op1.fname + " (1) or the " + op2.fname + " (2)?")
+					next(a2);
+				}
+			}
+		}
+
+		function t0() {
+			print("You find yourself in the town square.  Do you want to enter the store (1), the inn (2), or leave (3)?");
+			next(t1);
+		}
+
+		function t1() {
+			if (entval == 1) {
+				if (randint(0,6) != 3) {
+					print("The store is selling weapons!  How lucky!");
+					var aw = curarea.weap;
+					print("Do you want to buy the " + aw[0].fname + " (" + aw[0].dam + " damage, " + aw[0].gp + " gold) (1), the " + aw[1].fname + " (" + aw[1].dam + " damage, " + aw[1].gp + " gold) (2), the " + aw[2].fname + " (" + aw[2].dam + " damage, " + aw[2].gp + " gold) (3), the " + aw[3].fname + " (" + aw[3].dam + " damage, " + aw[3].gp + " gold) (4), or the " + aw[4].fname + " (" + aw[4].dam + " damage, " + aw[4].gp + " gold) (5)?  Or <enter> (6) if you don't want to buy anything.  Your current weapon is a " + p.weap.fname + " (" + p.weap.dam + " damage), and you have " + p.gold + " gold.");
+					next(t2);
+				}
+				else if (randint(3,3) == 3) {
+					print("It's a store peddling camping supplies - wow!");
+					if (p.stor[1] < backpack.length - 3) {
+						print("Do you want to buy a " + backpack[p.stor[1] - 2] + " to increase you trinket carrying capacity by 1? It will cost " + (p.stor[1] * 100) + " gold. (y/n)");
+						next(t21);
+					}
+					else {
+						print("But wait!  You can't buy anything better than your " + p.stor[0] + "! You go back to the town square.");
+						t0();
+					}
+				}
+				else {
+					print("The store is selling trinkets.  How fortunante!");
+					var aw = curarea.trink;
+					print("Do you want to buy the " + aw[0].desc + ", the " + aw[0].desc + ", or the " + aw[0].desc + "?");
+					next(t2);
+				}
+			}
+			else if (entval == 2) {
+				print("You enter the inn.  Do you want to stay the night, topping off your health for " + (p.lv * 2) + " gold (1), go back to the town square (2), or leave " + curarea.name + " (3)?  You have " + p.gold + " gold, and your health is " + p.fullhealth() + ".");
+				next(t3);
+			}
+			else {
+				print(curarea.name + " just doesn't offer you anything, and you continue on your travels instead.");
+				a1(false);
+			}
+		}
+
+		function t2() {
+			if (entval != 1 && entval != 2 && entval != 3 && entval != 4 && entval != 5) { 
+				print("After perusing the wares, you decide against spending your precious gold and instead wander back to the center of " + curarea.name + ".");
+			}
+			else {
+				if (curarea.weap[entval-1].gp < p.gold) {
+					print("You successfully bought and equipped your new " + curarea.weap[entval-1].name + "!");
+					p.weap = curarea.weap[entval-1];
+					p.gold -= curarea.weap[entval-1].gp;
+					print("Knowing you won't buy anything else, the shopkeeper kick you out of his store, promising to only let you back inside once you have more gold.");
+				}
+				else {
+					print("You don't have enough gold to buy that, silly!  The shopkeeper kicks you out for your algebraic ineptness.");
+				}
+			}
+			t0();
+		}
+		
+		function t21() {
+			if (entval != "y") {
+				print("You decide to save your money for something a little better.  Apparently you really like your " + p.stor[0] + ".");
+				t0();
+			}
+			else if (p.gold < p.stor[1] * 100) {
+				print("Silly you! You don't possess enough gold to purchase the " + backpack[p.stor[1] - 2] + "!  Better luck next time!");
+				t0();
+			}
+			else {
+				p.gold -= p.stor[1] * 100;
+				p.stor[1]++;
+				p.stor[0] = backpack[p.stor[1] - 1];
+				print("You sucessfully purchase your new " + p.stor[0] + ", increasing the number of trinkets you can carry to " + p.stor[0] + "!");
+				t0();
+			}
+		}
+
+		function t3() {
+			if (entval == 1) {
+				if (p.gold >= p.lv*2) {
+					print("After a good night's rest, you are fully healed!");
+					p.health = p.mhealth;
+					p.gold -= p.lv*2;
+				}
+				else {
+					print("But wait! You don't have enough gold to rent a room?  Too bad.  You wander back to the center of " + curarea.name + ".");
+				}
+				t0();
+			}
+			else if (entval == 2) {
+				t0();
+			}
+			else {
+				print("You decide that you've had enough of " + curarea.name + ", and continue on your adventure instead.");
+				a1(false);
+			}
+		}
+
+		function a2() {
+			if (entval == 1) {
+				curarea = op1;
+			}
+			else {
+				curarea = op2;
+			}
+			print("You enter the " + curarea.name + "!");
+			areanum++;
+			nxtarea(true);
+		}
+
+		function nxtarea(begin) {
+			if (begin === undefined) {begin = false};
+			if (entval == "n") {
+				print("You decide to turn back.  You coward.")
+				arealo = false;
+				a1();
+			}
+			else if (curarea.curarea >= curarea.depth) {
+				print("Thats it!  You've cleared the entire " + curarea.name + ".  You must feel so proud.");
+				var gf = Math.floor(5 * 5^(curarea.level/5) * randfloat(0.8, 3));
+				p.gold += gf;
+				var xpf = Math.round(32.621 * Math.pow(curarea.level, 2) - 62.567 * curarea.level + 330.789);
+				p.xp += xpf;
+				print("At the end of the " + curarea.name +" you find " + gf + " gold, bringing your total to " + p.gold + "!");
+				print("You also get " + xpf + " xp, for a total of " + p.xp + "/" + p.nextxp + " experience points.")
+				arealo = false;
+				lvup();
+			}
+			else {
+				arealo = true;
+				if (begin) {
+					print("You step into the " + curarea.rooms[curarea.curarea] + ".")
+				}
+				else {
+					print("You continue deeper into the " + curarea.name + ", entering a " + curarea.rooms[curarea.curarea] + ".");
+				}
+				curarea.curarea++;
+				if (randint(0,3) == 0) {
+					print("There's nobody here!");
+					after(1);
+				}
+				else {
+					curen = new enemy(curarea.level, curarea.type);
+					print("You bump into a " + curen.name + ", and it doesn't look friendly!");
+					fight1(true);
+				}
+			}
+		}
+
+		function nxtarea2(placeholder) {
+			print("Do you want to continue exploring deeper into the " + curarea.name + " (y/n)?");
+			next(nxtarea);
+		}
+
+		function fight1(begin) {
+			clearinput();
+			if (begin === undefined) {begin = false;}
+			if (!begin) {
+				print("Your health is now " + p.health + ", and the " + curen.name + "'s health is " + curen.health + ".")
+				if (randint(0,5) == 0) {
+					print("The " + curen.name + " stumbles, opening up an opportunity for you to run.  Do you want to continue fighting?  y/n");
+					next(fight2)
+				}
+				else {
+					entval = "";
+					fight2();
+				}
+			}
+			else {
+				entval = "y";
+				fight2();
+			}
+		}
+
+		function fight2() {
+			if (entval == "y" || entval == "") {
+				if (curen.poi) {
+					print("The " + curen.name + ", currently poisoned, moves in to attack!");
+					var poidam = Math.round((p.dam + randfloat(-0.1,0.1) * p.dam)/10);
+					print("The poison hits for " + poidam + " damage!");
+					if (randint(0,2) == 2) {
+						print("The poison wore off!");
+						curen.poi = false;
+					}
+				}
+				else {
+					print("The " + curen.name + " moves in to attack!");
+				}
+				lastval = "";
+				setTimeout(function() {
+					entval = null;
+					next(null);
+					if (randint(0,Math.min(20, Math.floor(p.agmod / 10) + 8)) >= 5) {
+						correct = "KeyA";
+						print("Press (a) to attack!")
+					}
+					else {
+						correct = "KeyB";
+						print("Press (b) to block!")
+					}
+					setTimeout(function() {
+						var tempdam = Math.floor(p.dam + randfloat(-0.1,0.1) * p.dam);
+						var tempatk = Math.floor(curen.atk + randfloat(-0.1,0.1) * curen.atk);
+						if (lastval == correct) {
+							if (correct == "KeyA") {
+								curen.health -= tempdam;
+								print("You successfully dealt " + tempdam + " damage with your " + p.weap.name + "!");
+								if (p.weap.poi) {
+									print("Your weapon poisoned the " + curen.name + "!");
+									curen.poi = true;
+								}
+								if (curen.health <= 0) {
+									print("The " + curen.name + " keels over, dead!");
+									after(0);
+								}
+								else {
+									fight1();
+								}
+							}
+							else if (correct == "KeyB") {
+								print("You blocked the " + curen.name + "'s blow!");
+								fight1();
+							}
+						}
+						else {
+							if (correct == "KeyA") {
+								print("You swing wide with your " + p.weap.name + ", missing an oppertunity to deal " + tempdam + " damage!");
+								fight1();
+							}
+							else if (correct == "KeyB") {
+								print("You failed to block the " + curen.name + "'s attack!  You were hit for " + tempatk + " damage.");
+								p.health -= tempatk;
+								if (p.health <= 0) {
+									ded();
+								}
+								else {
+									fight1();
+								}
+							}
+						}
+					},1000 + randint(-200,400) + p.agmod - 100 * curen.mod);
+				}, 1000 + randint(-200,400) + p.agmod - 100 * curen.mod);
+			}
+			else {
+				if (entval == "a" || entval == "b") {
+					print("Do you want to continue fighting? y/n");
+					next(fight2);
+				}
+				else {
+					after(2);
+				}
+			}
+		}
+
+		function after(ran) {
+			clearinput();
+			if (!p.theend) {
+				if (ran == 0) {
+					p.xp += curen.exp;
+					print("For defeating the " + curen.name + " you gained " + curen.exp + " xp!  Your total xp is now " + p.xp + "/" + p.nextxp + "!");
+				}
+				if (ran == 0 || ran == 1) {
+					var gmod = 0;
+					if (ran == 0) {gmod = curen.gp;}
+					else {gmod = 5^(curarea.level/5)}
+					var gf = Math.floor(gmod * randfloat(0.8, 1.2))
+					p.gold += gf;
+					print("You found " + gf + " gold, bringing your total to " + p.gold + "!");
+					fighting = false;
+					if (ran == 0) {
+						weapon1();
+					}
+					else {
+						lvup();
+					}
+				}
+				else if (ran == 2) {
+					print("Got away safely!");
+					fighting = false;
+					if (arealo) {
+						entval = "n";
+						nxtarea();
+					}
+					else {
+						a1();
+					}
+				}
+			}
+			else {
+				end5();
+			}
+		}
+
+		function weapon1() {
+			if (randint(0,Math.round(1 * p.lm) + 1) > 1) {
+				tempweap = new weap("na", curarea.level);
+				print("You find a " + tempweap.fname + " which deals " + tempweap.dam + " damage!  It's attributes boost its damage by x" + tempweap.mod + "! Do you want to take it? Your existing weapon, a " + p.weap.fname + ", deals " + p.weap.dam + " damage. (y/n)")
+				next(weapon2);
+			}
+			else if (randint(0,Math.round(1 * p.lm)) > 1) {
+				tempweap = new trinket(curarea.level);
+				print("You found a rare trinket, a " + tempweap.desc + "!");
+				if (p.inv.length > p.stor[1]) {
+					print("Unfortunently, your " + p.stor[0] + " is already stuffed to the brim with trinkets.  Do you want to discard an existing trinket in favor of the new one? (y/n)");
+					next(weapon3);
+				}
+				else {
+					print("Do you want to take it?  (y/n)");
+					next(weapon5);
+				}
+			}
+			else {
+				print("You didn't find weapons after :(");
+				lvup();
+			}
+		}
+
+		function weapon2() {
+			if (entval == "y") {
+				print("Since it (hopefully) inflicts more damage than your " + p.weap.fname + " (" + p.weap.dam + " damage), you pick up the new " + tempweap.name + ".");
+				print("You equip your new " + tempweap.name + ".");
+				p.weap = tempweap;
+				p.refreshDam();
+			}
+			else {
+				print("You decide the " + tempweap.name + " you found just doesn't inflict as much damage as your " + p.weap.name + ", so why take it?");
+				print("You keep your existing weapon.");
+			}
+			lvup();
+		}
+
+		function weapon3() {
+			if (entval == "y") {
+				var sel = getinv();
+				print("Your existing trinkets are " + sel + " and thats it!  <Enter> the number of the trinket you wish to discard, or (0) if you've changed your mind.")
+				next(weapon4);
+			}
+			else {
+				discardtrink();
+			}
+		}
+
+		function weapon4() {
+			if (entval == 1 || entval == 2 || entval == 3 || entval == 4) {
+				print("You replace the " + p.inv[entval-1].name + " with the " + tempweap.name + ".");
+				p.inv[entval-1] = tempweap;
+				p.updatetrink();
+			}
+			else {
+				print("After closer examination, the " + tempweap.name + " isn't nearly as impressive as anything in your current stash of tinkets, and you throw it away.");
+			}
+			lvup();
+		}
+
+		function weapon5() {
+			if (entval == "y") {
+				p.inv.push(tempweap);
+				p.updatetrink();
+				print("You pick up the new " + tempweap.name + " and add it to your backpack.  You think you have room for about " + (p.stor[1] - p.inv.length + 1) + " more trinkets.");
+				lvup();
+			}
+			else {
+				discardtrink();
+			}
+		}
+
+		function discardtrink() {
+			print("You decide to not take the " + tempweap.desc + " in favor of preserving the intregity of your (already bulging) " + p.stor[0] + ".");
+			lvup();
+		}
+
+		function lvup() {
+			if (p.xp >= p.nextxp) {
+				p.levelup();
+				print("You leveled up, to level " + (p.lv) + "! Your health increased to " + p.mhealth + "!");
+				print("Do you want to increase your health (1) or your attack modifier (2)?")
+				next(lvup2);
+			}
+			else {
+				endlvup();
+			}
+		}
+		
+		function lvup2() {
+			if (entval == 1) {
+				p.mhealth = Math.floor(p.mhealth * 1.05);
+				print("Your health increased to " + p.mhealth + "!");
+			}
+			else {
+				p.atk = (p.atk * 1.05).toFixed(2);
+				print("Your attack modifier increased to " + p.atk + ", increasing your total damage to " + p.dam + "!");
+			}
+			if (p.lv % 5 == 0) {
+				print("");
+				print("You can also select a perk!")
+				print("Either choose " + perkz[0][p.perks[0]+1][0] + " (1), " + perkz[1][p.perks[1]+1][0] + " (2), or " + perkz[2][p.perks[1]+1][0] + " (3).");
+				next(lvup3);
+			}
+			else {
+				endlvup();
+			}
+		}
+		
+		function lvup3() {
+			var yep = 0;
+			if (entval == 2) {yep = 1}
+			else if (entval == 3) {yep = 2}
+			p.perks[yep]++;
+			mod = perkz[yep][p.perks[yep]][1];
+			if (yep == 0) {
+				p.mhealth = Math.floor(p.mhealth * mod);
+				p.health = p.mhealth;
+				print("Your health increased to " + p.mhealth + "!");
+			}
+			else if (yep == 1) {
+				p.atk = (p.atk * mod).toFixed(2);
+				p.refreshDam();
+				print("Your attack modifier increased to " + p.atk + ", increasing your total damage to " + p.dam + "!");
+			}
+			else if (yep == 2) {
+				p.agmod -= p.amod;
+				p.amod = Math.round(p.amod * mod);
+				p.agmod += p.amod;
+				print("Your base speed increased to " + p.agmod + "!");
+			}
+			endlvup();
+		}
+		
+		function endlvup() {
+			if (arealo) {
+				nxtarea2();
+			}
+			else {
+				a1();
+			}
+		}
+
+		function ded() {
+			print("You is ded.");
+			print("Reload page to play again.");
+		}
+		
+		function theend() {
+			p.theend = true;
+			print("");
+			print("---");
+			print("You've done it. You're at the end.  Well, actually, the middle of the precursor ruins.  Before you stands a very large server farm.  Do you enter it? (y/n)");
+			next(end0);
+		}
+		
+		function end0() {
+			print("---");
+			print("You never actually had a choice.  For this building holds unimaginable riches, as well as a final boss battle and the end of this game.");
+			print("You clamber through an opening in the side of the building, what the ancients called a 'door'.  Fascinating.");
+			print("---")
+			print("A voice echos out of the darkness. 'You monster!'");
+			print("---");
+			print("'What?' <enter>");
+			next(end1);
+		}
+		function end1() {
+			print("---");
+			print("'What have you done?'");
+			print("---");
+			print("'What?' <enter>");
+			next(end2);
+		}
+		function end2() {
+			print("---");
+			print("'You've activated the servers!'");
+			print("---");
+			print("It's true.  As soon as you opened that 'door', the entire building began humming with life.  Even the AC turned on.");
+			print("'So what?' <enter>");
+			next(end3);
+		}
+		function end3() {
+			print("---")
+			print("'You fool! You've activated the servers!'");
+			print("---");
+			print("'...aaaaand?' <enter>");
+			next(end4);
+		}
+		function end4() {
+			print("---");
+			print("'I'll have to stop you!'");
+			print("Out of the darkness steps a llama.");
+			curen = {
+				name: "Mysterious Llama",
+				health: 500,
+				atk: 50,
+				exp: 42,
+				lv: 30,
+				poi: false,
+				mod: 1.5,
+				gp: 69,
+			}
+			fight2();
+		}
+		function end5() {
+			print("");
+			print("---");
+			print("'What have you done!?'");
+			print("---");
+			print("'Killed you.' <enter>");
+			next(end6);
+		}
+		function end6() {
+			print("---")
+			print("'Not quite.  See, I'm still talking.'");
+			print("'Do you want to know why this city, why the Ancients lie in ruin?'");
+			print("---");
+			print("'Sure' <enter>");
+			next(end7);
+		}
+		function end7() {
+			print("---")
+			print("'In their folly, the Ancients believed they could download physical objects.  So they did.  And guess what they downloaded first?'");
+			print("Your stomach drops as you begin to conprehend the ramifications of what this meant.");
+			print("---");
+			print("'They didn't...' <enter>");
+			next(end8);
+		}
+		function end8() {
+			print("---");
+			print("'Yes, they did.'");
+			print("You begin to sweat profusely.");
+			print("---");
+			print("'But...' <enter>");
+			next(end9);
+		}
+		function end9() {
+			print("---");
+			print("'Yes.  And as they downloaded ever more, their computers could hold ever more of it, and download ever faster.  It was a vicious cycle that could only end in the apocalypse.'")
+			print("---");
+			print("'NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!!!!!!!!!!!!!!!!!!!!!!!1!!!!!!' <enter>");
+			next(end10);
+		}
+		function end10() {
+			print("---");
+			print("The Mysterious Lllama smiled. 'Yes.  They downloaded too much ram.'");
+			print("You black out.");
+			ded();
+		}
+		s0();
+	</script>
+	  <script>
+  		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  		ga('create', 'UA-81423107-1', 'auto');
+  		ga('send', 'pageview');
+
+	</script>
+	</body>
+</html>
