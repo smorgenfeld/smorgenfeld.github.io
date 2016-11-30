@@ -178,6 +178,7 @@ color:#063805;
 }
 .selbut {
     min-height:100px;
+    line-height: 100px;
     top:-60px;
     background-color: #063805;
     color: #13FF17;
@@ -188,9 +189,11 @@ color:#063805;
     text-align: center;
     cursor: pointer;
     width:200px;
+    display:block;
+    text-decoration: none;
 }
 
-.selbut:hover, .selbut:focus {
+.selbut:hover, .selbut:focus .selbut a:hover{
     background-color: #13FF17;
     color: #063805;
 }
@@ -202,4 +205,7 @@ color:#063805;
   padding: 1rem;
   background-color: #efefef;
   text-align: center;
+}
+td {
+  vertical-align: bottom;
 }

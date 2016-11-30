@@ -1,0 +1,168 @@
+<html>
+	<head>
+		<title>Trump Simulator 2016</title>
+		<style>
+	body {
+    	background-image: url('resourcess/flag.jpg');
+    	background-repeat: no-repeat;
+    	background-attachment: fixed;
+    	background-position: center;
+	}
+</style>
+	</head>
+	<body>
+		<h1 style="text-align:center">Trump Simulator 2016</h1>
+		<hr>
+		<div align="center">
+		<table style="background:rgba(255,255,255,0.8);font-size:20px">
+		<tr>
+		<td>
+		<span id="text" style=""></span>
+		</td>
+		</tr>
+		</table>
+		<script>
+			var box = document.getElementById("text");
+			var gadv = ["very", "so", "tremendously", "hugely"];
+			var gaadv = ["bigly", "tremendously", "hugely"];
+			var adv = ["very", "so"];
+			var badv = ["zero"];
+			var ggnoun = ["me", "us", "our nation", "America"];
+			var gggnoun = ["I", "we"];
+			var pgnoun = ["we're", "I'm"];
+			var gnoun = ["something"].concat(pgnoun);
+			var pbnoun = ["Hillary", "China", "ISIS", "Mexico", "muslims", "the establishment"]
+			var bnoun = ["emails", "the trade deficit", "immigrants", "terrorists", "mexicans", "the Chinese", "hombres"].concat(pbnoun);
+			var bodesc = ["overrated", "obnoxious", "dangerous", "bad", "weak", "stupid", "disgusting", "crooked",  "low-energy", "politically correct", "criminal", "nasty"];
+			var bdesc = ["a loser", "a moron", "out of control", "an idiot", "a buffoon", "a liar", "a hater", "a lightweight"].concat(bodesc);
+			var gdesc = ["tough", "smart", "tremendous", "amazing", "huge", "terrific", "fantastic"];
+			var gverb = ["win", "build a wall", "make America great again"];
+			var bverb = ["loses", "lies", "hates"];
+			var trans = ["And you know what?", "And guess what.", "And you know what else?", "Guess what else.", "But", "And", "So"];
+			var beg = ["A lot of smart people are saying", "Did you know", "I know more about", "A lot of experts say", "So that's why", "And that's why"];
+			var gpos = ["infrastructure", "national defense", "the economy"];
+			var bpos = ["trade", "Obamacare", "gun control", "ISIS", "immigration", "taxes", "abortion", "the war in Iraq", "climate change", "global warming"];
+			var speech = "";
+			var linecount = 0;
+			function ran(list) {
+				return list[Math.floor((Math.random() * list.length))];
+			}
+			function randint(lower, upper) {
+				return Math.floor((Math.random() * (upper - lower + 1)) + lower);
+			}
+			function create() {
+				var last = -1;
+				var tots = 6;
+				while (linecount < 10) {
+					var start = false;
+					if (linecount == 0) {start = true};
+					var next = randint(0,tots);
+					while (next == last) {
+						next = randint(0,tots);
+					}
+					switch(next) {
+						case 0:
+							c1(start);
+							break;
+						case 1:
+							c2(start);
+							break;
+						case 2:
+							c3(start);
+							break;
+						case 3:
+							c4(start);
+							break;
+						case 4:
+							c5(start);
+							break;
+						case 5:
+							c6(start);
+							break;
+						case 6:
+							c7(start);
+							break;
+						default:
+							console.log('wat');
+					}
+					last = next;
+				}
+				box.innerHTML += speech;
+			}
+			function c1(start) {
+				var line = "";
+				if (!start) {line += ran(trans) + " "};
+				var noun = ran(bnoun);
+				var bo = ran(bodesc)
+				line += ran(beg) + " I know more about " + noun + " than " + ran(pbnoun) + ".<br />";
+				line += bo + " " + noun.replace("the ", "") + ".<br /> " + ran(gaadv) + " " + bo + ".<br /> But " + ran(pgnoun) + " " + ran(gdesc) + ". " + ran(pgnoun) + " " + ran(gdesc) + ".<br />"
+				line += "So " + ran(pgnoun) + " going to " + ran(gverb) + ", and make " + ran(pbnoun) + " pay for it, " + ran(gaadv) + "!<br />";
+				linecount += 3;
+				speech += line;
+			}
+			function c2(start) {
+				var line = "";
+				if (!start) {line += ran(trans) + " "};
+				var gah = ran(bdesc);
+				line += ran(bnoun) + " is " + gah + ". " + ran(gadv) + " " + gah + ".<br /> But that's what makes " + ran(ggnoun) + " " + ran(adv) + " " + ran(gdesc) + ". <br />";
+				linecount += 1;
+				speech += line;
+			}
+			function c3(start) {
+				var line = "";
+				if (!start) {line += ran(trans) + " "};
+				var noun = ran(pbnoun);
+				line += ran(bodesc) + " " + noun + " is saying " + ran(pgnoun) + " " + ran(bdesc) + ". <br />But " + ran(pgnoun) + " not. " + ran(pgnoun) + " not. <br />";
+				line += noun + " isn't " + ran(gdesc) + ". " + noun + " is " + ran(bdesc) + ". <br />" + ran(gggnoun) + " have some " + ran(gdesc) + " plans to " + ran(gverb) + ", which " + ran(pbnoun) + " hates.<br />";
+				linecount += 3;
+				speech += line;
+			}
+			function c4(start) {
+				linecount += 1;
+				if (randint(0,2) == 2) {
+					var gah = ran(pbnoun);
+					speech += ran(beg) + " " + gah + " doesn't like " + ran(ggnoun) + "! " + ran(bodesc) + " " + gah + ".<br />";
+				}
+				else if (randint(0,2 == 1)){
+					var baddie = ran(pbnoun)
+					speech += baddie + ", " + baddie + " is " + ran(gadv) + " " + ran(bdesc) + "! <br />";
+				}
+				else {
+					speech += ran(gggnoun) + " saw " + ran(pbnoun) + " celebrating on 9/11! Yes, " + ran(gggnoun) + " did! <br />"
+				}
+			}
+			function c5(start) {
+				linecount += 2;
+				var line = "";
+				if (!start) {line += ran(trans) + " "};
+				line += ran(pbnoun) + " is " + ran(bdesc) + ", and " + ran(bdesc) + " and " + ran(bdesc) + ". But that's ok, because" + ran(pgnoun) + " " + ran(gdesc) + " and " + ran(pgnoun) + " going to " + ran(gverb) + "!";
+			}
+			function c6(start) {
+				var line = "";
+				if (!start) {line += ran(trans) + " "};
+				var pos = ran(gpos);
+				line += ran(gggnoun) + " support " + pos + ".  " + ran(gggnoun) + " need to improve " + pos + " " + ran(gaadv) + ".<br />";
+				line += ran(trans) + " " + ran(bodesc) + " " + ran(pbnoun) + " doesn't care about " + pos + ". They support " + ran(bpos) + ".<br />";
+				line += ran(gggnoun) + " need a " + ran(gdesc) + " " + pos.replace("the ", "") + " to " + ran(gverb) + ". That's why " + ran(gggnoun) + " needs a " + ran(gdesc) + " " + pos.replace("the ", "") + "!<br />";
+				speech += line;
+				linecount += 3
+			}
+			function c7(start) {
+				speech += ran(beg) + " I never supported " + ran(bpos) + ".  It's been debunked. " + ran(gaadv) + ".<br />";
+				speech += "But " + ran(pbnoun) + " insisted that " + ran(gggnoun) + " do. That's " + ran(gadv) + " wrong.<br />";
+				linecount += 2
+			}
+			create();
+		</script>
+		<script>
+  			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ 			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  			ga('create', 'UA-81423107-1', 'auto');
+			ga('send', 'pageview');
+
+		</script>
+	</body>
+</html>
