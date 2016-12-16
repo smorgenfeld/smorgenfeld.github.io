@@ -1,0 +1,224 @@
+<DOCTYPE html>
+	<head>
+		<title>Markov Chain Test</title>
+		<meta name="description" content="Mashing Wikipedia articles with ease using the power of Markov Chains!">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+		<link href="resources/markov.css" type="text/css" rel="Stylesheet">
+	</head>
+	<body>
+		<div style="margin:auto;text-align:center">
+			<div name="logo-container">
+				<img src='resources/wikilogo.png' height="100px";
+			</div>
+			<div style="margin:auto;width:400px">
+				<form method="get" id="search" style="margin:10px">
+					<hr>
+		      <input type="text" class="searchbox" value="Search Article One Here.." onblur="if(this.value == '') { this.value = 'Search Article One Here..'; }" onfocus="if(this.value == 'Search Article One Here..') { this.value = ''; }" id="1">
+					<input type="text" class="searchbox" value="Search Article Two Here.." onblur="if(this.value == '') { this.value = 'Search Article Two Here..'; }" onfocus="if(this.value == 'Search Article Two Here..') { this.value = ''; }" id="2">
+					<hr>
+					<font style="font-size:20px;font-family:arial"><a href="#" title="Increasing the order increases the output's tendency to reflect the source(s)'s text.  Likewise, decreasing the order causes the output to behave more erratically." class="tooltip"><span style="display:inline" title="">Markov Chain Order </span><span style="display:inline-block" title="" class="ui-icon ui-icon-info"></span></a>
+					<div style="padding:10px">
+						<div style="position: absolute;margin-top:6px;margin-left:90px">
+							1st
+						</div>
+						<label class="switch">
+						  <input type="checkbox" id="order">
+						  <div class="slider round"></div>
+						</label>
+						<div style="position: absolute;margin-top:-28px;margin-left:234px">
+							2nd
+						</div>
+					</div>
+					<hr>
+					Number of Words Generated
+					<div style="padding:10px">
+						<input type="number"  class="numbox" value="100" id="numbrz">
+					</div>
+		      <button type="Button" onclick="getstring()" class="input">Generate</button>
+					<hr style="margin-bottom:0px">
+					<font style="font-size:8px;display:block;text-align:left">Version 1.0</font>
+					<br>
+					</font>
+		    </form>
+			</div>
+			<div id="lol" style="width:50%;margin:auto;text-align:center">
+				<font style="font-size:20px;font-family:arial;line-height:23px">
+				<span id="text">Markov Chain Will Appear Here!</span>
+				</font>
+			</div>
+		</div>
+		<script type="text/javascript">
+			function ran(list) {
+				return list[Math.floor((Math.random() * list.length))];
+			}
+			function getstring() {
+				document.getElementById("lol").style.textAlign = "center";
+				if (document.getElementById("1").value == "Search Article One Here.." || document.getElementById("2").value == "Search Article Two Here..") {
+					document.getElementById("text").innerHTML = "Enter Valid Wikipedia Pages!";
+				}
+				else {
+					document.getElementById("text").innerHTML = "Requesting Wikipedia Content...";
+					var input = [];
+					var num = 2;
+					var names = [];
+					var textareaid = ["1", "2"];
+					for (var i = 0; i < num; i++) {
+						names.push(document.getElementById(textareaid[i]).value);
+						$.ajax({
+							type: "GET",
+						  url: "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + names[i] + "&callback=?",
+							contentType: "application/json; charset=utf-8",
+							dataType: "json",
+							async: false,
+						  success: function (data) {
+								input.push(data.query.pages[Object.keys(data.query.pages)[0]].extract);
+								if (input.length == num) {
+									if (document.getElementById("order").checked) {
+										generate2(input.join(" ").split(" "));
+									}
+									else {
+										generate1(input.join(" ").split(" "));
+									}
+								}
+							},
+							error: function (errorMessage) {
+								console.log(errorMessage);
+							}
+						});
+					}
+				}
+			}
+			function generate2(raw) {
+				document.getElementById("text").innerHTML = "Constructing Markov Chain Base...";
+				var output = [];
+				var rep = [];
+				var str = [];
+				for (var i = 1; i < raw.length; i++) {
+					var nxt = raw[i - 1] + " " + raw[i];
+					if (rep.indexOf(nxt) == -1) {
+						rep.push(nxt);
+						str.push({
+							str: nxt,
+							aft: [],
+						});
+					}
+				}
+				for (var i = 0; i < raw.length; i++) {
+					for (var j = 0; j < rep.length; j++) {
+						if (raw[i - 1] + " " + raw[i] == rep[j] && i < raw.length-1) {
+							str[j].aft.push(raw[i+1]);
+						}
+						if (i == raw.length-1 && raw[i - 1] + " " + raw[i] == rep[j]) {
+							str[j].aft.push(raw[0]);
+						}
+					}
+				}
+				document.getElementById("text").innerHTML = "Generating Markov Chain...";
+				var num = document.getElementById("numbrz").value;
+				for (var i = 0; i < num; i++) {
+					if (i==0) {
+						output.push(raw[0]);
+						output.push(raw[1]);
+					}
+					else {
+						var cur = output[output.length-2] + " " + output[output.length-1];
+						if (rep.indexOf(cur) == -1) {
+							output.push(raw[0]);
+							output.push(raw[1]);
+						}
+						else {
+							output.push(ran(str[rep.indexOf(cur)].aft));
+						}
+					}
+					if (i == num-1 && output[output.length-1].split("").indexOf(".") != output[output.length-1].split("").length-1){
+						i--;
+					}
+				}
+				output = output.join(" ");
+				document.getElementById("lol").style.textAlign = "left";
+				document.getElementById("text").innerHTML = output;
+			}
+
+			function generate1(raw) {
+				document.getElementById("text").innerHTML = "Constructing Markov Chain Base...";
+				var output = [];
+				var rep = [];
+				var str = [];
+				for (var i = 0; i < raw.length; i++) {
+					if (rep.indexOf(raw[i]) == -1) {
+						rep.push(raw[i]);
+						str.push({
+							str: raw[i],
+							aft: [],
+						});
+					}
+				}
+				for (var i = 0; i < raw.length; i++) {
+					for (var j = 0; j < rep.length; j++) {
+						if (raw[i] == rep[j] && i < raw.length-1) {
+							str[j].aft.push(raw[i+1]);
+						}
+						if (i == raw.length-1 && raw[i] == rep[j]) {
+							str[j].aft.push(raw[0]);
+						}
+					}
+				}
+				document.getElementById("text").innerHTML = "Generating Markov Chain...";
+				var num = document.getElementById("numbrz").value;
+				for (var i = 0; i < num; i++) {
+					if (i==0) {
+						output.push(raw[0]);
+					}
+					else {
+						if (rep.indexOf(output[output.length-1]) == -1) {
+							console.log(output[output.length-2],raw[0]);
+							break;
+						}
+						else {
+							output.push(ran(str[rep.indexOf(output[output.length-1])].aft));
+						}
+						if (i == num-1 && output[output.length-1].split("").indexOf(".") != output[output.length-1].split("").length-1){
+							i--;
+						}
+					}
+				}
+				output = output.join(" ");
+				document.getElementById("lol").style.textAlign = "left";
+				document.getElementById("text").innerHTML = output;
+			}
+		</script>
+		<script>
+		//(most of this was) COPY/PASTED FROM http://w3lessons.info/2015/03/01/autocomplete-search-using-wikipedia-api-and-jquery-ui/
+		//I.E. NOT MY CODE (mostly) :(
+			$(".searchbox").autocomplete({
+			source: function(request, response) {
+				$.ajax({
+						url: "http://en.wikipedia.org/w/api.php",
+						dataType: "jsonp",
+						data: {
+								'action': "opensearch",
+								'redirects': "resolve",
+								'format': "json",
+								'search': request.term
+						},
+						success: function(data) {
+								response(data[1]);
+						}
+				});
+			}
+		});
+		</script>
+		<script>
+  			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ 			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  			ga('create', 'UA-81423107-1', 'auto');
+			ga('send', 'pageview');
+
+		</script>
+	</body>
+</html>
