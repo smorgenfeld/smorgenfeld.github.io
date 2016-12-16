@@ -38,7 +38,7 @@
 					</div>
 		      <button type="Button" onclick="getstring()" class="input">Generate</button>
 					<hr style="margin-bottom:0px">
-					<font style="font-size:8px;display:block;text-align:left">Version 1.0</font>
+					<font style="font-size:8px;display:block;text-align:left">Version 1.1</font>
 					<br>
 					</font>
 		    </form>
@@ -195,7 +195,7 @@
 			$(".searchbox").autocomplete({
 			source: function(request, response) {
 				$.ajax({
-						url: "http://en.wikipedia.org/w/api.php",
+						url: "https://en.wikipedia.org/w/api.php",
 						dataType: "jsonp",
 						data: {
 								'action': "opensearch",
