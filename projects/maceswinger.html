@@ -64,7 +64,7 @@
 		</tr>
 		<tr>
 			<td>
-				<font style="font-size:10px">Version Beta 1.3 --------- If this isn't working, then you aren't using Google Chrome.  Use Google Chrome.</font>
+				<font style="font-size:10px">Version 1.3 --------- If this isn't working, then you aren't using Google Chrome.  Use Google Chrome.</font>
 			</td>
 		</tr>
 	</table>
@@ -148,14 +148,14 @@
 		var op2 = null;
 
 		var emtype = [
-			[["Bandit", 1], ["Jihadist", 1.1], ["Boar", 1.3], ["Monk", 0.7], ["Nomad", 0.8], ["Sheep", 0.3],  ["Llama", 1.8], ["Cow", 0.5], ["Knight", 1.5], ["Peasent", 0.4], ["Goat", 1.8]], //above normal
-			[["Cultist", 1.1], ["Tombraider", 1.2], ["Miner", 0.8], ["Convict", 1.2], ["Spelunker", 0.7]], //below normal
+			[["Bandit", 1], ["Jihadist", 1.1], ["Boar", 1.3], ["Monk", 0.7], ["Nomad", 0.8], ["Sheep", 0.3],  ["Llama", 1.8], ["Cow", 0.5], ["Knight", 1.5], ["Peasent", 0.4], ["Goat", 1.8], ["Mercenary", 1.2], ["Sheeple", 0.1]], //above normal
+			[["Cultist", 1.1], ["Tombraider", 1.2], ["Miner", 0.8], ["Convict", 1.2], ["Spelunker", 0.7], ["Naked Molerat", 0.7], ["Earthworm", 0.1], ["Dangling Tree Root", 0.01]], //below normal
 			[["Orc", 1.2], ["Giant", 1.5], ["Ogre", 1.4], ["Scorpien", 1.3], ["Alien", 1.5], ["Ent", 1.3], ["Shrubbery", 0.6], ["Centaur", 1.2], ["Griffon", 1.3]], //above magical
-			[["Skellington", 0.8], ["Zombie", 0.9], ["Spider", 1.2], ["Mummy", 1.1], ["Demons", 1.4], ["Goblin", 0.7], ["Ghost", 1.2], ["Ant Swarm", 1.3]], //below magical
-			[["Defense Turret", 1.4], ["Automaton", 1.2], ["Robot", 1.2], ["Danger Noodle", 1.3], ["Doggo", 0.9], ["Pupper", 0.7], ["Harambe", 0.9], ["Frog on a Unicycle", 0.6]] //precursor
+			[["Skellington", 0.8], ["Zombie", 0.9], ["Spider", 1.2], ["Mummy", 1.1], ["Demons", 1.4], ["Goblin", 0.7], ["Ghost", 1.2], ["Ant Swarm", 1.3], ["Vampire", 1.2]], //below magical
+			[["Defense Turret", 1.4], ["Automaton", 1.2], ["Robot", 1.2], ["Danger Noodle", 1.3], ["Doggo", 0.9], ["Pupper", 0.7], ["Harambe", 0.9], ["Frog on a Unicycle", 0.6], ["Normie", 0.1], ["Bad Hombre", 1]] //precursor
 		];
 
-		var emat = [["Angry", 1.2], ["Passive", 0], ["Friendly", 0], ["Furious", 1.3], ["Metallic", 1.4], ["Autonomous", 0.9], ["Electric", 1.2], ["Humanoid", 1.2], ["Ambidextrious", 1.5], ["Ancient", 1.6], ["Explosive", 1.2], ["Aroused", 0.9], ["Moist", 0.7], ["Dank", 1.2], ["Electromagnetic", 1.3], ["Obese", 0.5], ["Stoned", 0.3], ["Perturbed", 0.7], ["Inflatable", 1.1], ["NFG", 0.1], ["Proletariat", 1.2], ["Communist", 1.2], ["Radioactive", 0.8], ["Toasty", 1], ["Charred", 0.7], ["Decrepid", 0.4], ["Drunk", 0.6], ["Stingy", 1.1], ["Feral", 1.2], ["Rabid", 1.2], ["Rectilinear", 1.1], ["Bespectacled", 0.6], ["Energetic", 1.3], ["Hyperactive", 1.3], ["Able-bodied", 1.1], ["Feeble", 0.4], ["Malnorished", 0.5], ["Delicate", 0.4], ["Unsteady", 0.7], ["Microscopic", 0.1], ["Domesticated", 0.2], ["Fluffy", 1.5], ["Furry", 1.1], ["Juvenile", 0.5], ["Man-Eating", 1.4], ["Omnivorous", 1.2], ["Inbred", 0.7], ["Self-Aware", 1.2], ["Temperamental", 1.3], ["Belligerant", 1.2], ["Herbivorous", 0.5], ["Carnivorous", 1.4], ["Cynical", 1.1], ["Glowing", 1.2], ["Hardy", 1.3], ["Etheral", 1.4], ["Transparent", 1.3], ["Bedridden", 0.5], ["NSFW", 1.4], ["Decidious", 0.8], ["Courageous", 1.3], ["Gregarious", 1.1], ["Asexual", 0.6], ["Anaerobic", 0.8], ["Filamentous", 1], ["Photosynthetic", 0.7], ["Clinically Depressed", 0.5], ["Voluminous", 1.4], ["Didactic", 0.7], ["Diabetic", 0.8], ["Talkative", 0.3]];
+		var emat = [["Angry", 1.2], ["Passive", 0], ["Friendly", 0], ["Furious", 1.3], ["Metallic", 1.4], ["Autonomous", 0.9], ["Electric", 1.2], ["Humanoid", 1.2], ["Ambidextrious", 1.5], ["Ancient", 1.6], ["Explosive", 1.2], ["Aroused", 0.9], ["Moist", 0.7], ["Dank", 1.2], ["Electromagnetic", 1.3], ["Obese", 0.5], ["Stoned", 0.3], ["Perturbed", 0.7], ["Inflatable", 1.1], ["NFG", 0.1], ["Proletariat", 1.2], ["Communist", 1.2], ["Radioactive", 0.8], ["Toasty", 1], ["Charred", 0.7], ["Decrepid", 0.4], ["Drunk", 0.6], ["Stingy", 1.1], ["Feral", 1.2], ["Rabid", 1.2], ["Rectilinear", 1.1], ["Bespectacled", 0.6], ["Energetic", 1.3], ["Hyperactive", 1.3], ["Able-bodied", 1.1], ["Feeble", 0.4], ["Malnorished", 0.5], ["Delicate", 0.4], ["Unsteady", 0.7], ["Microscopic", 0.1], ["Domesticated", 0.2], ["Fluffy", 1.5], ["Furry", 1.1], ["Juvenile", 0.5], ["Man-Eating", 1.4], ["Omnivorous", 1.2], ["Inbred", 0.7], ["Self-Aware", 1.2], ["Temperamental", 1.3], ["Belligerant", 1.2], ["Herbivorous", 0.5], ["Carnivorous", 1.4], ["Cynical", 1.1], ["Glowing", 1.2], ["Hardy", 1.3], ["Etheral", 1.4], ["Transparent", 1.3], ["Bedridden", 0.5], ["NSFW", 1.4], ["Decidious", 0.8], ["Courageous", 1.3], ["Gregarious", 1.1], ["Asexual", 0.6], ["Anaerobic", 0.8], ["Filamentous", 1], ["Photosynthetic", 0.7], ["Clinically Depressed", 0.5], ["Voluminous", 1.4], ["Didactic", 0.7], ["Diabetic", 0.8], ["Talkative", 0.3], ["Normie", 0.1], ["Yuge", 1.3]];
 
 		var weaphow = [["Automatic", 0.5], ["Analog", 0.6], ["Solar-Powered", 0.7], ["Greasy", 0.8], ["Clockwork", 0.9], ["Manual", 1], ["Digital", 1], ["Industrial", 1.1], ["Diesel-Powered", 1.1], ["Hydralic", 1.2], ["Electric", 1.2], ["Pneumatic", 1.2], ["Spring-Loaded", 1.2], ["Petroleous", 1.3], ["Motorized", 1.4], ["Rotary", 1.5], ["Cyclical", 1.5], ["Mechanized", 1.6], ["Pump-Action", 1.6], ["Quantum Entangled", 1.6], ["Heat-Seeking", 1.7], ["Homing", 1.7], ["Rocket Propelled", 1.8], ["Cordless", 2]]
 
@@ -165,11 +165,11 @@
 
 		var weapdescmod = ["Very", "Extremely", "Exceptionally", "Awfully", "Eminently", "Excessively", "Exceedingly", "Remarkably", "Incredibly", "Absolutely", "Unusually", "Decidedly", "Pretty", "Actually"];
 
-		var bladed = [["Uranium-235", "Plutonium", "Arsenic", "Lead", "Dihydrogen Monoxide", "Cyanide", "Shroom", "Polonium", "Venom"],["Laced", "Tipped", "Bladed", "Coated", "Plated", "Glazed", "Laminated"]]
+		var bladed = [["Uranium-235", "Plutonium", "Arsenic", "Lead", "Dihydrogen Monoxide", "Cyanide", "Shroom", "Polonium", "Venom", "Sarin"],["Laced", "Tipped", "Bladed", "Coated", "Plated", "Glazed", "Laminated"]]
 
 		var magicdesc = [["Minor", 0.5], ["Lethargic", 0.8], ["Perturbed", 0.9], ["Average", 1], ["Common", 1], ["Icy", 1.1],  ["Furious", 1.2], ["Boosted", 1.2], ["Incendiary", 1.3], ["Greater", 1.5], ["Divine", 1.6], ["Demonic", 1.6], ["Excellent", 1.6], ["Accelerated", 1.6], ["Resonant", 1.7]];
 
-		var magic = [["Fire", "Flames", "Burning", "Hotness", "Above-Average Temperature", "Incineration"], ["Ice", "Frozen Dihydrogen Monoxide", "Freezing", "Brain Freezes", "Coldness"],["Damage", "Suffering", "Blunt Force Trauma", "Devastation", "Destruction", "Harm", "Abuse", "Annihilation", "Demolition", "Flailing"], ["Bleeding", "Laceration", "Cutting", "Extreme Sharpness", "Pricking"], ["Explosion", "Detonation", "Blasting", "Eruption", "Discharge", "Ka-Boom!"]];
+		var magic = [["Fire", "Flames", "Burning", "Hotness", "Above-Average Temperature", "Incineration", "Rapid Oxidation"], ["Ice", "Frozen Dihydrogen Monoxide", "Freezing", "Brain Freezes", "Coldness"],["Damage", "Suffering", "Blunt Force Trauma", "Devastation", "Destruction", "Harm", "Abuse", "Annihilation", "Demolition", "Flailing", "Hitting Hard"], ["Bleeding", "Laceration", "Cutting", "Extreme Sharpness", "Pricking", "Paper Cuts"], ["Explosion", "Detonation", "Blasting", "Eruption", "Discharge", "Ka-Boom!"]];
 
 		var weapnames = ["Axe", "Sword", "Mace", "Club", "Baton", "Spear", "Speer", "Pickaxe", "Miscellaneous Blunt Object", "Knife", "Shank", "Stick", "Saw", "Baseball Bat", "Sledgehammer", "Pool Cue", "Hatchet"];
 
@@ -209,7 +209,7 @@
 
 		var tname2 = ["chapel", "pond", "ston", "ton", "burg", "ville", "dale", "wick", "ford", "port", "worth", "stow", "firth", "shaw", "sworthly", "stone", "ine", "forth", "wich", "beck", "bury", "field", "minster", "bourne", "pool", "mere"];
 
-		var ttype1 = ["Tiny", "Small", "Medium", "Large", "Huge", "Sprawling", "Dense", "Gigantic"];
+		var ttype1 = ["Tiny", "Small", "Medium", "Large", "Huge", "Yuge", "Sprawling", "Dense", "Gigantic"];
 
 		var ttype2 = ["Village", "Hamlet", "Town", "City", "Metropolis"];
 		
