@@ -1,6 +1,6 @@
 <DOCTYPE html>
 	<head>
-		<title>Markov Chain Test</title>
+		<title>Markov Masher</title>
 		<meta name="description" content="Mashing Wikipedia articles with ease using the power of Markov Chains!">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
@@ -38,7 +38,7 @@
 					</div>
 		      <button type="Button" onclick="getstring()" class="input">Generate</button>
 					<hr style="margin-bottom:0px">
-					<font style="font-size:8px;display:block;text-align:left">Version 1.1</font>
+					<font style="font-size:8px;display:block;text-align:left">Version 1.2 - now (literally) 2000% better!</font>
 					<br>
 					</font>
 		    </form>
@@ -68,18 +68,22 @@
 						names.push(document.getElementById(textareaid[i]).value);
 						$.ajax({
 							type: "GET",
-						  url: "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + names[i] + "&callback=?",
+							url: "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&explaintext=&titles=" + names[i] + "&redirects=true",
+						  //url: "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + names[i] + "&callback=?",
 							contentType: "application/json; charset=utf-8",
-							dataType: "json",
+							dataType: "jsonp",
 							async: false,
 						  success: function (data) {
 								input.push(data.query.pages[Object.keys(data.query.pages)[0]].extract);
 								if (input.length == num) {
+									var txt = input.join(" ");
+									txt = txt.replaceAll(/===.*===/, ''); //removes header things
+									txt = txt.replaceAll(/==.*==/, ''); //remove other header things
 									if (document.getElementById("order").checked) {
-										generate2(input.join(" ").split(" "));
+										generate2(txt.split(" "));
 									}
 									else {
-										generate1(input.join(" ").split(" "));
+										generate1(txt.split(" "));
 									}
 								}
 							},
@@ -93,8 +97,8 @@
 			function generate2(raw) {
 				document.getElementById("text").innerHTML = "Constructing Markov Chain Base...";
 				var output = [];
-				var rep = [];
-				var str = [];
+				var rep = []; //strings represented
+				var str = []; //'after' data
 				for (var i = 1; i < raw.length; i++) {
 					var nxt = raw[i - 1] + " " + raw[i];
 					if (rep.indexOf(nxt) == -1) {
@@ -104,15 +108,11 @@
 							aft: [],
 						});
 					}
-				}
-				for (var i = 0; i < raw.length; i++) {
-					for (var j = 0; j < rep.length; j++) {
-						if (raw[i - 1] + " " + raw[i] == rep[j] && i < raw.length-1) {
-							str[j].aft.push(raw[i+1]);
-						}
-						if (i == raw.length-1 && raw[i - 1] + " " + raw[i] == rep[j]) {
-							str[j].aft.push(raw[0]);
-						}
+					try {
+						str[rep.indexOf(nxt)].aft.push(raw[i + 1]);
+					}
+					catch(e) {
+						str[rep.length-1].aft.push(raw[0]);
 					}
 				}
 				document.getElementById("text").innerHTML = "Generating Markov Chain...";
@@ -154,15 +154,11 @@
 							aft: [],
 						});
 					}
-				}
-				for (var i = 0; i < raw.length; i++) {
-					for (var j = 0; j < rep.length; j++) {
-						if (raw[i] == rep[j] && i < raw.length-1) {
-							str[j].aft.push(raw[i+1]);
-						}
-						if (i == raw.length-1 && raw[i] == rep[j]) {
-							str[j].aft.push(raw[0]);
-						}
+					try {
+						str[rep.indexOf(raw[i])].aft.push(raw[i + 1]);
+					}
+					catch(e) {
+						str[rep.length-1].aft.push(raw[0]);
 					}
 				}
 				document.getElementById("text").innerHTML = "Generating Markov Chain...";
@@ -173,7 +169,6 @@
 					}
 					else {
 						if (rep.indexOf(output[output.length-1]) == -1) {
-							console.log(output[output.length-2],raw[0]);
 							break;
 						}
 						else {
@@ -188,6 +183,12 @@
 				document.getElementById("lol").style.textAlign = "left";
 				document.getElementById("text").innerHTML = output;
 			}
+			//copy pasted from https://stackoverflow.com/questions/1144783/how-to-replace-all-occurrences-of-a-string-in-javascript
+			String.prototype.replaceAll = function(search, replacement) {
+    		var target = this;
+    		return target.replace(new RegExp(search, 'g'), replacement);
+			};
+			//end copy pasted
 		</script>
 		<script>
 		//(most of this was) COPY/PASTED FROM http://w3lessons.info/2015/03/01/autocomplete-search-using-wikipedia-api-and-jquery-ui/
