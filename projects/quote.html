@@ -1,0 +1,312 @@
+<DOCTYPE html>
+	<head>
+		<title>Quote of the Day Today</title>
+		<meta name="description" content="Quote of the Day Today!">
+    <link rel="stylesheet" href="resources/quote.css">
+	   <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div id="container">
+		<h2>Quote of the Day Today</h2>
+  		<div id="quoteContainer">
+			<p></p>
+			<p id="quoteGenius"></p>
+		</div>
+  </div>
+    <div id='lol' style='display:none'>
+      <p id="also">Also...</p>
+      <img src = "http://i0.kym-cdn.com/entries/icons/original/000/020/016/wednesday.jpg"/>
+    </div>
+    <script type = 'text/javascript' src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+    $(document).ready(function(evt){
+    		var quoteSource=[
+          {
+      			quote: "Hello there!",
+      			name:"Obi-Wan Kenobi"
+      	  },
+          {
+            quote: "General Kenobi, you are a bold one!",
+            name: "General Grievous"
+          },
+          {
+            quote: "I will deal with this Jedi slime...MYSELF",
+            name: "General Grievous"
+          },
+          {
+      			quote: "Yep.",
+      			name:"Boba Fett"
+      	  },
+          {
+            quote: "This is where the fun begins!",
+            name: "Anakin Skywalker"
+          },
+          {
+            quote: "I will watch your career with great interest.",
+            name: "Sheev Palpatine"
+          },
+          {
+            quote: "I don't like sand. It's coarse and rough and irritating, and gets everywhere.",
+            name: "Anakin Skywalker"
+          },
+          {
+            quote: "Well whaddya know!",
+            name: "Dex Jettster"
+          },
+          {
+            quote: "I SEE THROUGH THE LIES OF THE JEDI",
+            name: "Anakin Skywalker"
+          },
+          {
+            quote: "This is getting out of hand - now there are TWO of them",
+            name: "Nute Gunray"
+          },
+          {
+            quote: "Why do I sense we've picked up another pathetic life form?",
+            name: "Obi-Wan Kenobi, upon learning they've picked up Anakin"
+          },
+          {
+            quote: "YIPPEE",
+            name: "Anakin Skywalker"
+          },
+          {
+            quote: "We stand here amidst MY achievement. Not yours!",
+            name: "Director Krennic"
+          },
+          {
+            quote: "I will bring peace and security to my new Empire!",
+            name: "Anakin Skywalker"
+          },
+          {
+            quote: "YOUR new empire!?",
+            name: "Obi-Wan Kenobi"
+          },
+          {
+            quote: "I killed them. I killed them all. They're dead, every single one of them. And not just the men, but the women, and the children, too.",
+            name: "Anakin Skywalker"
+          },
+          {
+            quote: "Roger roger",
+            name: "Anonynmous battle droid"
+          },
+          {
+            quote: "From my point of view, the Jedi are evil!",
+            name: "Anakin Skywalker"
+          },
+          {
+            quote: "But what about the droid attack on the wookies?",
+            name: "Ki-Adi-Mundi"
+          },
+          {
+            quote: "I've become more powerful than any Jedi has ever dreamed of.",
+            name: "Anakin Skywalker"
+          },
+          {
+            quote: "Are we blind? Deploy the garrison!",
+            name: "Director Krennic"
+          },
+          {
+            quote: "Oh shit, waddup? It's dat boi!",
+            name: "Yoda on a unicycle (ok maybe this isn't actually a Star Wars quote)"
+          },
+          {
+            quote: "I have waited a long time for this moment, my little green friend!",
+            name: "Sheev Palpatine"
+          },
+          {
+            quote: "It's a trick. Send no reply.",
+            name: "Obi-Wan Kenobi"
+          },
+          {
+            quote: "It's treason, then.",
+            name: "Sheev Palpatine"
+          },
+          {
+            quote: "I sense a plot to destroy the Jedi.",
+            name: "Mace Windu"
+          },
+          {
+            quote: "Ironic.",
+            name: "Sheev Palpatine"
+          },
+          {
+            quote: "She seems to be on top of things.",
+            name: "Obi-Wan Kenobi"
+          },
+          {
+            quote: "Watch out for those wrist rockets!",
+            name: "Anonynmous clone trooper"
+          },
+          {
+            quote: "Truely wonderful, the mind of a child is.",
+            name: "Yoda"
+          },
+          {
+      			quote: "I'll try spinning - that's a good trick!",
+      			name:"Anakin Skywalker"
+      	  },
+          {
+            quote: "Anakin, my allegiance is to the Republic, to democracy!",
+            name: "Obi-Wan Kenobi"
+          },
+          {
+            quote: "So this is how liberty dies, with thunderous applause.",
+            name: "Padmé Amidala"
+          },
+          {
+      			quote: "[Incoherent screeching while spinning, because spinning is a good trick]",
+      			name:"Sheev Palpatine"
+      	  },
+          {
+            quote: "You are on the council, but we do not grant you the rank of master.",
+            name: "Mace Windu"
+          },
+          {
+            quote: "What?! How can you do this? This is outrageous, it's unfair … I'm more powerful than any of you. How can you be on the Council and not be a Master?",
+            name: "Anakin Skywalker"
+          },
+          {
+            quote: "Take a seat, young Skywalker.",
+            name: "Mace Windu"
+          },
+          {
+            quote: "Just like in the simulations.",
+            name: "Anonynmous clone trooper"
+          },
+          {
+            quote: "I AM THE SENATE",
+            name: "Sheev Palpatine (The Senate)"
+          },
+          {
+            quote: "I must be frank, your majesty.",
+            name: "Sheev (Frank) Palpatine"
+          },
+          {
+            quote: "Anakin's the father, isn't he?  I'm so sorry.",
+            name: "Obi-Wan Kenobi"
+          },
+          {
+            quote: "UNLIMITED POWAH",
+            name: "Sheev Palpatine"
+          },
+          {
+            quote: "I have been trained in your Jedi arts by Count Dooku!",
+            name: "General Grievous"
+          },
+          {
+            quote: "You turned her against me!",
+            name: "Anakin Skywalker"
+          },
+          {
+            quote: "The attempt on my life has left me scarred and deformed, but I assure you my resolve has never been stronger.",
+            name: "Sheev Palpatine"
+          },
+          {
+            quote: "Now THIS is pod racing!",
+            name: "Anakin Skywalker"
+          },
+          {
+            quote: "For reasons we can't explain, we are losing her...she has lost the will to live.",
+            name: "Inadequate medical robot"
+          },
+          {
+            quote: "I love democracy.",
+            name: "Sheev Palpatine"
+          },
+          {
+            quote: "Not to worry.  We're still flying half a ship.",
+            name: "Obi-Wan Kenobi"
+          },
+          {
+            quote: '[looking a little frustrated] Did you ever hear the tragedy of Darth Plagueis "the wise"?',
+            name: "Sheev Palpatine"
+          },
+
+          {
+            quote: "Is it possible to learn this power?",
+            name: "Anakin Skywalker"
+          },
+          {
+            quote: "Good. Twice the pride, double the fall.",
+            name: "Count Dooku"
+          },
+          {
+            quote: "DEW IT",
+            name: "Sheev Palpatine"
+          },
+          {
+            quote: "Another happy landing.",
+            name: "Obi-Wan Kenobi"
+          },
+          {
+            quote: "Don't lecture me Obi-Wan.",
+            name: "Anakin Skywalker"
+          },
+          {
+            quote: "It's over Anakin, I have the high ground!",
+            name: "Obi-Wan Kenobi"
+          },
+          {
+            quote: "You underestimate my power!",
+            name: "Anakin Skywalker"
+          },
+          {
+            quote: "Don't try it!",
+            name: "Obi-Wan Kenobi"
+          },
+          {
+            quote: "NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+            name: "Darth Vader"
+          },
+          {
+            quote: "",
+            name: ""
+          },
+    	];
+      var quote = $('#quoteContainer p').text();
+      var quoteGenius = $('#quoteGenius').text();
+      //prevent browser's default action
+      //evt.preventDefault();
+      //getting a new random number to attach to a quote and setting a limit
+      var sourceLength = quoteSource.length;
+
+      var now = new Date();
+      var fullDaysSinceEpoch = Math.floor(now/8.64e7);
+      console.log(fullDaysSinceEpoch);
+      console.log(quoteSource.length);
+      if (now.getDay() == 3){
+        document.getElementById('lol').style.display = '';
+      }
+      var start = 17459
+      var timeAnimation = 500;
+      var quoteContainer = $('#quoteContainer');
+      //fade out animation with callback
+      var newQuoteText = 'Into exile I must go.  Failed, I have.'
+      var newQuoteGenius = 'Yoda'
+      if (fullDaysSinceEpoch-start < quoteSource.length-1){
+        newQuoteText = quoteSource[fullDaysSinceEpoch-start].quote;
+        newQuoteGenius = quoteSource[fullDaysSinceEpoch-start].name;
+      }
+      quoteContainer.fadeOut(timeAnimation, function(){
+        quoteContainer.html('');
+        quoteContainer.append('<p>'+newQuoteText+'</p>'+'<p id="quoteGenius">'+'-								'+newQuoteGenius+'</p>');
+
+        //fadein animation.
+        quoteContainer.fadeIn(timeAnimation);
+      });
+
+    });//end document ready
+
+    </script>
+    <script>
+  			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ 			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  			ga('create', 'UA-81423107-1', 'auto');
+			ga('send', 'pageview');
+
+		</script>
+  </body>
+</html>
