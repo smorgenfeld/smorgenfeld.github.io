@@ -291,7 +291,7 @@
       var sourceLength = quoteSource.length;
 
       var now = new Date();
-      var fullDaysSinceEpoch = Math.floor(now/8.64e7);
+      var fullDaysSinceEpoch = Math.floor((now - 2.52e+7) / 8.64e7);
       console.log(fullDaysSinceEpoch);
       console.log(quoteSource.length);
       if (now.getDay() == 3){
