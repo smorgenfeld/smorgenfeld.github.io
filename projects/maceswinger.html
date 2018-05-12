@@ -1,6 +1,6 @@
 <html>
 <title>Mace Swinger</title>
-	<head>		
+	<head>
 		<link href="https://fonts.googleapis.com/css?family=Roboto:700" rel="stylesheet" type="text/css">
 		<meta name="description" content="Mace Swinger - a text-based RPG overflowing with randomized everything!">
 		<style>
@@ -64,7 +64,7 @@
 		</tr>
 		<tr>
 			<td>
-				<font style="font-size:10px">Version 1.3 --------- If this isn't working, then you aren't using Google Chrome.  Use Google Chrome.</font>
+				<font style="font-size:10px">Version 1.4 --------- If this isn't working, then you aren't using Google Chrome.  Use Google Chrome.</font>
 			</td>
 		</tr>
 	</table>
@@ -75,7 +75,7 @@
 			atk: 0,
 			lm: 0,
 			weap: new weap("handz", 0),
-			stor: [0, 2],
+			stor: ["Knapsack", 2],
 			inv: [],
 			xp: 0,
 			lv: 1,
@@ -150,34 +150,34 @@
 		var emtype = [
 			[["Bandit", 1], ["Jihadist", 1.1], ["Boar", 1.3], ["Monk", 0.7], ["Nomad", 0.8], ["Sheep", 0.3],  ["Llama", 1.8], ["Cow", 0.5], ["Knight", 1.5], ["Peasent", 0.4], ["Goat", 1.8], ["Mercenary", 1.2], ["Sheeple", 0.1]], //above normal
 			[["Cultist", 1.1], ["Tombraider", 1.2], ["Miner", 0.8], ["Convict", 1.2], ["Spelunker", 0.7], ["Naked Molerat", 0.7], ["Earthworm", 0.1], ["Dangling Tree Root", 0.01]], //below normal
-			[["Orc", 1.2], ["Giant", 1.5], ["Ogre", 1.4], ["Scorpien", 1.3], ["Alien", 1.5], ["Ent", 1.3], ["Shrubbery", 0.6], ["Centaur", 1.2], ["Griffon", 1.3]], //above magical
+			[["Orc", 1.2], ["Giant", 1.5], ["Ogre", 1.4], ["Scorpien", 1.3], ["Alien", 1.5], ["Ent", 1.3], ["Shrubbery", 0.6], ["Centaur", 1.2], ["Griffin", 1.3]], //above magical
 			[["Skellington", 0.8], ["Zombie", 0.9], ["Spider", 1.2], ["Mummy", 1.1], ["Demons", 1.4], ["Goblin", 0.7], ["Ghost", 1.2], ["Ant Swarm", 1.3], ["Vampire", 1.2]], //below magical
-			[["Defense Turret", 1.4], ["Automaton", 1.2], ["Robot", 1.2], ["Danger Noodle", 1.3], ["Doggo", 0.9], ["Pupper", 0.7], ["Harambe", 0.9], ["Frog on a Unicycle", 0.6], ["Normie", 0.1], ["Bad Hombre", 1]] //precursor
+			[["Defense Turret", 1.4], ["Automaton", 1.2], ["Robot", 1.2], ["Danger Noodle", 1.3], ["Doggo", 0.9], ["Pupper", 0.7], ["Harambe", 0.9], ["Frog on a Unicycle", 0.6]] //precursor
 		];
 
-		var emat = [["Angry", 1.2], ["Passive", 0], ["Friendly", 0], ["Furious", 1.3], ["Metallic", 1.4], ["Autonomous", 0.9], ["Electric", 1.2], ["Humanoid", 1.2], ["Ambidextrious", 1.5], ["Ancient", 1.6], ["Explosive", 1.2], ["Aroused", 0.9], ["Moist", 0.7], ["Dank", 1.2], ["Electromagnetic", 1.3], ["Obese", 0.5], ["Stoned", 0.3], ["Perturbed", 0.7], ["Inflatable", 1.1], ["NFG", 0.1], ["Proletariat", 1.2], ["Communist", 1.2], ["Radioactive", 0.8], ["Toasty", 1], ["Charred", 0.7], ["Decrepid", 0.4], ["Drunk", 0.6], ["Stingy", 1.1], ["Feral", 1.2], ["Rabid", 1.2], ["Rectilinear", 1.1], ["Bespectacled", 0.6], ["Energetic", 1.3], ["Hyperactive", 1.3], ["Able-bodied", 1.1], ["Feeble", 0.4], ["Malnorished", 0.5], ["Delicate", 0.4], ["Unsteady", 0.7], ["Microscopic", 0.1], ["Domesticated", 0.2], ["Fluffy", 1.5], ["Furry", 1.1], ["Juvenile", 0.5], ["Man-Eating", 1.4], ["Omnivorous", 1.2], ["Inbred", 0.7], ["Self-Aware", 1.2], ["Temperamental", 1.3], ["Belligerant", 1.2], ["Herbivorous", 0.5], ["Carnivorous", 1.4], ["Cynical", 1.1], ["Glowing", 1.2], ["Hardy", 1.3], ["Etheral", 1.4], ["Transparent", 1.3], ["Bedridden", 0.5], ["NSFW", 1.4], ["Decidious", 0.8], ["Courageous", 1.3], ["Gregarious", 1.1], ["Asexual", 0.6], ["Anaerobic", 0.8], ["Filamentous", 1], ["Photosynthetic", 0.7], ["Clinically Depressed", 0.5], ["Voluminous", 1.4], ["Didactic", 0.7], ["Diabetic", 0.8], ["Talkative", 0.3], ["Normie", 0.1], ["Yuge", 1.3]];
+		var emat = [["Angry", 1.2], ["Passive", 0], ["Friendly", 0], ["Furious", 1.3], ["Metallic", 1.4], ["Autonomous", 0.9], ["Electric", 1.2], ["Humanoid", 1.2], ["Ambidextrious", 1.5], ["Ancient", 1.6], ["Explosive", 1.2], ["Salty", 1.3], ["Moist", 0.7], ["Dank", 1.2], ["Electromagnetic", 1.3], ["Obese", 0.5], ["Wireless", 1.2], ["Perturbed", 0.7], ["Inflatable", 1.1], ["NFG", 0.1], ["Proletariat", 1.2], ["Socialist", 1.2], ["Fascist", 1.2], ["Radioactive", 0.8], ["Toasty", 1], ["Charred", 0.7], ["Decrepid", 0.4], ["Drunk", 0.6], ["Stingy", 1.1], ["Feral", 1.2], ["Rabid", 1.2], ["Rectilinear", 1.1], ["Bespectacled", 0.6], ["Energetic", 1.3], ["Hyperactive", 1.3], ["Able-bodied", 1.1], ["Feeble", 0.4], ["Malnorished", 0.5], ["Delicate", 0.4], ["Unsteady", 0.7], ["Microscopic", 0.1], ["Domesticated", 0.2], ["Fluffy", 1.5], ["Furry", 1.1], ["Juvenile", 0.5], ["Man-Eating", 1.4], ["Omnivorous", 1.2], ["Inbred", 0.7], ["Self-Aware", 1.2], ["Temperamental", 1.3], ["Belligerant", 1.2], ["Herbivorous", 0.5], ["Carnivorous", 1.4], ["Cynical", 1.1], ["Glowing", 1.2], ["Hardy", 1.3], ["Etheral", 1.4], ["Transparent", 1.3], ["Bedridden", 0.2], ["NSFW", 1.4], ["Decidious", 0.8], ["Courageous", 1.3], ["Gregarious", 1.1], ["Asexual", 0.6], ["Anaerobic", 0.8], ["Filamentous", 1], ["Photosynthetic", 0.7], ["Clinically Depressed", 0.5], ["Voluminous", 1.4], ["Didactic", 0.7], ["Diabetic", 0.8], ["Talkative", 0.3], ["Normie", 0.1], ["Yuge", 1.3], ["Vegan", 0.01], ["Procrastinating", 0.3], ["Stale", 0.7], ["Homeostatic", 1], ["Toxic", 1.2]];
 
-		var weaphow = [["Automatic", 0.5], ["Analog", 0.6], ["Solar-Powered", 0.7], ["Greasy", 0.8], ["Clockwork", 0.9], ["Manual", 1], ["Digital", 1], ["Industrial", 1.1], ["Diesel-Powered", 1.1], ["Hydralic", 1.2], ["Electric", 1.2], ["Pneumatic", 1.2], ["Spring-Loaded", 1.2], ["Petroleous", 1.3], ["Motorized", 1.4], ["Rotary", 1.5], ["Cyclical", 1.5], ["Mechanized", 1.6], ["Pump-Action", 1.6], ["Quantum Entangled", 1.6], ["Heat-Seeking", 1.7], ["Homing", 1.7], ["Rocket Propelled", 1.8], ["Cordless", 2]]
+		var weaphow = [["Automatic", 0.5], ["Analog", 0.6], ["Rubberized", 0.6], ["Solar-Powered", 0.7], ["Greasy", 0.8], ["Clockwork", 0.9], ["Manual", 1], ["Digital", 1], ["Industrial", 1.1], ["Diesel-Powered", 1.1], ["Hydralic", 1.2], ["Electric", 1.2], ["Pneumatic", 1.2], ["Spring-Loaded", 1.2], ["Petroleous", 1.3], ["Motorized", 1.4], ["Double-Barreled", 1.4], ["Rotary", 1.5], ["Cyclical", 1.5], ["Mechanized", 1.6], ["Pump-Action", 1.6], ["Quantum Entangled", 1.6], ["Heat-Seeking", 1.7], ["Homing", 1.7], ["Rocket Propelled", 1.8], ["Magnetodynamic", 1.9], ["Cordless", 2]]
 
-		var weapmat = [["Wooden", 0.1], ["Stone", 0.3], ["Lead", 0.4], ["Gold", 0.5], ["Silver", 0.5], ["Plastic", 0.6], ["Nickel", 0.7],  ["Zinc", 0.8], ["Electrum", 0.9], ["Iron", 1], ["Aluminium", 1.1], ["Invar", 1.2], ["Bronze", 1.3], ["Iridium", 1.4], ["Steel", 1.5],  ["Titanium", 1.6], ["Diamond", 1.7], ["Tungsten", 1.8]];
+		var weapmat = [["Wooden", 0.1], ["Stone", 0.3], ["Lead", 0.4], ["Gold", 0.5], ["Silver", 0.5], ["Plastic", 0.6], ["Nickel", 0.7],  ["Zinc", 0.8], ["Electrum", 0.9], ["Iron", 1], ["Aluminium", 1.1], ["Invar", 1.2], ["Bronze", 1.3], ["Iridium", 1.4], ["Steel", 1.5],  ["Titanium", 1.6], ["Diamond", 1.7], ["Tungsten", 1.8], ["Garlic Bread", 1.9]];
 
-		var weapdesc = [["Inverted", -2], ["Broken", 0], ["Shitty", 0.3], ["Rusty", 0.4], ["Entry-Level", 0.4], ["Bent", 0.5], ["Dull", 0.5],["Dented", 0.6], ["Dodgy", 0.6], ["Light", 0.6], ["Ancient", 0.7], ["Pixelated", 0.7], ["Inflatable", 0.8], ["Shoddy", 0.8], ["Pre-Owned", 0.8], ["Below-Average", 0.9], ["Used", 0.9], ["Common", 1], ["Ok", 1], ["Normal", 1], ["Above-Average", 1.1], ["Rectilinear", 1.1], ["Decent", 1.1], ["Improved", 1.2], ["Sharpened", 1.2], ["Shiny", 1.3], ["Sturdy", 1.3], ["Accelerated", 1.3], ["Superior", 1.3], ["Reliable", 1.4], ["Good", 1.4], ["Rainbow", 1.5], ["Excellent", 1.6], ["Godly", 1.9], ["too op plz nerf", 2]];
+		var weapdesc = [["Inverted", -2], ["Broken", 0], ["Splintered", 0.3], ["Rusty", 0.4], ["Entry-Level", 0.4], ["Bent", 0.5], ["Dull", 0.5],["Dented", 0.6], ["Dodgy", 0.6], ["Light", 0.6], ["Ancient", 0.7], ["Pixelated", 0.7], ["Inflatable", 0.8], ["Shoddy", 0.8], ["Pre-Owned", 0.8], ["Below-Average", 0.9], ["Used", 0.9], ["Common", 1], ["Ok", 1], ["Normal", 1], ["Above-Average", 1.1], ["Rectilinear", 1.1], ["Decent", 1.1], ["Improved", 1.2], ["Sharpened", 1.2], ["Shiny", 1.3], ["Sturdy", 1.3], ["Accelerated", 1.3], ["Superior", 1.3], ["Reliable", 1.4], ["Good", 1.4], ["Rainbow", 1.5], ["Excellent", 1.6], ["Godly", 1.9], ["too op plz nerf", 2]];
 
-		var weapdescmod = ["Very", "Extremely", "Exceptionally", "Awfully", "Eminently", "Excessively", "Exceedingly", "Remarkably", "Incredibly", "Absolutely", "Unusually", "Decidedly", "Pretty", "Actually"];
+		var weapdescmod = ["Very", "Extremely", "Exceptionally", "Awfully", "Eminently", "Excessively", "Exceedingly", "Remarkably", "Incredibly", "Absolutely", "Unusually", "Decidedly", "Pretty", "Actually", "Indubitably"];
 
 		var bladed = [["Uranium-235", "Plutonium", "Arsenic", "Lead", "Dihydrogen Monoxide", "Cyanide", "Shroom", "Polonium", "Venom", "Sarin"],["Laced", "Tipped", "Bladed", "Coated", "Plated", "Glazed", "Laminated"]]
 
 		var magicdesc = [["Minor", 0.5], ["Lethargic", 0.8], ["Perturbed", 0.9], ["Average", 1], ["Common", 1], ["Icy", 1.1],  ["Furious", 1.2], ["Boosted", 1.2], ["Incendiary", 1.3], ["Greater", 1.5], ["Divine", 1.6], ["Demonic", 1.6], ["Excellent", 1.6], ["Accelerated", 1.6], ["Resonant", 1.7]];
 
-		var magic = [["Fire", "Flames", "Burning", "Hotness", "Above-Average Temperature", "Incineration", "Rapid Oxidation"], ["Ice", "Frozen Dihydrogen Monoxide", "Freezing", "Brain Freezes", "Coldness"],["Damage", "Suffering", "Blunt Force Trauma", "Devastation", "Destruction", "Harm", "Abuse", "Annihilation", "Demolition", "Flailing", "Hitting Hard"], ["Bleeding", "Laceration", "Cutting", "Extreme Sharpness", "Pricking", "Paper Cuts"], ["Explosion", "Detonation", "Blasting", "Eruption", "Discharge", "Ka-Boom!"]];
+		var magic = [["Fire", "Flames", "Burning", "Hotness", "Above-Average Temperature", "Incineration", "Rapid Oxidation"], ["Ice", "Frozen Dihydrogen Monoxide", "Freezing", "Brain Freezes", "Coldness", "Throwing Water"],["Damage", "Suffering", "Blunt Force Trauma", "Devastation", "Destruction", "Harm", "Abuse", "Annihilation", "Demolition", "Flailing", "Hitting Hard"], ["Bleeding", "Laceration", "Cutting", "Extreme Sharpness", "Pricking", "Paper Cuts"], ["Explosion", "Detonation", "Blasting", "Eruption", "Discharge", "Ka-Boom!"]];
 
 		var weapnames = ["Axe", "Sword", "Mace", "Club", "Baton", "Spear", "Speer", "Pickaxe", "Miscellaneous Blunt Object", "Knife", "Shank", "Stick", "Saw", "Baseball Bat", "Sledgehammer", "Pool Cue", "Hatchet"];
 
 		var areaname = [
 			["Ruins", "Manor", "Farmhouse", "Schoolhouse", "House", "Castle", "Cabin"], //above normal
 			["Cavern", "Shallow Mine", "Tunnel", "Cave", "Quarry"], //below normal
-			["Tower", "Graveyard", "Swamp"], //above magical
-			["Dungeon", "Crypt", "Deep Mine"], //below magical
+			["Tower", "Graveyard", "Swamp", "Necropolis"], //above magical
+			["Dungeon", "Crypt", "Deep Mine", "Mineshaft"], //below magical
 			["Bunker", "Warehouse", "Strip Mall", "Interchange", "Airstrip", "Motel", "Parking Garage", "Server Farm"] //precursor
 		];
 
@@ -191,13 +191,13 @@
 			["Tundra", "Glacier"], //set7
 		];
 
-		var areapre = [["Dank", 1.1], ["Well-lit", 0.8], ["Infested", 1.2], ["Cultists'", 1.1], ["Clean", 0.7], ["Stoney", 1], ["Deep Dark", 1.3], ["Spooky", 1.2], ["Pristine", 0.8], ["Gloomy", 1.1], ["Ancient", 1.3], ["Well-kept", 0.9], ["Precurser", 1.4], ["Conveniently Placed", 1.1], ["Abandoned", 1], ["Haunted", 1.2], ["Airborne", 1.4], ["Empty", 0.4], ["Frozen", 1.1], ["Fiery", 1.3], ["Sandy", 1.1], ["Sunken", 1.2], ["Public", 1.1]];
+		var areapre = [["Dank", 1.1], ["Well-lit", 0.8], ["Infested", 1.2], ["Cultists'", 1.1], ["Clean", 0.7], ["Stoney", 1], ["Deep Dark", 1.3], ["Spooky", 1.2], ["Pristine", 0.8], ["Gloomy", 1.1], ["Ancient", 1.3], ["Well-kept", 0.9], ["Precurser", 1.4], ["Conveniently Placed", 1.1], ["Abandoned", 1], ["Haunted", 1.2], ["Airborne", 1.4], ["Empty", 0.4], ["Frozen", 1.1], ["Fiery", 1.3], ["Sandy", 1.1], ["Sunken", 1.2], ["Public", 1.1], ["Gated", 1.2]];
 
 		var roomname = [["Entrance", "Antechamber", "Enterance Hall", "Gateway"],["Room", "Hallway", "Library", "Storage Chamber", "Common Room", "Living Quarters"],["Deepest Darkest Room"]];
 
-		var perkz = [[["Standard Vitality", 1],["Better Vitality", 1.1], ["Even Better Vitality", 1.15],["Superior Vitality", 1.2],["Extra Superior Vitality", 1.25],["Extreme Vitality", 1.3]],[["Standard Cambat", 1],["Better Combat", 1.1], ["Even Better Combat", 1.15], ["Superior Combat", 1.2], ["Really Superior Combat", 1.25], ["Really Extremely Superior Combat", 1.3]],[["Standard Agility", 1],["Better Agility", 1.1], ["Even Better Agility", 1.15], ["Superior Agility", 1.2], ["Really Superior Agility", 1.25], ["Really Extremely Superior Agility", 1.3]]];
-		
-		var trinkname0 = [["Counterproductive", -0.5], ["Shitty", 0.2], ["Lesser", 0.5], ["Minor", 0.7], ["Mediocre", 0.8], ["Below-Average", 0.9], ["Common", 1], ["Average", 1], ["Above-Average", 1.1], ["Boosted", 1.2], ["Uncommon",1.3], ["Robust",1.4], ["Greater", 1.5],["Superior", 1.6], ["Stupendous", 1.7], ["Badass", 1.8], ["Extreme", 2]];
+		var perkz = [[["Standard Vitality", 1],["Better Vitality", 1.1], ["Even Better Vitality", 1.15],["Superior Vitality", 1.2],["Extra Superior Vitality", 1.25],["Extreme Vitality", 1.3], ["Extra Extreme Vitality", 1.32], ["Extra Extremer Vitality", 1.34], ["Extra Extremerest Vitality", 1.36], ["Super Extra Extremerest Vitality", 1.38], ["Super Duper Extra Extremerest Vitality", 1.4],],[["Standard Combat", 1],["Better Combat", 1.1], ["Even Better Combat", 1.15], ["Superior Combat", 1.2], ["Really Superior Combat", 1.25], ["Really Extremely Superior Combat", 1.3], ["Really Extremely Superiorest Combat", 1.32], ["Super Really Extremely Superiorest Combat", 1.34], ["Super Duper Really Extremely Superiorest Combat", 1.36], ["Super Duperest Really Extremely Superiorest Combat", 1.38], ["Superer Duperest Really Extremely Superiorest Combat", 1.4],],[["Standard Agility", 1],["Better Agility", 1.1], ["Even Better Agility", 1.15], ["Superior Agility", 1.2], ["Really Superior Agility", 1.25], ["Really Extremely Superior Agility", 1.3], ["Really Extremely Superiorest Agility", 1.32], ["Super Really Extremely Superiorest Agility", 1.34], ["Super Duper Really Extremely Superiorest Agility", 1.36], ["Super Duperest Really Extremely Superiorest Agility", 1.38], ["Superer Duperest Really Extremely Superiorest Agility", 1.4],]];
+
+		var trinkname0 = [["Counterproductive", -0.5], ["Worthless", 0.2], ["Lesser", 0.5], ["Minor", 0.7], ["Mediocre", 0.8], ["Below-Average", 0.9], ["Common", 1], ["Average", 1], ["Above-Average", 1.1], ["Boosted", 1.2], ["Uncommon",1.3], ["Robust",1.4], ["Greater", 1.5],["Superior", 1.6], ["Stupendous", 1.7], ["Badass", 1.8], ["Extreme", 2]];
 
 		var trinkname = ["Ring", "Amulate", "Bracelet", "Necklace", "Wristwatch", "Goblet", "Coin", "Plate", "Fork", "Spoon", "Tiara", "Top Hat", "Sombrero", "Crown", "Keychain", "Mask"];
 
@@ -212,7 +212,7 @@
 		var ttype1 = ["Tiny", "Small", "Medium", "Large", "Huge", "Yuge", "Sprawling", "Dense", "Gigantic"];
 
 		var ttype2 = ["Village", "Hamlet", "Town", "City", "Metropolis"];
-		
+
 		var backpack = ["Knapsack", "Drawstring Bag", "Backpack", "Wheelbarrow", "Cart with Wheels", "Pickup Truck", "Quantum Entangled Ziplock Bag"];
 
 		var trans = ["and", "yet", "but"];
@@ -222,7 +222,7 @@
 			textarea.value += val  + "\u000A";
 			textarea.scrollTop = textarea.scrollHeight;
 		}
-		
+
 		function next(func) {
 			nextfunc[0] = func;
 		}
@@ -337,7 +337,7 @@
 				newenemy.exp = Math.round(7.312 * Math.pow(newenemy.lv, 2) - 15.758 * newenemy.lv + 77.39);
 			}
 			else if (mod < 1) {
-				newenemy.exp = Math.round(15.06 * Math.pow(newenemy.lv, 2) - 39.2 * newenemy.lv + 180.439); 
+				newenemy.exp = Math.round(15.06 * Math.pow(newenemy.lv, 2) - 39.2 * newenemy.lv + 180.439);
 			}
 			else if (mod < 1.5) {
 				newenemy.exp = Math.round(21.908 * Math.pow(newenemy.lv, 2) - 44.044 * newenemy.lv + 227.346);
@@ -436,14 +436,14 @@
 
 		function nr(val) {
 			print("Entry not valid. Resetting. Press <enter> to acknoweledge you didn't read the instructions correctly and continue.");
-			next(val);	
+			next(val);
 		}
 
 		function s0() {
 			print("Press, and <enter>, the any key to begin.")
 			next(s1);
 		}
-		
+
 		function s1() {
 			print("---");
 			print("Welcome to the magical land of Magicland, a magical land of magic and land!  As a budding adventurer, you have just left your hometown of " + town().name + " to seek riches, fame and glory (in that order) armed only with your fists, a knapsack, and your wits (again, in that order).");
@@ -608,7 +608,7 @@
 		}
 
 		function t2() {
-			if (entval != 1 && entval != 2 && entval != 3 && entval != 4 && entval != 5) { 
+			if (entval != 1 && entval != 2 && entval != 3 && entval != 4 && entval != 5) {
 				print("After perusing the wares, you decide against spending your precious gold and instead wander back to the center of " + curarea.name + ".");
 			}
 			else {
@@ -624,7 +624,7 @@
 			}
 			t0();
 		}
-		
+
 		function t21() {
 			if (entval != "y") {
 				print("You decide to save your money for something a little better.  Apparently you really like your " + p.stor[0] + ".");
@@ -769,6 +769,7 @@
 					setTimeout(function() {
 						var tempdam = Math.floor(p.dam + randfloat(-0.1,0.1) * p.dam);
 						var tempatk = Math.floor(curen.atk + randfloat(-0.1,0.1) * curen.atk);
+						console.log(lastval + " " + correct);
 						if (lastval == correct) {
 							if (correct == "KeyA") {
 								curen.health -= tempdam;
@@ -792,7 +793,7 @@
 						}
 						else {
 							if (correct == "KeyA") {
-								print("You swing wide with your " + p.weap.name + ", missing an oppertunity to deal " + tempdam + " damage!");
+								print("You swing wide with your " + p.weap.name + ", missing an opportunity to deal " + tempdam + " damage!");
 								fight1();
 							}
 							else if (correct == "KeyB") {
@@ -948,7 +949,7 @@
 				endlvup();
 			}
 		}
-		
+
 		function lvup2() {
 			if (entval == 1) {
 				p.mhealth = Math.floor(p.mhealth * 1.05);
@@ -958,7 +959,7 @@
 				p.atk = (p.atk * 1.05).toFixed(2);
 				print("Your attack modifier increased to " + p.atk + ", increasing your total damage to " + p.dam + "!");
 			}
-			if (p.lv % 3 == 0) {
+			if (p.lv % 5 == 0) {
 				print("");
 				print("You can also select a perk!")
 				print("Either choose " + perkz[0][p.perks[0]+1][0] + " (1), " + perkz[1][p.perks[1]+1][0] + " (2), or " + perkz[2][p.perks[2]+1][0] + " (3).");
@@ -968,7 +969,7 @@
 				endlvup();
 			}
 		}
-		
+
 		function lvup3() {
 			var yep = 0;
 			if (entval == 2) {yep = 1}
@@ -993,7 +994,7 @@
 			}
 			endlvup();
 		}
-		
+
 		function endlvup() {
 			if (arealo) {
 				nxtarea2();
@@ -1007,7 +1008,7 @@
 			print("You is ded.");
 			print("Reload page to play again.");
 		}
-		
+
 		function theend() {
 			p.theend = true;
 			print("");
@@ -1015,7 +1016,7 @@
 			print("You've done it. You're at the end.  Well, actually, the middle of the precursor ruins.  Before you stands a very large server farm.  Do you enter it? (y/n)");
 			next(end0);
 		}
-		
+
 		function end0() {
 			print("---");
 			print("You never actually had a choice.  For this building holds unimaginable riches, as well as a final boss battle and the end of this game.");
