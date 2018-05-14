@@ -1,0 +1,83 @@
+.button {
+	background-color: #144ead;
+	font-size: 20px;
+	padding: 14px 40px;
+	-webkit-transition-duration: 0.1s;
+	transition-duration: 0.1s;
+	text-decoration: none;
+	color: white;
+	font-family: Roboto, sans-serif;
+	display: block;
+}
+.button:hover {
+	background-color: #3076e8;
+	color: 063805;
+}
+.center {
+	margin: auto;
+	width: 100%;
+	max-width:1200px;
+	padding: 20px;
+	text-align:center;
+}
+.inside {
+	margin: auto;
+	width: 200px;
+	padding: 20px;
+	text-align:center;
+}
+body, html {
+	font-family: Roboto, sans-serif;
+	color: #161616;
+}
+.back {
+  position:absolute;
+  z-index:-2;
+  transition:all 0.3s;
+	opacity: 0;
+}
+@media screen and (max-aspect-ratio:4/3) {
+  .img {
+    width: auto;
+    height: 100%;
+		margin-left: auto;
+	  margin-right: auto;
+  }
+}
+
+@media screen and (min-aspect-ratio:4/3) {
+  .img {
+    width: 100%;
+    height: auto;
+		margin-left: auto;
+	  margin-right: auto;
+  }
+}
+.selbut {
+    min-height:400px;
+    line-height: 100px;
+    background-color: #144ead;
+    color: #FFFFFF;
+    padding:20px 20px;
+    font-family: Roboto, sans-serif;
+    font-size:30px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    width:400px;
+    text-decoration: none;
+
+}
+.selbut:hover, .selbut:focus .selbut a:hover{
+    background-color: #3076e8;
+    color: #063805;
+		outline: 0;
+}
+.selbut span {
+	display: none;
+}tr:nth-child(odd) {
+    background-color: #dddddd;
+}
+a {
+	text-decoration: none;
+}

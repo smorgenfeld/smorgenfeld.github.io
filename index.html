@@ -6,27 +6,65 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto:700" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-		<div class="center">
-			<div class="inside" style="font-size: 30px;background-color: #b6b6b5">
-				PROJECTS
+		<div id="aboutback" class="back">
+    	<img src="about.jpg" class="img">
+  	</div>
+		<div id="projback" class="back">
+    	<img src="projects.png" class = "img">
+  	</div>
+		<div class = "center">
+			<div class="inside" id="title" style="font-size: 30px;background-color:#FFFFFF">
+				<span>HOME</span>
 			</div>
 			<hr>
-			<div class="inside">
-				<a href="https://smorgenfeld.github.io/projects/markovmasher.html" class="button">MARKOV MASHER</a>
-			</div>
-			<div class="inside">
-				<a href="https://smorgenfeld.github.io/projects/maceswinger.html" class="button">MACE SWINGER</a>
-			</div>
-			<div class="inside">
-				<a href="https://smorgenfeld.github.io/w/index.html" class="button">FALLOUT 4 ONLINE WEAPON BUILDER</a>
-			</div>
-			<div class="inside">
-				<a href="https://smorgenfeld.github.io/projects/quote.html" class="button">QUOTE OF THE DAY TODAY</a>
-			</div>
-			<div class="inside">
-				<a href="https://smorgenfeld.github.io/projects/isitditchday.html" class="button">IS TOMORROW DITCH DAY?</a>
-			</div>
+			<form action="https://smorgenfeld.github.io/projects/index.html" style="display:inline;padding:20px">
+    		<button id="proj" class="selbut">Projects</button>
+			</form>
+			<form action="https://smorgenfeld.github.io/about.html" style="display:inline;padding:20px">
+    		<button id="about" class="selbut">About</button>
+			</form>
 		</div>
+		<script>
+			var aboutbutton = document.getElementById("about");
+			var aboutback = document.getElementById("aboutback");
+			var projbutton = document.getElementById("proj");
+			var projback = document.getElementById("projback");
+			var title = document.getElementById("title");
+			aboutbutton.addEventListener("mouseover", function(){
+			  aboutback.style.opacity = 1;
+				projbutton.style.opacity = 0.5;
+				projbutton.style.filter = "blur(2px)";
+				title.style.opacity = 0.5;
+				title.style.filter = "blur(2px)";
+				title.style.backgroundColor = "#144ead";
+			});
+
+			aboutbutton.addEventListener("mouseout", function(){
+			  aboutback.style.opacity = 0;
+				projbutton.style.opacity = 1;
+				projbutton.style.filter = "";
+				title.style.opacity = 1;
+				title.style.filter = "";
+				title.style.backgroundColor = "#FFFFFF";
+			});
+			projbutton.addEventListener("mouseover", function(){
+			  projback.style.opacity = 1;
+				aboutbutton.style.opacity = 0.5;
+				aboutbutton.style.filter = "blur(2px)";
+				title.style.opacity = 0.5;
+				title.style.filter = "blur(2px)";
+				title.style.backgroundColor = "#144ead";
+			});
+
+			projbutton.addEventListener("mouseout", function(){
+			  projback.style.opacity = 0;
+				aboutbutton.style.opacity = 1;
+				aboutbutton.style.filter = "";
+				title.style.opacity = 1;
+				title.style.filter = "";
+				title.style.backgroundColor = "#FFFFFF";
+			});
+		</script>
 	  <script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
