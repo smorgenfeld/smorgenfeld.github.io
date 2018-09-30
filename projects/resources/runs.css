@@ -20,4 +20,6 @@ div {
 
 a {
   text-decoration: none;
+  font-size: 20;
+  color: orange;
 }
