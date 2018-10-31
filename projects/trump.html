@@ -23,25 +23,30 @@
 		</table>
 		<script>
 			var box = document.getElementById("text");
-			var gadv = ["very", "so", "tremendously", "hugely"];
-			var gaadv = ["bigly", "tremendously", "hugely"];
+			var gadv = ["very", "so", "tremendously", "hugely", "massively"];
+			var gaadv = ["bigly", "tremendously", "hugely", "massively"];
 			var adv = ["very", "so"];
 			var badv = ["zero"];
-			var ggnoun = ["me", "us", "our nation", "America"];
+			var ggnoun = ["me", "us", "our nation", "America", "Putin", "North Korea"];
 			var gggnoun = ["I", "we"];
+			var our = ["our", "my", "America's"];
 			var pgnoun = ["we're", "I'm"];
 			var gnoun = ["something"].concat(pgnoun);
-			var pbnoun = ["Hillary", "China", "ISIS", "Mexico", "muslims", "the establishment"]
-			var bnoun = ["emails", "the trade deficit", "immigrants", "terrorists", "mexicans", "the Chinese", "hombres"].concat(pbnoun);
-			var bodesc = ["overrated", "obnoxious", "dangerous", "bad", "weak", "stupid", "disgusting", "crooked",  "low-energy", "politically correct", "criminal", "nasty"];
-			var bdesc = ["a loser", "a moron", "out of control", "an idiot", "a buffoon", "a liar", "a hater", "a lightweight"].concat(bodesc);
-			var gdesc = ["tough", "smart", "tremendous", "amazing", "huge", "terrific", "fantastic"];
-			var gverb = ["win", "build a wall", "make America great again"];
-			var bverb = ["loses", "lies", "hates"];
-			var trans = ["And you know what?", "And guess what.", "And you know what else?", "Guess what else.", "But", "And", "So"];
+			var pbnoun = ["Hillary", "China", "ISIS", "Mexico", "muslims", "the establishment", "fake news", "the fake news media", "the Fed"]
+			var bnoun = ["emails", "the trade deficit", "immigrants", "terrorists", "mexicans", "the Chinese", "hombres", "reporters", "illegal aliens", "liberal"].concat(pbnoun);
+			var bodesc = ["overrated", "obnoxious", "dangerous", "bad", "weak", "stupid", "disgusting", "crooked",  "low-energy", "politically correct", "criminal", "nasty", "dishonest", "wacky", "lowly-rated", "boring", "horrendous", "outdated"];
+			var bodesc2 = ["long"].concat(bodesc); //for when using 2 bodesc
+			var bdesc = ["a loser", "a moron", "out of control", "an idiot", "a buffoon", "a liar", "a hater", "a lightweight", "failing", "a thief", "unqualified"].concat(bodesc);
+			var gdesc = ["tough", "smart", "tremendous", "amazing", "huge", "terrific", "fantastic", "great"];
+			var gverb = ["win", "build a wall", "make America great again", "cut taxes", "repeal Obamacare"];
+			var bverb = ["loses", "lies", "hates", "fails"];
+			var trans = ["And you know what?", "And guess what.", "And you know what else?", "Guess what else.", "But", "And", "So", "As you know,"];
+			var transBad = ["Big mistake!", "A total mess!"];
+			var badj = ["in tatters.", "failing."]
 			var beg = ["A lot of smart people are saying", "Did you know", "I know more about", "A lot of experts say", "So that's why", "And that's why"];
-			var gpos = ["infrastructure", "national defense", "the economy"];
-			var bpos = ["trade", "Obamacare", "gun control", "ISIS", "immigration", "taxes", "abortion", "the war in Iraq", "climate change", "global warming"];
+			var gpos = ["infrastructure", "national defense", "the economy", "2nd Amendment", "the stock market", "law enforcement", "jobs", "space force", "alternative facts", "covfefe", "veterans"];
+			var gpost = ["infrastructure", "national defense", "economy", "2nd Amendment", "stock market", "law enforcement", "jobs", "space force", "country", "alternative facts", "covfefe", "veterans"];
+			var bpos = ["trade", "Obamacare", "gun control", "ISIS", "immigration", "taxes", "abortion", "the war in Iraq", "climate change", "global warming", "high taxes", "open border", "opioids", "pre-existing conditions", "voter fraud"];
 			var speech = "";
 			var linecount = 0;
 			function ran(list) {
@@ -52,7 +57,7 @@
 			}
 			function create() {
 				var last = -1;
-				var tots = 6;
+				var tots = 7;
 				while (linecount < 10) {
 					var start = false;
 					if (linecount == 0) {start = true};
@@ -81,6 +86,8 @@
 							break;
 						case 6:
 							c7(start);
+						case 7:
+							c8(start);
 							break;
 						default:
 							console.log('wat');
@@ -151,6 +158,14 @@
 				speech += ran(beg) + " I never supported " + ran(bpos) + ".  It's been debunked. " + ran(gaadv) + ".<br />";
 				speech += "But " + ran(pbnoun) + " insisted that " + ran(gggnoun) + " do. That's " + ran(gadv) + " wrong.<br />";
 				linecount += 2
+			}
+			function c8(start) {
+				var badguy = ran(pbnoun);
+				var repeatgadj = ran(gadv);
+				var repeatgpost = ran(gpost);
+				speech += ran(trans) + " " + badguy + " just wrote a " + ran(bodesc2) + " and " + ran(bodesc) + " article saying that " + ran(our) + " " + repeatgpost + " is " + ran(badj) + " " + ran(transBad) + "<br />";
+				speech += "But " + ran(pgnoun) + " " + repeatgadj + ", " + repeatgadj + " " + ran(gdesc) + ", and so is " + ran(our) + " " + repeatgpost + ".<br />";
+				linecount += 2;
 			}
 			create();
 		</script>
