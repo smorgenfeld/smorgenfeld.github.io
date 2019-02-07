@@ -15,44 +15,52 @@
   </div>
 <script type = 'text/javascript' src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+  function convertDateTomorrow(date) {
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    newDate = new Date(date.getTime() + 60 * 60 * 24 * 1000);
+    return months[newDate.getMonth(1)] + " " + (newDate.getDate() + 1);
+  }
   var now = new Date();
   var chance = "0";
   if (now.getDay() == 3){
     document.getElementById('lol').style.display = '';
   }
   if (now.getMonth() == 4){
-    if (now.getDate() == 14){
-      chance = "2.97";
+    if (now.getDate() == 13) {
+      chance = "2.38";
+    }
+    else if (now.getDate() == 14) {
+      chance = "4.93";
     }
     else if (now.getDate() == 15) {
-      chance = "6.14";
+      chance = "6.63";
     }
     else if (now.getDate() == 16) {
-      chance = "8.27";
+      chance = "18.52";
     }
-    else if (now.getDate() == 17) {
-      chance = "18.87";
+    else if (now.getDate() == 20) {
+      chance = "4.57";
     }
     else if (now.getDate() == 21) {
-      chance = "4.74";
+      chance = "9.46";
     }
     else if (now.getDate() == 22) {
-      chance = "9.82";
+      chance = "12.72";
     }
     else if (now.getDate() == 23) {
-      chance = "13.20";
+      chance = "35.56";
     }
-    else if (now.getDate() == 24) {
-      chance = "30.13";
+    else if (now.getDate() == 27) {
+      chance = "0.38";
     }
     else if (now.getDate() == 28) {
-      chance = "0.48";
+      chance = "0.79";
     }
     else if (now.getDate() == 29) {
-      chance = "0.99";
+      chance = "1.07";
     }
     else if (now.getDate() == 30) {
-      chance = "1.33";
+      chance = "2.99";
     }
   }
   var chancenum = parseInt(chance.replace('.',''), 10);
@@ -84,10 +92,12 @@
 }
   var timeAnimation = 500;
   var quoteContainer = $('#quoteContainer');
+
   $("body").toggleClass(color);
   quoteContainer.fadeOut(timeAnimation, function(){
     quoteContainer.html('');
-    quoteContainer.append('<p style = "font-size:60px">'+title+'</p>'+'<p id="quoteGenius">'+'Based on historical data, the chance Ditch Day is tomorrow is <b style = "font-size:20px">~'+chance+'</b></p>');
+    quoteContainer.append('<p style = "font-size:60px">'+title+'</p>'+'<p id="quoteGenius">'+'Based on historical data, the chance Ditch Day is tomorrow, ' +
+    convertDateTomorrow(now) + ', is <b style = "font-size:20px">~'+chance+'</b></p><hr style="border-color:black"/><p><b>Ditch Day 2019 is most likely May 24th, 17th, or 23rd.</b></p>');
 
     //fadein animation.
     quoteContainer.fadeIn(timeAnimation);
