@@ -14,13 +14,16 @@
 		<h1 style="text-align:center"> </h1>
 		<hr>
 		<div align="center">
+		<input id="clickMe" type="button" value="Create New Speech" onclick="create();" />
 		<table style="background:rgba(255,255,255,0.8);font-size:20px">
 		<tr>
 		<td>
 		<span id="text" style=""></span>
+
 		</td>
 		</tr>
 		</table>
+
 		<script>
 			var box = document.getElementById("text");
 			var gadv = ["very", "so", "tremendously", "hugely", "massively"];
@@ -56,6 +59,9 @@
 				return Math.floor((Math.random() * (upper - lower + 1)) + lower);
 			}
 			function create() {
+				speech = "";
+				box.innerHTML ="";
+				linecount = 0;
 				var last = -1;
 				var tots = 10;
 				var used = [];
