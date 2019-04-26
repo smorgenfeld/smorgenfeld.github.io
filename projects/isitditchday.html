@@ -9,10 +9,12 @@
     <div id="quoteContainer">
   </div>
 </div>
-  <div id='lol' style='display:none'>
-    <p id="also">Also...</p>
-    <img src = "http://i0.kym-cdn.com/entries/icons/original/000/020/016/wednesday.jpg"/>
-  </div>
+
+<div id='lol' style='display:none'>
+  <br><br><br><br><br>
+  <p id="also"><b>Also...</b></p>
+  <img src = "resources/wednesday.jpg"/>
+</div>
 <script type = 'text/javascript' src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>
   function convertDateTomorrow(date) {
@@ -22,9 +24,7 @@
   }
   var now = new Date();
   var chance = "0";
-  if (now.getDay() == 3){
-    document.getElementById('lol').style.display = '';
-  }
+
   if (now.getMonth() == 4){
     if (now.getDate() == 13) {
       chance = "2.38";
@@ -92,6 +92,7 @@
 }
   var timeAnimation = 500;
   var quoteContainer = $('#quoteContainer');
+  var wednesday = $('#lol');
 
   $("body").toggleClass(color);
   quoteContainer.fadeOut(timeAnimation, function(){
@@ -100,6 +101,10 @@
     convertDateTomorrow(now) + ', is <b style = "font-size:20px">~'+chance+'</b></p><hr style="border-color:black"/><p><b>Ditch Day 2019 is most likely May 24th, 17th, or 23rd.</b></p>');
 
     //fadein animation.
+    if (now.getDay() == 3){
+      //document.getElementById('lol').style.display = '';
+      wednesday.fadeIn(timeAnimation);
+    }
     quoteContainer.fadeIn(timeAnimation);
   });
 </script>
