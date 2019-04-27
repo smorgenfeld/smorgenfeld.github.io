@@ -20,7 +20,7 @@
   function convertDateTomorrow(date) {
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     newDate = new Date(date.getTime() + 60 * 60 * 24 * 1000);
-    return months[newDate.getMonth(1)] + " " + (newDate.getDate() + 1);
+    return months[newDate.getMonth(1)] + " " + (newDate.getDate());
   }
   var now = new Date();
   var chance = "0";
