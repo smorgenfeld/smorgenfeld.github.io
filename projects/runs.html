@@ -12,30 +12,49 @@
         <span id="container">
           <br><br>
 
-          <a href="#" id=15679974 onclick="setRun(15679974);">Campus Loop</a>
+          <a href="#" id=30900580 onclick="setRun(30900580);">Campus Loop</a>
           <br/>
           <span id="i">1.8 miles, paved surfaces</span>
           <p/>
 
-          <a href="#" id=15680058 onclick="setRun(15680058);">Gene Loop</a>
+          <a href="#" id=30901172 onclick="setRun(30901172);">Huntington A</a>
           <br/>
-          <span id="i">5.6 miles, paved surfaces</span>
+          <span id="i">5.0 miles, paved/grass surfaces</span>
           <p/>
 
-          <a href="#" id=15680086 onclick="setRun(15680086);">Rosemead</a>
-          <br/>
-          <span id="i">6.6 miles, paved surfaces</span>
-          <p/>
 
-          <a href="#" id=15679334 onclick="setRun(15679334);">Debs</a>
+          <a href="#" id="Gene Loopcont" onclick="showhide('Gene Loop');" style="color:black">&#9654; <b>Gene Loop</b></a>
+          <div id="Gene Loop" style="display:none;padding-left: 2em;text-indent: -2em;">
+            <div></div>
+            <a href="#" id=30901083 onclick="setRun(30901083);">Gene Loop</a>
+            <br/>
+            <span id="i">5.6 miles, paved surfaces</span>
+            <p/>
+
+            <div></div>
+            <a href="#" id=30901105 onclick="setRun(30901105);">Gene Loop+</a>
+            <br/>
+            <span id="i">6.5 miles, paved surfaces</span>
+            <p/>
+
+            <div></div>
+            <a href="#" id=30901122 onclick="setRun(30901122);">Rosemead</a>
+            <br/>
+            <span id="i">7.4 miles, paved surfaces</span>
+            <p/>
+          </div>
+
+
+          <a href="#" id=30901164 onclick="setRun(30901164);">Debs</a>
           <br/>
-          <span id="i">14.3 miles, hilly, paved/dirt/grass surfaces</span>
+          <span id="i">14.4 miles, hilly, paved/dirt/grass surfaces</span>
           <p/>
 
         </span>
       </div>
-      <div style="display:inline-block;vertical-align:top;">
-        <iframe id="frame" src="" width="800" height="904" frameborder="0"></iframe>
+      <div style="display:inline-block;vertical-align:top;width:50%">
+          <br><br>
+          <iframe id="frame" src="https://ridewithgps.com/embeds?type=route&id=30900580&sampleGraph=true" style="width: 1px; min-width: 100%; height: 700px; border: none;" scrolling="no"></iframe>
       </div>
     </div>
     <script type="text/javascript">
@@ -48,15 +67,27 @@
             e.style.display = 'block';
       }
       function setRun(num) {
-        var link = "https://www.doogal.co.uk/StravaRoute.php?id=" + num + "&embed=true&segments=false&streetView=false&units=imperial";
+        var link = "https://ridewithgps.com/embeds?type=route&id=" + num + "&sampleGraph=true";
         document.getElementById("frame").src = link;
-        document.getElementById(num).style.fontWeight = "bold";
         if (curBold != null) {
           document.getElementById(curBold).style.fontWeight = "normal";
         }
+        document.getElementById(num).style.fontWeight = "bold";
+
         curBold = num;
       }
-      setRun(15679974);
+      function showhide(id) {
+       	var e = document.getElementById(id);
+        var cont = document.getElementById(id+"cont");
+       	e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+        if (e.style.display == "block") {
+          cont.innerHTML = "&#9660; <b>" + id + "</b>";
+        }
+        else {
+          cont.innerHTML = "&#9654; <b>" + id + "</b>";
+        }
+     }
+      setRun(30900580);
     </script>
   </body>
 </html>
