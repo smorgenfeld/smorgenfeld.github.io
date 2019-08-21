@@ -8,7 +8,7 @@
       <div>
         <font size="50">Caltech XC Runs</font>
       </div>
-      <div style="display:inline-block;text-align:left">
+      <div style="display:inline-block;text-align:left;width:25%">
         <span id="container">
           <br><br>
 
@@ -17,13 +17,39 @@
           <span id="i">1.8 miles, paved surfaces</span>
           <p/>
 
-          <a href="#" id=30901172 onclick="setRun(30901172);">Huntington A</a>
+
+
+          <a href="#" id="Huntingtoncont" onclick="showhide('Huntington');" style="color:black">&#9654; <b>Huntington</b></a>
           <br/>
-          <span id="i">5.0 miles, paved/grass surfaces</span>
+          <span id="i">5.0 - 7.6 miles</span>
+          <p/>
+          <div id="Huntington" style="display:none;padding-left: 2em;text-indent: -2em;">
+
+            <div></div>
+            <a href="#" id=30901172 onclick="setRun(30901172);">Huntington A</a>
+            <br/>
+            <span id="i">5.0 miles, paved/grass surfaces</span>
+            <p/>
+
+            <div></div>
+            <a href="#" id=30901943 onclick="setRun(30901943);">Huntington A*</a>
+            <br/>
+            <span id="i">6.6 miles, paved/grass surfaces</span>
+            <p/>
+
+            <div></div>
+            <a href="#" id=30901958 onclick="setRun(30901958);">Huntington B</a>
+            <br/>
+            <span id="i">7.6 miles, paved/grass surfaces</span>
+            <p/>
+
+          </div>
           <p/>
 
-
           <a href="#" id="Gene Loopcont" onclick="showhide('Gene Loop');" style="color:black">&#9654; <b>Gene Loop</b></a>
+          <br/>
+          <span id="i">5.6 - 7.4 miles</span>
+          <p/>
           <div id="Gene Loop" style="display:none;padding-left: 2em;text-indent: -2em;">
             <div></div>
             <a href="#" id=30901083 onclick="setRun(30901083);">Gene Loop</a>
@@ -43,7 +69,54 @@
             <span id="i">7.4 miles, paved surfaces</span>
             <p/>
           </div>
+          <p/>
 
+          <a href="#" id="Arroyocont" onclick="showhide('Arroyo');" style="color:black">&#9654; <b>Arroyo</b></a>
+          <br/>
+          <span id="i">7.8 - 11.6 miles</span>
+          <p/>
+          <div id="Arroyo" style="display:none;padding-left: 2em;text-indent: -2em;">
+            <div></div>
+            <a href="#" id=30901917 onclick="setRun(30901917);">Lower</a>
+            <br/>
+            <span id="i">7.8 miles, paved/dirt surfaces, lots of traffic lights</span>
+            <p/>
+
+            <div></div>
+            <a href="#" id=30901813 onclick="setRun(30901813);">Full Lite</a>
+            <br/>
+            <span id="i">9.8 miles, paved/dirt surfaces, traffic lights</span>
+            <p/>
+
+            <div></div>
+            <a href="#" id=30901823 onclick="setRun(30901823);">Full</a>
+            <br/>
+            <span id="i">10.3 miles, paved/dirt surfaces, traffic lights</span>
+            <p/>
+
+            <div></div>
+            <a href="#" id=30901829 onclick="setRun(30901829);">Full Full</a>
+            <br/>
+            <span id="i">11.6 miles, paved/dirt surfaces, traffic lights</span>
+            <p/>
+          </div>
+          <p/>
+
+          <!--<a href="#" id="Upper Arroyocont" onclick="showhide('Upper Arroyo');" style="color:black">&#9654; <b>Upper Arroyo</b></a>
+          <br/>
+          <span id="i">X - X miles</span>
+          <p/>
+          <div id="Upper Arroyo" style="display:none;padding-left: 2em;text-indent: -2em;">
+
+            <div></div>
+            <a href="#" id=30901813 onclick="setRun(30901813);">Lower Lite</a>
+            <br/>
+            <span id="i">9.8 miles, paved/dirt surfaces, traffic lights</span>
+            <p/>
+
+          </div>
+          <p/>
+        -->
 
           <a href="#" id=30901164 onclick="setRun(30901164);">Debs</a>
           <br/>
@@ -84,7 +157,7 @@
           cont.innerHTML = "&#9660; <b>" + id + "</b>";
         }
         else {
-          cont.innerHTML = "&#9654; <b>" + id + "</b>";
+          cont.innerHTML = "&#9658; <b>" + id + "</b>";
         }
      }
       setRun(30900580);
