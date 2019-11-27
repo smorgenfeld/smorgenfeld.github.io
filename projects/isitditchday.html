@@ -26,41 +26,41 @@
   var chance = "0";
 
   if (now.getMonth() == 4){
-    if (now.getDate() == 13) {
-      chance = "2.38";
+    if (now.getDate() == 12) {
+      chance = "1.96";
+    }
+    else if (now.getDate() == 13) {
+      chance = "4.08";
     }
     else if (now.getDate() == 14) {
-      chance = "4.93";
+      chance = "5.48";
     }
     else if (now.getDate() == 15) {
-      chance = "6.63";
+      chance = "18.0";
     }
-    else if (now.getDate() == 16) {
-      chance = "18.52";
+    else if (now.getDate() == 19) {
+      chance = "4.38";
     }
     else if (now.getDate() == 20) {
-      chance = "4.57";
+      chance = "9.07";
     }
     else if (now.getDate() == 21) {
-      chance = "9.46";
+      chance = "12.20";
     }
     else if (now.getDate() == 22) {
-      chance = "12.72";
+      chance = "40.05";
     }
-    else if (now.getDate() == 23) {
-      chance = "35.56";
+    else if (now.getDate() == 26) {
+      chance = "0.32";
     }
     else if (now.getDate() == 27) {
-      chance = "0.38";
+      chance = "0.66";
     }
     else if (now.getDate() == 28) {
-      chance = "0.79";
+      chance = "0.88";
     }
     else if (now.getDate() == 29) {
-      chance = "1.07";
-    }
-    else if (now.getDate() == 30) {
-      chance = "2.99";
+      chance = "2.90";
     }
   }
   var chancenum = parseInt(chance.replace('.',''), 10);
@@ -98,7 +98,7 @@
   quoteContainer.fadeOut(timeAnimation, function(){
     quoteContainer.html('');
     quoteContainer.append('<p style = "font-size:60px">'+title+'</p>'+'<p id="quoteGenius">'+'Based on historical data, the chance Ditch Day is tomorrow, ' +
-    convertDateTomorrow(now) + ', is <b style = "font-size:20px">~'+chance+'</b></p><hr style="border-color:black"/><p><b>Ditch Day 2019 is most likely May 24th, 17th, or 23rd.</b></p>');
+    convertDateTomorrow(now) + ', is <b style = "font-size:20px">~'+chance+'</b></p><hr style="border-color:black"/><p><b>Ditch Day 2020 is most likely May 22nd, 15th, or 21st. <p>  If someone tells you it\'s tomorrow, feel free to respond with "ok boomer."</b></p>');
 
     //fadein animation.
     if (now.getDay() == 3){

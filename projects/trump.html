@@ -30,26 +30,26 @@
 			var gaadv = ["bigly", "tremendously", "hugely", "massively"];
 			var adv = ["very", "so"];
 			var badv = ["zero"];
-			var ggnoun = ["me", "us", "our nation", "America", "Putin", "North Korea", "Russia"];
+			var ggnoun = ["me", "us", "our nation", "America", "Putin", "North Korea", "Russia", "Saudi Arabia", "Israel", "the transcript", "Ukraine"];
 			var gggnoun = ["I", "we"];
 			var our = ["our", "my", "America's"];
 			var pgnoun = ["we're", "I'm"];
 			var gnoun = ["something"].concat(pgnoun);
-			var pbnoun = ["Hillary", "China", "ISIS", "Mexico", "muslims", "the establishment", "fake news", "the fake news media", "the Fed", "Cohen", "Bernie", "Pelosi", "Venezuela"]
-			var bnoun = ["emails", "the trade deficit", "immigrants", "terrorists", "mexicans", "the Chinese", "hombres", "reporters", "illegal aliens", "liberals", "leakers", "the DNC"].concat(pbnoun);
+			var pbnoun = ["Hillary", "China", "ISIS", "Mexico", "muslims", "the establishment", "fake news", "the fake news media", "the Fed", "Cohen", "Bernie", "Pelosi", "Venezuela", "Amazon", "New York", "Democrats", "Biden"]
+			var bnoun = ["emails", "the trade deficit", "immigrants", "terrorists", "mexicans", "the Chinese", "hombres", "reporters", "illegal aliens", "liberals", "leakers", "the DNC", "tax returns"].concat(pbnoun);
 			var bodesc = ["overrated", "obnoxious", "dangerous", "bad", "weak", "stupid", "disgusting", "crooked",  "low-energy", "politically correct", "criminal", "nasty", "dishonest", "wacky", "lowly-rated", "boring", "horrendous", "outdated", "crazed", "radical", "far-left"];
 			var bodesc2 = ["long"].concat(bodesc); //for when using 2 bodesc
 			var bdesc = ["a loser", "a moron", "out of control", "an idiot", "a buffoon", "a liar", "a hater", "a lightweight", "failing", "a thief", "unqualified"].concat(bodesc);
 			var gdesc = ["tough", "smart", "tremendous", "amazing", "huge", "terrific", "fantastic", "great", "wonderful"];
-			var gverb = ["win", "build a wall", "make America great again", "cut taxes", "repeal Obamacare", "shut down the government"];
+			var gverb = ["win", "build a wall", "make America great again", "cut taxes", "repeal Obamacare", "shut down the government",  ""];
 			var bverb = ["loses", "lies", "hates", "fails"];
 			var trans = ["And you know what?", "And guess what.", "And you know what else?", "Guess what else.", "But", "And", "So", "As you know,"];
-			var transBad = ["Big mistake!", "A total mess!"];
+			var transBad = ["Big mistake!", "A total mess!", "Sad!"];
 			var badj = ["in tatters.", "failing."]
 			var beg = ["A lot of smart people are saying", "Did you know", "I know more about", "A lot of experts say", "So that's why", "And that's why"];
 			var gpos = ["infrastructure", "national defense", "the economy", "2nd Amendment", "the stock market", "law enforcement", "jobs", "space force", "alternative facts", "covfefe", "veterans", "uranium", "freedom", "democracy"];
 			var gpost = ["infrastructure", "national defense", "economy", "2nd Amendment", "stock market", "law enforcement", "jobs", "space force", "country", "alternative facts", "covfefe", "veterans", "uranium", "freedom", "democracy"];
-			var bpos = ["trade", "Obamacare", "gun control", "ISIS", "immigration", "taxes", "abortion", "the war in Iraq", "climate change", "global warming", "high taxes", "open border", "opioids", "pre-existing conditions", "voter fraud", "socialism", "leaking", "gangs", "drugs", "crime", "collusion", "chain migration", "perjury"];
+			var bpos = ["trade", "Obamacare", "gun control", "ISIS", "immigration", "taxes", "abortion", "the war in Iraq", "climate change", "global warming", "high taxes", "open border", "opioids", "pre-existing conditions", "voter fraud", "socialism", "leaking", "gangs", "drugs", "crime", "collusion", "chain migration", "perjury", "impeachment", "free trade", "releasing my tax returns"];
 			var speech = "";
 			var linecount = 0;
 			function ran(list) {
@@ -63,7 +63,7 @@
 				box.innerHTML ="";
 				linecount = 0;
 				var last = -1;
-				var tots = 10;
+				var tots = 12;
 				var used = [];
 				while (linecount < 10) {
 					var start = false;
@@ -105,6 +105,12 @@
 							break;
 						case 10:
 							c11(start);
+							break;
+						case 11:
+							c12(start);
+							break;
+						case 12:
+							c13(start);
 							break;
 						default:
 							console.log('wat');
@@ -199,6 +205,16 @@
 				var bguys = ran(bnoun);
 				var action = ran(["shut down the government", "colluded with " + ran(ggnoun), "supported " + ran(bpos)]);
 				speech += ran(trans) + " I never  " + action + ". " + ran(bodesc) +" "+ bguys + " did.  That's fake news.<br />"
+				linecount += 1;
+			}
+			function c12(start) {
+				var bguy = ran(bnoun);
+				speech += ran(trans) + " " + ran(bodesc) +" "+ bguy + " want to impeach me.  That's " + ran(bodesc) + "! <br />"
+				linecount += 1;
+			}
+			function c13(start) {
+				var bguy = ran(bnoun);
+				speech += ran(trans) + " I told "+ ran(ggnoun) +" to  investigate "+ bguy + ".  And " + bguy + " doens't like that, so they're trying to impeach me. " + ran(transBad) + " <br />"
 				linecount += 1;
 			}
 			create();
