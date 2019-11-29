@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<title>PARSEC</title>
+	<link href="resources/index.css" type="text/css" rel="Stylesheet">
+	<meta name="description" content="List of Projects">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:700" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<div class="center">
+			<div class="inside" style="font-size: 30px;background-color: #FFFFFF">
+				PARSEC - VALKYRIE I
+			</div>
+			<hr>
+    <table style="width:100%;border-collapse:collapse" cellpadding="10">
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td width="50%" valign="top">
+          PARSEC is Caltech's rocketry club.  We're in the process of building our first rocket, powered by our Methane/LOX, 3D printed Valyrie-I
+          rocket engine.  I'm the team's structures lead, in charge of coordinating the design and manufacturing process for the internal
+          structure of the rocket.  To date, I've also personally designed a custom launch lug designed to passively jettison shortly after
+          launch, and the support structure for the rocket's pressurant (helium) tank.
+          <p>
+					For more information about PARSEC, <a href="https://parsec.caltech.edu/">here's</a> a link to our website.
+				</td>
+        <td align="center">
+          <img src="resources/rocket2.png" width="100%" title="Rocket Profile"/><p><i>Rocket Profile</i><p>
+          <img src="resources/rocket1.png" width="100%" title="Rocket Profile - Inside"/><p><i>Rocket Profile - Inside</i>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          PARSEC needed to design a custom launch lug after finding that the off-the-shelf alternatives were far too heavy.  The lug needed to
+          mate our rocket to a T-shaped launch rail during takeoff, then retract inside the rocket to decrease drag.
+          <p>
+          Early in the design process, it occurred to me that the lightest launch lug would be one that the ejected itself from the rocket immediately after clearing the launch rail.  To that end, my design contains three main parts.
+           A spring-loaded clamp (blue) grabs the launch rail during takeoff, and is constrained inside a tube attached to the rocket by a trio of ball bearings.
+          The bearings themselves are constrained by a spring-loaded button (orange) that can only extend and free the bearings once the rocket has left the launch rail.
+          Finally, the clamp/button interface with the rocket via the third piece (gray), which itself glues to the inner wall of the rocket's carbon fiber
+          shell.  A spring-loaded hinged cover (not shown) will close after the clamp is ejected, covering the hole left behind by the clamp.
+          <p>
+          A 3D-printed lug worked successfully during tests, proving the basic concept is valid.  I'm currently working to increase the part's machinabilty before
+          we build the final launch lug out of stainless steel and aluminum.
+        </td>
+        <td align="center">
+          <img src="resources/lugExtended.png" width="50%" title="Isometric View of the Launch Lug CAD"/><p><i>Isometric View of the Launch Lug CAD</i><p>
+          <img src="resources/lugCut.png" width="50%" title="Section View of the Launch Lug CAD"/><p><i>Section View of the Launch Lug CAD, Showing the Spring-Loaded Button and Ball Bearings</i>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          The rocket's pressurant tank needed a lightweight support structure to constrain the tank under acceleration and deceleration.  We also
+          needed room beneath the tank to route plumbing.
+          <p>
+          This design will have to be changed to accommodate a new tank, as we weren't able to purchase the exact tank shown in the CAD.
+        </td>
+        <td align="center">
+          <img src="resources/heliumTankSide.png" width="50%" title="Side View of the Tank Support CAD"/><p><i>Side View of the Tank Support CAD</i><p>
+          <img src="resources/heliumTankDetail.png" width="50%" title="Detail View of the Tank Support CAD"/><p><i>Detail View of the Tank Support CAD</i>
+        </td>
+      </tr>
+    </table>
+		</div>
+	  <script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-81423107-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+	</body>
+</html>
