@@ -42,6 +42,8 @@
 			var badj = ["in tatters.", "failing."]
 			var beg = ["A lot of smart people are saying", "Did you know", "A lot of experts say", "So that's why", "And that's why"]; //"I know more about"
 
+			var socialMediaPlatforms = ["Twitter", "Facebook", "Youtube", "Instagram", "Tik Tok", "MySpace"]
+
 			var bAdjective = [new word("Overrated", false), new word("Obnoxious", false), new word("Dangerous", false), new word("Bad", false), new word("Weak", false), new word("Stupid", false), new word("Disgusting", false),
 				new word("Crooked", false), new word("Low-energy", false), new word("Politically correct", false), new word("Criminal", false), new word("Nasty", false), new word("Dishonest", false), new word("Lowly-rated", false),
 				new word("Boring", false), new word("Horrendous", false), new word("Outdated", false), new word("Crazed", false), new word("Radical", false), new word("Far-left", false), new word("Sleepy", false),
@@ -312,7 +314,7 @@
 			function c14(start) {
 				var bguy = ran(bNoun_people);
 				var us =  ran(gNoun_me);
-				speech += ran(bAdjective).p(false, true) + " " + bguy.p() + " had " + us.I(false) + " kicked off Twitter. " + ran(transBad) + " But even if " + ran(gNoun_people).p(true, false, false, true) + " gets " + us.I(false) + " back, " +
+				speech += ran(bAdjective).p(false, true) + " " + bguy.p() + " had " + us.I(false) + " kicked off " + ran(socialMediaPlatforms) + ". " + ran(transBad) + " But even if " + ran(gNoun_people).p(true, false, false, true) + " gets " + us.I(false) + " back, " +
 					us.I(true, true) + " not going back. " + us.I(true, true, true) + " not going back. <br />"
 			}
 
