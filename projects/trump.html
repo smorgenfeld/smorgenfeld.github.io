@@ -42,12 +42,12 @@
 			var badj = ["in tatters.", "failing."]
 			var beg = ["A lot of smart people are saying", "Did you know", "A lot of experts say", "So that's why", "And that's why"]; //"I know more about"
 
-			var socialMediaPlatforms = ["Twitter", "Facebook", "Youtube", "Instagram", "Tik Tok", "MySpace"]
+			var socialMediaPlatforms = ["Twitter", "Facebook", "Youtube", "Instagram", "Tik Tok", "MySpace", "X, formally known as Twitter", "Truth Social", "Vine", "Reddit"]
 
 			var bAdjective = [new word("Overrated", false), new word("Obnoxious", false), new word("Dangerous", false), new word("Bad", false), new word("Weak", false), new word("Stupid", false), new word("Disgusting", false),
 				new word("Crooked", false), new word("Low-energy", false), new word("Politically correct", false), new word("Criminal", false), new word("Nasty", false), new word("Dishonest", false), new word("Lowly-rated", false),
 				new word("Boring", false), new word("Horrendous", false), new word("Outdated", false), new word("Crazed", false), new word("Radical", false), new word("Far-left", false), new word("Sleepy", false),
-				new word("Failing", false), new word("Unqualified", false)
+				new word("Failing", false), new word("Unqualified", false), new word("Sloppy", false),
 			]
 
 			var bDescription = bAdjective.concat([new word("A loser", false), new word("A moron", false), new word("Out of control", false), new word("An idiot", false), new word("A buffoon", false), new word("A liar", false),
@@ -72,13 +72,13 @@
 			var gNoun_all = gNoun_people.concat(gNoun_things);
 
 			var bNoun_things = [new word("Emails", false), new word("Trade deficit", false, true), new word("Immigrants", false), new word("Hombres", false), new word("Tax fraud", false),
-				new word("Illegal aliens", false), new word("DNC", true, true), new word("Tax returns", false), new word("Muslims", false), new word("Wind turbines", false)
+				new word("Illegal aliens", false), new word("DNC", true, true), new word("Tax returns", false), new word("Muslims", false), new word("Wind turbines", false), new word("inflation", false)
 			]
 
 			var bNoun_people = [new word("Hillary", true), new word("China", true), new word("Venezuela", true), new word("Mexicans", true, true), new word("Chinese", true, true), new word("ISIS", true), new word("Mexico", true),
 			 	new word("Reporters", false), new word("Fake news media", false, true), new word("Liberals", false), new word("Leakers", false), new word("Fed", true, true), new word("Cohen", true), new word("Bernie", true),
 				new word("Pelosi", true), new word("Amazon", true), new word("New York", true), new word("Democrats", true), new word("Biden", true), new word("Joe", true), new word("Antifa", true),
-				new word("Fake news", false), new word("Twitter", true)
+				new word("Fake news", false), new word("Twitter", true), new word("DeSantis", true), new word("Hamas", true)
 			] //new word("Establishment", true, true),
 
 			var bNoun_all = bNoun_people.concat(bNoun_things);
@@ -111,7 +111,7 @@
 				box.innerHTML ="";
 				linecount = 0;
 				var last = -1;
-				var tots = 13;
+				var tots = 14;
 				var used = [];
 				while (linecount < 10) {
 					var start = false;
@@ -163,6 +163,9 @@
 							break;
 						case 13:
 							c14(start);
+							break;
+						case 14:
+							c15(start);
 							break;
 						default:
 							console.log('wat');
@@ -316,6 +319,12 @@
 				var us =  ran(gNoun_me);
 				speech += ran(bAdjective).p(false, true) + " " + bguy.p() + " had " + us.I(false) + " kicked off " + ran(socialMediaPlatforms) + ". " + ran(transBad) + " But even if " + ran(gNoun_people).p(true, false, false, true) + " gets " + us.I(false) + " back, " +
 					us.I(true, true) + " not going back. " + us.I(true, true, true) + " not going back. <br />"
+			}
+
+			function c15(start) {
+				var bguy = ran(bNoun_people)
+				var us =  ran(gNoun_me);
+				speech += ran(trans) + ran(bAdjective).p(false, true) + " " + bguy.p() + " challenged me to a debate. But they're so " + ran(bAdjective).p(false, false) + ", what's the point? <br />"
 			}
 
 			create();
